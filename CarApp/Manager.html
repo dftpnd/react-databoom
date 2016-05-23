@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta content='initial-scale=1, user-scalable=0' name='viewport' />
+<head>
+    <title>CarApp - Менеджер</title>
+
+    <script src="js/jquery-1.11.0.min.js"></script>
+
+    <link href="js/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <script src="js/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+
+    <!--<link href="js/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" />-->
+    <link href="css/United/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="js/select2/select2.full.min.js"></script>
+    <link href="js/select2/select2.min.css" rel="stylesheet" />
+    <script src="js/select2/i18n/ru.js"></script>
+
+    <script src="js/jquery.blockUI.js"></script>
+
+    <script src="js/databoom.js"></script>
+
+    <link href="js/animate.css" rel="stylesheet" />
+
+    <script src="js/bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
+    <script src="js/moment-with-locales.min.js"></script>
+    <script src="js/adamwdraper-Numeral-js-7487acb/min/numeral.min.js"></script>
+    <script src="js/adamwdraper-Numeral-js-7487acb/min/languages/ru.min.js"></script>
+
+    <script src="js/htmljs/Common.js?v=3"></script>
+    <script src="js/htmljs/CarStruct.js?v=3"></script>
+    <script src="js/htmljs/AuctionLogic.js?v=3"></script>
+    <script src="js/htmljs/CarUICommon.js?v=3"></script>
+    <script src="js/htmljs/Manager.js?v=3"></script>
+
+    
+    <link href="css/common.css" rel="stylesheet" />
+
+    <style>
+       
+    body { /* Предотвращение дергания картинки при появлении вертикального скролл-бара */
+        /*width: calc(100vw - 34px);*/
+        color: navy;
+    }
+
+    body.noscroll{
+        overflow-x: hidden;
+    }
+
+    .hovered_checklist_item
+    {
+        font-size: 1.3em !important;
+    }
+
+    .car-image-thumbnail
+    {
+        background-size:contain;
+        background-repeat: no-repeat;
+        height:110px;
+    }
+
+.image-thumb, .image-thumb img {
+  position:relative;
+  width:200px;
+}
+
+    .image-fav {
+      display:none;
+      position:absolute;
+      bottom:95%;
+      left:88%;
+      width:25px;
+      height:25px;
+      font-size: 1.4em;
+      opacity: 0.8;
+      color:navy;
+      background-color: white;
+      border-radius: 5px;
+      vertical-align: middle;
+    }
+
+    .image-thumb:hover .image-fav {
+        display:block;
+    }
+
+    .image-car-bg{
+        background-size:contain;
+        background-repeat: no-repeat;
+    }
+
+
+    </style>
+
+</head>
+<body class="noscroll">
+
+<div id="body_content" style="max-width:1300px;margin-left:auto;margin-right:auto">
+    
+<div class="common-tabs" style="height:88vh; overflow-x:scroll;overflow-x:auto">
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="javascript:void(0)" data-pills-page="MainInfo"  onclick="Common_OnClickTab(this)">Автомобили, с завершившимся аукционом</a></li>
+        <li role="presentation"><a href="javascript:void(0)" data-pills-page="SoldAutos" onclick="Common_OnClickTab(this)">Проданные авто</a></li>
+        <li role="presentation"><a href="javascript:void(0)" data-pills-page="MyClients" onclick="Common_OnClickTab(this)">Мои клиенты</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade in active MainInfo">
+            <span class="btn btn-info pull-right" onclick="FillData()">Обновить <i class="fa fa-refresh"></i></span>
+            <h3>Завершенные аукционы</h3>
+
+            <div id="auction_end_list_area">
+
+            </div>   
+        </div>
+        <div class="tab-pane fade SoldAutos" data-event-shown="FillSoldCars">
+            <span class="btn btn-info pull-right" id="refresh_sold_autos" onclick="FillSoldCars()">Обновить <i class="fa fa-refresh"></i></span>
+            <h3>Проданные автомобили</h3>
+
+            <div id="sold_autos_area">
+
+            </div>
+        </div>
+        <div class="tab-pane fade MyClients">
+            <span class="btn btn-info pull-right" onclick="FillData()">Обновить <i class="fa fa-refresh"></i></span>
+            <h3>Мои клиенты</h3>
+            <div id="my_clients_area">
+
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div style="height:300px">
+
+</div>
+
+</div>
+
+<div id="car_row_template" style="display: none">
+    <div class="well well-sm col-xs-12">
+        <div class="col-xs-6">
+            <div class="col-xs-5 car-image-thumbnail">
+
+            </div>
+            <div class="col-xs-7">
+                <div class="col-xs-12">
+                    <span class="car_data_row1 lead" style="cursor:pointer"></span>
+                </div>
+                <div class="col-xs-12">
+                    <span class="car_data_row2"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="col-xs-8">
+                <div class="max_bid lead"></div>
+                <div class="time_left lead"></div>
+            </div>
+            <div class="col-xs-4 client_bid_area">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="car_row_endtrade_template" style="display: none">
+    <div class="well well-sm col-xs-12 car-row">
+        <div class="col-xs-6">
+
+            <div class="col-xs-5 car-image-thumbnail">
+
+            </div>
+            <div class="col-xs-7">
+                <div class="col-xs-12">
+                    <span class="car_data_row1 lead" style="cursor:pointer"></span>
+                </div>
+                <div class="col-xs-12">
+                    <span class="car_data_row2"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 right_area">
+            <div class="buyer_area">
+                <div class="car_buyer_name col-xs-12"></div>
+                <div class="car_max_bid col-xs-12"></div>
+                <div class="col-xs-12">
+                    <span class="btn btn-success btn-accept-trade">Принять</span>
+                    <span class="btn btn-danger btn-refuse-trade">Отклонить</span>
+                </div>
+            </div>
+
+            <div class="col-xs-12 auct_top_str" style="text-align: right">
+                <span class="auct_end_dt"></span>
+                <span class="auct_length"></span>
+                <span class="auct_total_bids"></span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="car_row_sold_template" style="display: none">
+    <div class="well well-sm col-xs-12 car-row">
+        <div class="col-xs-6">
+
+            <div class="col-xs-5 car-image-thumbnail">
+
+            </div>
+            <div class="col-xs-7">
+                <div class="col-xs-12">
+                    <span class="car_data_row1 lead" style="cursor:pointer"></span>
+                </div>
+                <div class="col-xs-12">
+                    <span class="car_data_row2"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 right_area">
+            <div class="buyer_area">
+                <div class="car_buyer_name col-xs-12"></div>
+                <div class="trade_summ col-xs-12 lead"></div>
+            </div>
+
+            <div class="col-xs-12 auct_top_str" style="text-align: right">
+                <span class="auct_end_dt"></span>
+                <span class="auct_length"></span>
+                <span class="auct_total_bids"></span>
+            </div>
+        </div>
+
+    </div>
+</div>
+    
+<div id="car_details_template" style="display: none">
+    <div class="common-tabs" style="height:88vh; overflow-x:scroll;overflow-x:auto">
+        <ul class="nav nav-pills">
+          <li role="presentation" class="active"><a href="javascript:void(0)" data-pills-page="MainInfo"  onclick="Common_OnClickTab(this)">Общая информация</a></li>
+          <li role="presentation"><a href="javascript:void(0)" data-pills-page="Components" onclick="Common_OnClickTab(this)">Комплектация</a></li>
+          <li role="presentation"><a href="javascript:void(0)" data-pills-page="Damage"  onclick="Common_OnClickTab(this)">Повреждения</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade in active MainInfo">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-xs-12 images-mosaic" data-field="images_main">
+
+                            </div>       
+                        </div>
+
+                    </div>            
+            </div>
+            <div class="tab-pane fade Components">
+                <h3>Комплектация</h3>
+            
+            </div>
+            <div class="tab-pane fade Damage">
+                <h3>Повреждения</h3>
+                <div class="defects-area"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="client_form_template" style="display:none">
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">ID: </label>
+            <div class="col-xs-9 col-lg-4">
+                <input type="text" class="form-control" data-field="id" readonly=""/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">Имя пользователя (логин): </label>
+            <div class="col-xs-9 col-lg-4">
+                <input type="text" class="form-control" data-field="username" readonly=""/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">Имя</label>
+            <div class="col-xs-9 col-lg-4">
+                <input type="text" class="form-control" data-field="name" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">Телефон</label>
+            <div class="col-xs-9 col-lg-4">
+                <input type="text" class="form-control" data-field="phone"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">E-mail</label>
+            <div class="col-xs-9 col-lg-4">
+                <input type="text" class="form-control" data-field="email"/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">Организация</label>
+            <div class="col-xs-9 col-lg-4">
+                <input type="text" class="form-control" data-field="company"/>
+            </div>
+        </div>
+    </div>    
+
+    <span class="btn btn-success btn-save">Сохранить <i class="fa fa-floppy-o"></i></span>
+    <span class="btn btn-success btn-close">Закрыть</span>
+
+</div>
+
+<div id="defect_row_template" style="display: none">
+    <div class="col-xs-12">
+        <div class="col-xs-12 defect-name-area" style="margin-top:10px; font-size:1.2em; font-weight:bold">
+
+        </div>
+
+        <div class="panel panel-default col-xs-12 ">
+            <div class="panel-body">
+   
+            <div class="col-xs-6 change-width">
+                <blockquote>
+                  <p class="defect-comment-area"></p>
+                  <small>Комментарий<cite title="Source Title">...</cite></small>
+                </blockquote>
+
+            </div>
+
+            <div class="col-xs-6 defect-images-area">
+
+            </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

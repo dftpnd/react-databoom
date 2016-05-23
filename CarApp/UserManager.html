@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta content='initial-scale=1, user-scalable=0' name='viewport' />
+<head>
+    <title>CarApp - Админ</title>
+
+    <script src="js/jquery-1.11.0.min.js"></script>
+
+    <link href="js/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <script src="js/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+
+    <!--<link href="js/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" />-->
+    <link href="css/United/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="js/select2/select2.full.min.js"></script>
+    <link href="js/select2/select2.min.css" rel="stylesheet" />
+    <script src="js/select2/i18n/ru.js"></script>
+
+    <script src="js/jquery.blockUI.js"></script>
+
+    <script src="js/databoom.js"></script>
+
+    <script src="js/htmljs/Common.js?v=3"></script>
+    <script src="js/htmljs/UserManager.js?v=3"></script>
+
+    <link href="css/common.css" rel="stylesheet" />
+
+    <style>
+       
+    body { /* Предотвращение дергания картинки при появлении вертикального скролл-бара */
+        /*width: calc(100vw - 34px);*/
+        color: navy;
+    }
+
+    body.noscroll{
+        overflow-x: hidden;
+    }
+
+</style>
+
+</head>
+<body class="noscroll">
+
+<div>
+<span class="btn btn-link" onclick="AddUser()">Добавить пользователя <i class="fa fa-user-plus"></i></span>
+<span class="btn btn-info pull-right" onclick="UsersRefresh()">Обновить <i class="fa fa-refresh"></i></span>
+<div id="users_list_area" class="container">
+
+
+</div>
+</div>
+
+
+<div style="height:300px">
+
+</div>
+
+<div id="client_form_template" style="display:none">
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">ID: </label>
+            <div class="col-xs-9 col-lg-4">
+                <input type="text" class="form-control" data-field="id" readonly=""/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">Имя пользователя (логин)</label>
+            <div class="col-xs-9 col-lg-4">
+                <input type="text" class="form-control" data-field="username"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">Пароль</label>
+            <div class="col-xs-9 col-lg-4">
+                <input type="text" class="form-control" data-field="pwd"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">Имя</label>
+            <div class="col-xs-9 col-lg-4">
+                <input type="text" class="form-control" data-field="name"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">Телефон</label>
+            <div class="col-xs-9 col-lg-4">
+                <input type="text" class="form-control" data-field="phone"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">E-mail</label>
+            <div class="col-xs-9 col-lg-4">
+                <input type="text" class="form-control" data-field="email"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">Организация</label>
+            <div class="col-xs-9 col-lg-4">
+                <input type="text" class="form-control" data-field="company"/>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="col-xs-5 control-label">Покупатель</label>
+            <div class="col-xs-2">
+                <input type="checkbox" class="form-control input-sm" data-field="is_buyer"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-5 control-label">Менеджер</label>
+            <div class="col-xs-2">
+                <input type="checkbox" class="form-control input-sm" data-field="is_manager"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            
+            <label class="col-xs-5 control-label">Администратор</label>
+            <div class="col-xs-2">
+                <input type="checkbox" class="form-control input-sm" data-field="is_admin"/>
+            </div>
+            
+        </div>
+        
+        <div class="form-group">
+            <label class="col-xs-5 control-label">Может добавлять автомобили</label>
+            <div class="col-xs-2">
+                <input type="checkbox" class="form-control input-sm" data-field="is_caradder"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-5 col-md-offset-1">
+                <span class="btn btn-default btn-close pull-left">Закрыть</span>
+            </div>
+            <div class="col-xs-5">
+                <span class="btn btn-success btn-save pull-right">Сохранить <i class="fa fa-floppy-o"></i></span>
+            </div>
+        </div>        
+    </div>
+
+    
+</div>
+
+</body>
+</html>

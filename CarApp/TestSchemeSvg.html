@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="js/jquery-1.11.0.min.js"></script>
+
+
+<style>
+
+
+</style>
+
+<script>
+
+
+$(function () {
+
+    var idx = 1;
+    $('path').each(function () {
+        $(this).attr('id', idx++);
+
+    });
+
+    $('path').on("click", function () {
+        var obj = $(this);
+        alert(obj.attr('id'));
+        
+    });
+        
+})
+
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>
