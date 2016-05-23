@@ -2,7 +2,6 @@
 var loaded_buyers;
 var loaded_cars;
 var loaded_sold_cars;
-//var manager_id;
 
 $(function () {
     DrawPage();
@@ -102,17 +101,17 @@ function FillClientsList_html(cars, buyers)
 
     var html = '';
 
-    html += '<table class="table table-hover">';
+    html += '<table class="table table-hover my-clients-table">';
     html += '<thead>';
     html += '<th>Клиент</th><th>Играет</th><th>Телефон</th><th>Почта</th><th>Организация</th>';
     html += '</thead>';
-    html += '<tbody style="text-align:center">';
+    html += '<tbody>';
     for (var i in buyers)
     {
         var buyer = buyers[i];
         html += '<tr>';
-        html += '<td style="text-align:left;white-space: nowrap;"><a href="javascript:void(0)" onclick="EditClient(\'' + buyer.id + '\')"><i class="fa fa-pencil-square-o"></i></a> ' + my_undefined(buyer.name) + '</td>';
-        html += '<td style="text-align:center"><a href="javascript:void(0)" onclick="ShowClientGames(\'' + buyer.id + '\')"><b>' + my_undefined(buyer.games.length) + '</b> <i class="fa fa-external-link"></i></a></td>';
+        html += '<td class="my-cmd-col"><a href="javascript:void(0)" onclick="EditClient(\'' + buyer.id + '\')"><i class="fa fa-pencil-square-o"></i></a> ' + my_undefined(buyer.name) + '</td>';
+        html += '<td class="my-col-centered"><a href="javascript:void(0)" onclick="ShowClientGames(\'' + buyer.id + '\')"><b>' + my_undefined(buyer.games.length) + '</b> <i class="fa fa-external-link"></i></a></td>';
         html += '<td>' + my_undefined(buyer.phone) + '</td>';
         html += '<td>' + my_undefined(buyer.email) + '</td>';
         html += '<td>' + my_undefined(buyer.company) + '</td>';
@@ -255,10 +254,10 @@ function ShowClientGames(buyer_id)
 {
     var buyer = loaded_buyers[buyer_id];
 
-    var html = '<div class="dlg-all-container"><span class="btn btn-info pull-right btn-refresh">Обновить <i class="fa fa-refresh"></i></span>';
+    var html = '<div class="dlg-all-container"><span class="btn btn-info pull-right js-btn-refresh">Обновить <i class="fa fa-refresh"></i></span>';
     html += '<span class="lead">Клиент: ' + my_undefined(buyer.name) + '</span><br/><span>' + my_undefined(buyer.company) + ', тел: ' + my_undefined(buyer.phone) + ', email: ' + my_undefined(buyer.email) + '</span>'
 
-    html += '<div class="client-games-area"><div style="height:200px"></div></div></div>';
+    html += '<div class="client-games-area"><div class="my-div-200px:></div></div></div>';
 
     var dialog;
     var on_shown = function () {
@@ -267,7 +266,7 @@ function ShowClientGames(buyer_id)
             HideLoading(cnt);
         });
 
-        cnt.find('.btn-refresh').click(function () {
+        cnt.find('.js-btn-refresh').click(function () {
             ShowLoading(cnt);
             FillClientGames(cnt.find('.client-games-area'), buyer, function () {
                 HideLoading(cnt);
@@ -291,7 +290,7 @@ function FillClientGames(container, buyer, after_fill)
       function (carlist) {
           var carlist = Auction.ProcessCarList(carlist, buyer.id);
           container.html('');
-          container.append('<div style="margin-top:20px">Данные на момент ' + moment().format('HH:mm:ss') + '</div>')
+          container.append('<div class="top_label">Данные на момент ' + moment().format('HH:mm:ss') + '</div>')
           var row_templ = $('#car_row_template').html();
           for (var i in carlist)
           {
@@ -307,12 +306,8 @@ function FillClientGames(container, buyer, after_fill)
                   if (car_model == ' ') {
                       car_model = '[Безымянный автомобиль]';
                   }
-                  car_row.find('.car_data_row1').html('<a href="CarDetails.html?carid=' + car.id + '" target="_blank"><span>' + car_model + ' ' + my_undefined(car['main.Year']) + '</span></a>');
-                  car_row.find('.car_data_row2').html(my_undefined(car['main.Modification']) + ' ' + my_undefined(car['main.Drivetrain']) + ' ' + my_undefined(car['main.Engine_type']))
-
-                  car_row.find('.car_data_row1').click(function () {
-                      //ShowCarDetails($(this).parents('.car-row').attr('data-car-id'));
-                  });
+                  car_row.find('.js-car_data_row1').html('<a href="CarDetails.html?carid=' + car.id + '" target="_blank"><span>' + car_model + ' ' + my_undefined(car['main.Year']) + '</span></a>');
+                  car_row.find('.js-car_data_row2').html(my_undefined(car['main.Modification']) + ' ' + my_undefined(car['main.Drivetrain']) + ' ' + my_undefined(car['main.Engine_type']))
 
                   FillClientCarRowBid(car, car_row, buyer);
 
@@ -384,7 +379,13 @@ function FillFinishedAuctions(cars, buyers)
 
     //order by date of maxbid
     carlist.sort(function (a, b) {
-        return (a.max_bid.dt > b.max_bid.dt) ? 1 : (a.max_bid.dt < b.max_bid.dt) ? -1 : 0;
+        if (a.max_bid && b.max_bid) //quick fix (этой провеки делать не надо, т.к. таких данных не может быть, но они есть из-за ошибки в БД)
+        {
+            return (a.max_bid.dt > b.max_bid.dt) ? 1 : (a.max_bid.dt < b.max_bid.dt) ? -1 : 0;
+        } else {
+            return 1;
+        }
+        
     });
 
     for (var i in carlist)
@@ -402,8 +403,8 @@ function FillFinishedAuctions(cars, buyers)
         {
             car_model = '[Безымянный автомобиль]';
         }
-        car_row.find('.car_data_row1').html('<a href="CarDetails.html?carid=' + car.id + '" target="_blank"><span>' + car_model + ' ' + my_undefined(car['main.Year']) + '</span></a>');
-        car_row.find('.car_data_row2').html(my_undefined(car['main.Modification']) + ' ' + my_undefined(car['main.Drivetrain']) + ' ' + my_undefined(car['main.Engine_type']))
+        car_row.find('.js-car_data_row1').html('<a href="CarDetails.html?carid=' + car.id + '" target="_blank"><span>' + car_model + ' ' + my_undefined(car['main.Year']) + '</span></a>');
+        car_row.find('.js-car_data_row2').html(my_undefined(car['main.Modification']) + ' ' + my_undefined(car['main.Drivetrain']) + ' ' + my_undefined(car['main.Engine_type']))
 
         var end_moment = moment(car.logical_end_moment);
         car_row.find('.auct_end_dt').html('Торги завершены: ' + end_moment.format('lll') + '');
@@ -487,47 +488,6 @@ function RefuseTrade(car_id)
 }
 
 
-function ShowCarDetails(car_id)
-{
-    var car = loaded_cars[car_id];
-    var html = '';
-
-
-    html += $('#car_details_template').html();
-    var dialog;
-    var on_shown = function () {
-        var cnt = dialog.elem;
-        FillCarForm(cnt, car);
-
-    };
-
-    var on_close_dlg = function (dialog) {
-        dialog.elem.remove(); //clean up
-    };
-
-    dialog = ShowTmpDialog("Сведения об автомобиле", html, on_shown, on_close_dlg);
-}
-
-function ShowCarDetails_4sold(car_id) {
-    var car = loaded_sold_cars[car_id];
-    var html = '';
-
-
-    html += $('#car_details_template').html();
-    var dialog;
-    var on_shown = function () {
-        var cnt = dialog.elem;
-        FillCarForm(cnt, car);
-
-    };
-
-    var on_close_dlg = function (dialog) {
-        dialog.elem.remove(); //clean up
-    };
-
-    dialog = ShowTmpDialog("Сведения об автомобиле", html, on_shown, on_close_dlg);
-}
-
 function FillSoldCars()
 {
     ShowLoading('body');
@@ -567,7 +527,14 @@ function FillSoldCars_html(cars)
 
     //order by date of maxbid
     cars.sort(function (a, b) {
-        return (a.trades[0].dt > b.trades[0].dt) ? 1 : (a.trades[0].dt < b.trades[0].dt) ? -1 : 0;
+        if (a.trades[0] && b.trades[0]) //quick fix (этой провеки делать не надо, т.к. таких данных не может быть, но они есть из-за ошибки в БД)
+        {
+            return (a.trades[0].dt > b.trades[0].dt) ? 1 : (a.trades[0].dt < b.trades[0].dt) ? -1 : 0;
+        } else
+        {
+            return 1;
+        }
+        
     });
 
 
@@ -586,8 +553,8 @@ function FillSoldCars_html(cars)
             if (car_model == ' ') {
                 car_model = '[Безымянный автомобиль]';
             }
-            car_row.find('.car_data_row1').html('<a href="CarDetails.html?carid=' + car.id + '" target="_blank"><span>' + car_model + ' ' + my_undefined(car['main.Year']) + '</span></a>');
-            car_row.find('.car_data_row2').html(my_undefined(car['main.Modification']) + ' ' + my_undefined(car['main.Drivetrain']) + ' ' + my_undefined(car['main.Engine_type']))
+            car_row.find('.js-car_data_row1').html('<a href="CarDetails.html?carid=' + car.id + '" target="_blank"><span>' + car_model + ' ' + my_undefined(car['main.Year']) + '</span></a>');
+            car_row.find('.js-car_data_row2').html(my_undefined(car['main.Modification']) + ' ' + my_undefined(car['main.Drivetrain']) + ' ' + my_undefined(car['main.Engine_type']))
 
             car_row.find('.auct_end_dt').html('Дата продажи: ' + moment(car.trades[0].dt).format('lll') + '');
 

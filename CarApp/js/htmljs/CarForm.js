@@ -65,10 +65,10 @@ function Init2()
     var page1_fld_values = {};
     var page1_check_and_save = function () {
         var changes = [];
-        $('.car-form').find('[data-field]').each(function () {
+        $('.js-car-form').find('[data-field]').each(function () {
             var fld = $(this);
             var fld_name = fld.attr('data-field');
-            if (fld.hasClass('images-mosaic')) return; //skip images-mosaic
+            if (fld.hasClass('js-images-mosaic')) return; //skip images-mosaic
             if (!fld.is('input')) {
                 alert('Неверный тип поля у ' + fld_name);
             }
@@ -100,13 +100,13 @@ function Init2()
 
 function ApplyClickEvents()
 {
-    $('.btn-yes,.btn-no').click(function () {
+    $('.js-btn-yes,.js-btn-no').click(function () {
         var this_btn = $(this);
-        var btn_yes = this_btn.parent().find('.btn-yes');
-        var btn_no = this_btn.parent().find('.btn-no');
+        var btn_yes = this_btn.parent().find('.js-btn-yes');
+        var btn_no = this_btn.parent().find('.js-btn-no');
         var fld_name = this_btn.parents('[data-field]').attr('data-field');
         var value;
-        if (this_btn.hasClass('btn-yes')) {
+        if (this_btn.hasClass('js-btn-yes')) {
             value = true;
         } else {
             ShowDamageForm(fld_name);
@@ -146,7 +146,7 @@ function ApplyClickEvents()
 function InitPages()
 {
 
-    $('.car-form').find('[data-field]').each(function () {
+    $('.js-car-form').find('[data-field]').each(function () {
         var fld = $(this);
         fld.parent().parent().find('label.control-label').html(car_fields_map[fld.attr('data-field')]);
     });
@@ -167,21 +167,21 @@ function InitPages()
         var page_id = 'checklist_page_' + ic;
         page.attr('id', page_id);
 
-        page.insertAfter('.current-page');
+        page.insertAfter('.js-current-page');
         page.attr('data-page', pg_index);
 
         if (ic == check_lists.length - 1) {
-            page.find('.btn-next').replaceWith('<span class="btn btn-success pull-right" id="push_to_auction">Выставить на аукцион <i class="fa fa-car"></i></span>');
+            page.find('.js-btn-next').replaceWith('<span class="btn btn-success pull-right" id="push_to_auction">Выставить на аукцион <i class="fa fa-car"></i></span>');
             $('#push_to_auction').click(function () { PushToAcution(); });
         } else
         {
-            page.find('.btn-next').attr('onclick', 'GoToPage(' + (pg_index + 1) + ')');
+            page.find('.js-btn-next').attr('onclick', 'GoToPage(' + (pg_index + 1) + ')');
         }
-        page.find('.btn-prev').attr('onclick', 'GoToPage(' + (pg_index - 1)  + ')');
-        page.find('.checklist_header').html(label);
+        page.find('.js-btn-prev').attr('onclick', 'GoToPage(' + (pg_index - 1)  + ')');
+        page.find('.js-checklist_header').html(label);
 
         pg_index++;
-        var container = page.find('.checklist-area');
+        var container = page.find('.js-checklist-area');
         for (var i in fields) {
             var fld = fields[i];
             var row = $($('#checklist_template').html());
@@ -190,18 +190,18 @@ function InitPages()
             container.append(row);
 
             row.hover(
-                    function () {
-                        $(this).addClass('bg-info');
-                    }, function () {
-                        $(this).removeClass('bg-info');
-                    });
+                function () {
+                    $(this).addClass('bg-info');
+                }, function () {
+                    $(this).removeClass('bg-info');
+                });
         }
 
 
     }
 
     $('[data-page]').hide();
-    $('.current-page').show();
+    $('.js-current-page').show();
 }
 
 function FillAppearancePage(pg_index)
@@ -209,20 +209,20 @@ function FillAppearancePage(pg_index)
     var page = $($('#checklist_page_template').html());
     var page_id = 'AppearancePage';
     page.attr('id', page_id);
-    page.insertAfter('.current-page');
+    page.insertAfter('.js-current-page');
     page.attr('data-page', pg_index);
-    page.find('.btn-prev').attr('onclick', 'GoToPage(' + (pg_index - 1) + ')');
-    page.find('.btn-next').attr('onclick', 'GoToPage(' + (pg_index + 1) + ')');
-    page.find('.checklist_header').html('Внешний вид');
+    page.find('.js-btn-prev').attr('onclick', 'GoToPage(' + (pg_index - 1) + ')');
+    page.find('.js-btn-next').attr('onclick', 'GoToPage(' + (pg_index + 1) + ')');
+    page.find('.js-checklist_header').html('Внешний вид');
 
-    var container = page.find('.checklist-area');
+    var container = page.find('.js-checklist-area');
     FillCarAppearance(container, car_data);
 }
 
 function GoToPage(page)
 {
-    $('.current-page').removeClass('current-page').hide();
-    $('[data-page="' + page + '"]').addClass('current-page').show();
+    $('.js-current-page').removeClass('js-current-page').hide();
+    $('[data-page="' + page + '"]').addClass('js-current-page').show();
 }
 
 var fld_expand_id = 0;
@@ -240,7 +240,7 @@ function PushToAcution()
             {
                 value = fld.val();
             }
-        } else if (fld.hasClass('images-mosaic'))
+        } else if (fld.hasClass('js-images-mosaic'))
         {
             value = fld.find('.mosaic-item').length;
         }else
@@ -272,24 +272,24 @@ function PushToAcution()
 
         var clp_uniq_id = "fld_expand" + fld_expand_id++;
         html += '<span class="btn btn-link btn-sm" data-target="#' + clp_uniq_id + '" data-toggle="collapse"> Просмотреть список незаполненных полей </span>';
-        html += '<div class="collapse" id=' + clp_uniq_id + ' >';
-        html += '<div style="overflow-y: scroll; height: 200px;">';
+        html += '<div class="collapsenotfilled_fields" id=' + clp_uniq_id + ' >';
+        html += '<div class="my-notfilled_fields" >';
         html += notfilled_flds.join(', <br/>');
         html += '</div>';
         html += '</div>';
         html += '<br/>';
-        html += '<span class="btn btn-danger push_auction_ok">Выставить на аукцион (отладка)</span>';
+        html += '<span class="btn btn-danger js-push_auction_ok">Выставить на аукцион (отладка)</span>';
     } else
     {
         html += '<p class="lead">Вы уверены, что хотите выставить данный автомобиль на аукцион?</p>';
-        html += '<span class="btn btn-success push_auction_ok">Выставить на аукцион</span>';
+        html += '<span class="btn btn-success js-push_auction_ok">Выставить на аукцион</span>';
     }
 
-    html += '<div style="margin-top:20px" class="col-lg-12><div class="form-group"><label class="control-label col-lg-3">Время торгов (в минутах): </label><input class="form-contol auction_time" type="number" value="' + auction_default_mins + '"/></div></div>'
+    html += '<div class="col-lg-12 my-auction-mins-block"><div class="form-group"><label class="control-label col-lg-3">Время торгов (в минутах): </label><input class="form-contol auction_time" type="number" value="' + auction_default_mins + '"/></div></div>'
 
     var dialog;
     var on_shown = function () {
-        dialog.elem.find('.push_auction_ok').click(function () {
+        dialog.elem.find('.js-push_auction_ok').click(function () {
             var time_input = dialog.elem.find('.auction_time');
             var auct_time = time_input.val();
             if(isNaN(auct_time))
@@ -356,7 +356,7 @@ function FillCarData(data)
     car_data = data;
     if (data.auction_step)
     {
-        $('#auction_msg_area').html('<div style="padding: 4px" class="bg-danger lead">Данный автомобиль уже выставлен на аукцион <span class="btn btn-info" onclick="NewAuto();">Ввести новый авто</span></div>');
+        $('#auction_msg_area').html('<div class="bg-danger lead">Данный автомобиль уже выставлен на аукцион <span class="btn btn-info" onclick="NewAuto();">Ввести новый авто</span></div>');
         $('#push_to_auction').unbind();
         $('#push_to_auction').addClass('disabled');
     }
@@ -367,13 +367,13 @@ function FillCarData(data)
         {
             if (fld.is('input')) {
                 fld.val(data[fldname]);
-            } else if (fld.hasClass('images-mosaic')) {
+            } else if (fld.hasClass('js-images-mosaic')) {
 
                 fld.html(FillCarImages(data, fldname));
             } else {
                 //expect checklist fld
                 var value = data[fldname]==true || data[fldname] == 'b1'; //b1 - bug workaround
-                SetYesNo(fld.find('.btn-yes'), fld.find('.btn-no'), value);
+                SetYesNo(fld.find('.js-btn-yes'), fld.find('.js-btn-no'), value);
             }
         }
     })
@@ -426,8 +426,8 @@ function SetYesNo(yes_btn, no_btn, value)
 function SetYesNoField(fldname, value)
 {
     var fld = $('[data-field="' + fldname + '"]');
-    var bt_yes = fld.find('.btn-yes');
-    var bt_no = fld.find('.btn-no');
+    var bt_yes = fld.find('.js-btn-yes');
+    var bt_no = fld.find('.js-btn-no');
     SetYesNo(bt_yes, bt_no, value);
 }
 
@@ -451,9 +451,9 @@ function FillCarImages(car, img_fld) {
         var img = images[im];
         html1 += '<span class="image-thumb mosaic-item" data-image-id="' + img.id + '">';
         html1 += '<img src="' + db_files + img.filename + '"/>';
-        html1 += '<span class="image-fav">';
-        html1 += '<a href="javascript:void(0)" onclick="RemoveImage(\'' + img_fld + '\',\'' + img.id + '\')"><i class="fa fa-times" style="margin:3px"></i></a>';
-        html1 += '<a href="javascript:void(0)" onclick="PreviewImage(\'' + img_fld + '\',\'' + img.id + '\')"><i class="fa fa-search" style="margin:3px"></i></a>';
+        html1 += '<span class="my-image-fav">';
+        html1 += '<a href="javascript:void(0)" onclick="RemoveImage(\'' + img_fld + '\',\'' + img.id + '\')"><i class="fa fa-times"></i></a>';
+        html1 += '<a href="javascript:void(0)" onclick="PreviewImage(\'' + img_fld + '\',\'' + img.id + '\')"><i class="fa fa-search"></i></a>';
         html1 += '</span>';
         html1 += '</span>';
     }
@@ -472,7 +472,7 @@ function PreviewImage(image_field, image_id) {
     if (img_data == null) return;
 
     var html = '';
-    html += '<div class="image-car-bg" style="height:85vh; width:100%; background-image:url(' + db_files + img_data.filename + ')"></div>';//<img src="' + db_files + img_data.filename + '"/>';
+    html += '<div class="my-image-car-bg" style="background-image:url(' + db_files + img_data.filename + ')"></div>';//<img src="' + db_files + img_data.filename + '"/>';
 
     var dialog;
     var on_shown = function () {
@@ -518,7 +518,7 @@ function UploadCarImage(filefield, files)
         db.load('car(' + car_id + ')', { expand: "images_main,defects,schemeparts" }).done(
         function (data) {
             car_data = data[0];
-            $('.images-mosaic[data-field="' + filefield + '"]').html(FillCarImages(data[0], filefield));
+            $('.js-images-mosaic[data-field="' + filefield + '"]').html(FillCarImages(data[0], filefield));
         }).always(function () {
             HideLoading('body');
         });
@@ -570,11 +570,11 @@ function ShowDamageForm(fldname)
 
             if (defect)
             {
-                var mosaic = cnt.find('.images-mosaic');
+                var mosaic = cnt.find('.js-images-mosaic');
                 for (var i in defect.images)
                 {
                     var img = defect.images[i];
-                    mosaic.append('<img src="' + ImgUrl(img.filename) + '" style="width:200px"/>');
+                    mosaic.append('<img src="' + ImgUrl(img.filename) + '"/>');
                 }
                 if (defect.comment)
                 {
@@ -582,26 +582,26 @@ function ShowDamageForm(fldname)
                 }
             }
 
-            cnt.find('.btn-add-photo').click(function () {
-                cnt.find('.upl-input')[0].click();
+            cnt.find('.js-btn-add-photo').click(function () {
+                cnt.find('.js-upl-input')[0].click();
             });
 
-            cnt.find('.upl-input').change(function (evt) {
-                var mosaic = cnt.find('.images-mosaic');
+            cnt.find('.js-upl-input').change(function (evt) {
+                var mosaic = cnt.find('.js-images-mosaic');
                 for (var i = 0; i < evt.target.files.length; i++) {
                     var file = evt.target.files[i];
                     var reader = new FileReader();
                     reader.onload = function (e) {
-                        mosaic.append('<img src="' + e.target.result + '" style="width:200px"/>');
+                        mosaic.append('<img src="' + e.target.result + '"/>');
                     }
                     reader.readAsDataURL(file);
                     dialog.added_files.push(file);
                 };
             });
 
-            cnt.find('.btn-close').click(function () { dialog.close(); });
+            cnt.find('.js-btn-close').click(function () { dialog.close(); });
 
-            cnt.find('.btn-save').click(function () {
+            cnt.find('.js-btn-save').click(function () {
                 var loading_area = cnt.children('div');
                 ShowLoading(loading_area);
                 var images = [];
@@ -875,7 +875,7 @@ function ExpandModifications(model_id)
 
     var year_html = '';
     var modifs = mdl.modifications;
-    $('#model_selector_below').html($('#model_selector_year_templ').html() + '<div style="height:40px"></div>');
+    $('#model_selector_below').html($('#model_selector_year_templ').html() + '<div class="my-div-40px"></div>');
 
     year_html += '';
 
@@ -948,7 +948,7 @@ function Expand_ShowModificationSelector(model_id, year)
     $('#model_selector_below').html(''); //clear year selector
 
 
-    $('#model_selector_below').html($('#model_selector_modif_select_templ').html() + '<div style="height:40px"></div>');
+    $('#model_selector_below').html($('#model_selector_modif_select_templ').html() + '<div class="my-div-40px"></div>');
 
     var html = '';
     html += '<select class="form-control" data-model-id="' + model.id + '" onchange="Modif_selected(this,\'' + year + '\')">';
@@ -999,17 +999,17 @@ function FillCarModelRow_html(mnf, model, year, modification)
     var html = '';
     if (mnf)
     {
-        html += '<div class="col-xs-12"><span class="btn btn-link btn-lg" style="font-size: 1.4em" onclick="ExpandManufacturers()">' + mnf.name + '</span>';
+        html += '<div class="col-xs-12"><span class="btn btn-link btn-lg my-model-selector-btn" onclick="ExpandManufacturers()">' + mnf.name + '</span>';
         if (model) {
-            html += '<span class="btn btn-link btn-lg" style="font-size: 1.4em" onclick="ExpandModels(\'' + mnf.id + '\')" data-mnf-id="' + mnf.id + '">' + model.name + '</span>';
+            html += '<span class="btn btn-link btn-lg my-model-selector-btn"  onclick="ExpandModels(\'' + mnf.id + '\')" data-mnf-id="' + mnf.id + '">' + model.name + '</span>';
 
             if (year)
             {
-                html += '<span class="btn btn-link btn-lg" style="font-size: 1.4em" onclick="ExpandModifications(\'' + model.id + '\')" data-model-id="' + model.id + '">' + year + '</span>'
+                html += '<span class="btn btn-link btn-lg my-model-selector-btn"  onclick="ExpandModifications(\'' + model.id + '\')" data-model-id="' + model.id + '">' + year + '</span>'
 
                 if (modification)
                 {
-                    html += '<span class="btn btn-link btn-lg"  style="font-size: 1.4em"onclick="Expand_ShowModificationSelector(\'' + model.id + '\',\'' + year + '\')" data-model-id="' + model.id + '">' + ModifToStr(modification) + '</span>'
+                    html += '<span class="btn btn-link btn-lg my-model-selector-btn"  onclick="Expand_ShowModificationSelector(\'' + model.id + '\',\'' + year + '\')" data-model-id="' + model.id + '">' + ModifToStr(modification) + '</span>'
                 }
             }
         }

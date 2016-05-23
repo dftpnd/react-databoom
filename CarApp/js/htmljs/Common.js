@@ -30,7 +30,7 @@ function Common_OnClickTab(btn)
     var cls = btn.attr('data-pills-page');
     if (cls)
     {
-        var tab_container = btn.parents('.common-tabs');
+        var tab_container = btn.parents('.js-common-tabs');
         //.find('.' + cls)
         tab_container.children('ul').children('li').removeClass('active');
         btn.parents('li').addClass('active');
@@ -47,11 +47,8 @@ function Common_OnClickTab(btn)
                 window[funcname](tab);
             }
         }
-
-
     }
 }
-
 
 function WhenAll(callbacks) {
     var deferreds = [];
@@ -101,8 +98,8 @@ function ShowTmpDialog(title, html, on_after_show, on_after_hide) {
     var dialog = {};
 
     var dialog_html = '\
-<div class="modal fade" id="' + dialog_id + '" tabindex="-1" role="dialog" aria-labelledby="' + dialog_label_id + '" aria-hidden="true" style="width:100%;">\
-  <div class="modal-dialog" style="width:95%;max-width:1000px;">\
+<div class="modal fade my-tmp-dialog" id="' + dialog_id + '" tabindex="-1" role="dialog" aria-labelledby="' + dialog_label_id + '" aria-hidden="true" >\
+  <div class="modal-dialog" >\
     <div class="modal-content" >\
       <div class="modal-header">\
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>\
@@ -117,8 +114,6 @@ function ShowTmpDialog(title, html, on_after_show, on_after_hide) {
     ';
 
     $('body').append(dialog_html);
-
-
 
     $('#' + dialog_id).on('show.bs.modal', function () {
         var zIndex = 1040 + (10 * $('.modal:visible').length);
@@ -156,8 +151,6 @@ function ShowTmpDialog(title, html, on_after_show, on_after_hide) {
         }
     }
 
-
-
     return dialog;
 }
 
@@ -189,18 +182,17 @@ function DrawPage()
     DrawPageHeader();
 }
 
-
 function DrawPageHeader()
 {
     var html = '\
-        <nav class="navbar navbar-inverse navbar-default  navbar-static-top" style="width: 100vw" >\
+        <nav class="navbar navbar-inverse navbar-default navbar-static-top my-navbar" >\
             <div class="container">\
-                <div class="pull-right logout_btn_margin" >\
-                    <span id="user_header_label" style="margin-right: 20px;" class=""></span>\
-                    <span class="btn btn-default" style="margin-right:30px; display: none;" id="login_btn">Вход  <i class="fa fa-sign-in"></i></span>\
-                    <span class="btn btn-default" style="margin-right:30px; display: none;" id="logout_btn">Выход  <i class="fa fa-sign-out"></i></span>\
+                <div class="pull-right my-logout-btn" >\
+                    <span id="user_header_label"></span>\
+                    <span class="btn btn-default my-hidden" id="login_btn">Вход  <i class="fa fa-sign-in"></i></span>\
+                    <span class="btn btn-default my-hidden" id="logout_btn">Выход  <i class="fa fa-sign-out"></i></span>\
                 </div>\
-                <div class="navbar-header" style="vertical-align: middle;">\
+                <div class="navbar-header">\
                     <a class="navbar-brand hidden-xs hidden-sm navbar-brand-a-lg" href="javascript:void(0)">\
                         <span>Car App</span>\
                     </a>\
@@ -244,7 +236,6 @@ function AutoLogin() {
         }).always(function () {
             HideLoading('body');
         });
-
     }
 
     return promise.promise();
@@ -303,7 +294,7 @@ function AutoLogin() {
         $('#logout_btn').show().click(function () {
             Logout();
         });
-        $('#user_header_label').html('<a href="javascript:void(0)" style="color:white"><i class="fa fa-user"></i> ' + my_undefined(user.name) + '</a>');
+        $('#user_header_label').html('<a class="my-head-username" href="javascript:void(0)"><i class="fa fa-user"></i> ' + my_undefined(user.name) + '</a>');
     }
 
     function ShowLoginForm() {
@@ -312,18 +303,18 @@ function AutoLogin() {
                 '<div class="form-group">' +
                     '<label class="col-xs-3 col-lg-5 control-label">Имя пользователя</label>' +
                     '<div class="col-xs-9 col-lg-7">' +
-                        '<input type="text" class="form-control usr-login"/>' +
+                        '<input type="text" class="form-control js-usr-login"/>' +
                     '</div>' +
                 '</div>' +
                 '<div class="form-group">' +
                     '<label class="col-xs-3  col-lg-5 control-label">Пароль</label>' +
                     '<div class="col-xs-9 col-lg-7">' +
-                        '<input type="password" class="form-control usr-p"/>' +
+                        '<input type="password" class="form-control js-usr-p"/>' +
                     '</div>' +
                 '</div>' +
                 '<div class="form-group">' +
-                    '<div class="col-xs-5 col-md-6"><span class="btn btn-default btn-cancel pull-left">Отмена</span></div>' +
-                    '<div class= col-xs-5 col-md-6"><span class="btn btn-success btn-login-ok pull-right">Вход <i class="fa fa-sign-in"></i></span></div>' +
+                    '<div class="col-xs-5 col-md-6"><span class="btn btn-default js-btn-cancel pull-left">Отмена</span></div>' +
+                    '<div class= col-xs-5 col-md-6"><span class="btn btn-success js-btn-login-ok pull-right">Вход <i class="fa fa-sign-in"></i></span></div>' +
                     
                  '</div>' +
             '</div>' +
@@ -331,19 +322,16 @@ function AutoLogin() {
             '' +
             '' +
             '' +
-
             '';
 
         var dialog;
         var on_shown = function () {
             var cnt = dialog.elem;
-            
 
-            cnt.find('.btn-cancel').click(function () { dialog.close() });
-
-            cnt.find('.btn-login-ok').click(function () {
-                var u = cnt.find('.usr-login').val();
-                var p = cnt.find('.usr-p').val();
+            cnt.find('.js-btn-cancel').click(function () { dialog.close() });
+            cnt.find('.js-btn-login-ok').click(function () {
+                var u = cnt.find('.js-usr-login').val();
+                var p = cnt.find('.js-usr-p').val();
                 if (u.length == 0 || p.length == 0) {
                     alert('Имя пользователя или пароль не введены');
                     return;
@@ -366,7 +354,7 @@ function AutoLogin() {
         };
 
         dialog = ShowTmpDialog("Вход в CarApp", html, on_shown);
-        dialog.elem.children('.modal-dialog').css('max-width', '500px');
+        dialog.elem.children('.modal-dialog').addClass('my-login-dialog');
     }
 
     function Login(login, p) {
@@ -442,3 +430,15 @@ function getUrlVars() {
     }
     return vars;
 }
+
+/* Override &.show()
+   нужно т.к. jquery.show() добавляет display:inline, если элемент был классом css
+*/
+var jquery_show = $.fn.show;
+$.fn.show = function () {
+    if (this.hasClass('my-hidden'))
+    {
+        this.removeClass('my-hidden');
+    }
+    return jquery_show.call(this);
+};

@@ -3,7 +3,6 @@ var loaded_sold_cars = {};
 var loaded_my_bid_cars = {};
 
 $(function () {
-
     DrawPage();
     DbLogin().done(function () {
         AutoLogin().done(function (users) {
@@ -22,12 +21,7 @@ $(function () {
             FillTradeHistory();
         });
     });
-
     $('#btn_refresh').click(function () { FillCarList(); });
-
-
-    //$('#account_tabs a[href="#account_bids"]').tab('show');
-
 })
 
 function FillCarList()
@@ -41,7 +35,6 @@ function FillCarList()
     }).always(function () {
         HideLoading('body');
     });
-
 }
 
 var last_loaded_cars = {};
@@ -49,7 +42,6 @@ var last_loaded_cars = {};
 function FillCarList_html(carlist)
 {
     if (carlist_timers_timer) clearTimeout(carlist_timers_timer);
-
     var car_cnt = 0;
     $('#car_list_area').html('');
     var row_templ = $('#car_row_template').html();
@@ -59,25 +51,22 @@ function FillCarList_html(carlist)
         var car = carlist[i];
         var time_left_sec = car.time_left_sec;
         car_cnt++;
-        var car_row = $('<div class="row car-row">' + row_templ + '</div>');
+        var car_row = $('<div class="row js-car-row">' + row_templ + '</div>');
         $('#car_list_area').append(car_row);
         car_row.attr('data-car-id', car.id);
 
-        car_row.find('.car_data_row1').html(my_undefined(car['main.Model_mark']) + ' ' + my_undefined(car['main.Model']) + ' ' + my_undefined(car['main.Year']))
-        car_row.find('.car_data_row2').html(my_undefined(car['main.Modification']) + ' ' + my_undefined(car['main.Drivetrain']) + ' ' + my_undefined(car['main.Engine_type']))
+        car_row.find('.js-car_data_row1').html(my_undefined(car['main.Model_mark']) + ' ' + my_undefined(car['main.Model']) + ' ' + my_undefined(car['main.Year']));
+        car_row.find('.js-car_data_row2').html(my_undefined(car['main.Modification']) + ' ' + my_undefined(car['main.Drivetrain']) + ' ' + my_undefined(car['main.Engine_type']));
 
-        //car_row.find('.car_data_row1').click(function () {
-        //    ShowCarDetails($(this).parents('.car-row').attr('data-car-id'));
-        //});
-        car_row.find('.car_data_row1').parent('a').attr('href', 'CarDetails.html?carid=' + car.id)
+        car_row.find('.js-car_data_row1').parent('a').attr('href', 'CarDetails.html?carid=' + car.id)
 
         UpdateCarRowBid(car, car_row);
 
-        car_row.find('.time_left').html(FormatTimeLeft(time_left_sec)).attr('data-car-id', car.id);
+        car_row.find('.js-time_left').html(FormatTimeLeft(time_left_sec)).attr('data-car-id', car.id);
         var end_time = moment().add(time_left_sec);
-        car_row.find('.end_time').html('Время завершения: ' + end_time.format('lll'));
+        car_row.find('.js-end_time').html('Время завершения: ' + end_time.format('lll'));
 
-        car_row.find('.btn-add-bid').attr('data-car-id', car.id)
+        car_row.find('.js-btn-add-bid').attr('data-car-id', car.id)
             .click(function () {
                 AddBid($(this).attr('data-car-id'));
             });
@@ -86,7 +75,6 @@ function FillCarList_html(carlist)
         {
             car_row.find('.car-image-thumbnail').css('background-image', 'url(' + ImgUrl(car.images_main[0].filename) + ')')
         }
-        
     }
 
     if (car_cnt == 0) {
@@ -106,19 +94,18 @@ var carlist_timers_timer = null;
 var carlist_reload_timer = null;
 function RefreshCarListTimers()
 {
-    $('#car_list_area').find('.time_left').each(function () {
+    $('#car_list_area').find('.js-time_left').each(function () {
         var car = last_loaded_cars[$(this).attr('data-car-id')];
         var time_left_sec = CalculateTimeLeft(car);
         if (time_left_sec >= 0) {
             $(this).html(FormatTimeLeft(time_left_sec));
             var end_time = moment().add(time_left_sec);
-            $(this).parents('.car-row').find('.end_time').html('Время завершения: ' + end_time.format('lll'));
+            $(this).parents('.js-car-row').find('.js-end_time').html('Время завершения: ' + end_time.format('lll'));
         } else
         {
-            $(this).parents('.car-row').remove();
+            $(this).parents('.js-car-row').remove();
         }
     });
-
 }
 
 function UpdateCarRowBid(car, car_row)
@@ -126,7 +113,7 @@ function UpdateCarRowBid(car, car_row)
     var max_bid = car.max_bid;
     var summ_frm = numeral(max_bid.value).format('0,0[.]00') + '₽';
     if (max_bid.value == 1 || car.has_my_bids == false) {
-        car_row.find('.max_bid').html(summ_frm);
+        car_row.find('.js-max_bid').html(summ_frm);
     } else {
         var html00 = '';
         if (max_bid.buyers[0].id == buyer_id) {
@@ -138,7 +125,7 @@ function UpdateCarRowBid(car, car_row)
             html00 += summ_frm + '<br/>' + 'Вы проигрываете!';
             html00 += '</div>';
         }
-        car_row.find('.max_bid').html(html00);
+        car_row.find('.js-max_bid').html(html00);
     }
 }
 
@@ -147,10 +134,8 @@ function ReloadCarList()
 {
     db.load('car', { filter: 'auction_step eq 1', expand: 'bids,images_main,schemeparts' }).done(
     function (carlist) {
-        
         var carlist = Auction.ProcessCarList(carlist, buyer_id);
-
-        $('.car-row').each(function () {
+        $('.js-car-row').each(function () {
             var row = $(this);
             var car = last_loaded_cars[row.attr('data-car-id')];
             if (car)
@@ -180,9 +165,6 @@ function ReloadCarList()
     });
 }
 
-
-
-
 function AddBid(car_id)
 {
     var html = '';
@@ -195,8 +177,8 @@ function AddBid(car_id)
 
     html += '<div>'
     html += '<p class="lead">Минимальная ставка: ' + min_bid + '₽ </p>';
-    html += '<div class="form-group col-lg-12"><label class="col-xs-12 control-label">Ваша ставка: </label><div class="col-xs-5"><input class="col-xs-5 bid_value form-control input-lg" value="' + min_bid + '"/></div></div>'
-    html += '<div style="height:20px"></div><span class="btn btn-danger add_bid_ok">Сделать ставку</span>';
+    html += '<div class="form-group col-lg-12"><label class="col-xs-12 control-label">Ваша ставка: </label><div class="col-xs-5"><input class="col-xs-5 js-bid_value form-control input-lg" value="' + min_bid + '"/></div></div>'
+    html += '<div class="my-div-20px"></div><span class="btn btn-danger js-add_bid_ok">Сделать ставку</span>';
     html += '</div>';
 
     var dialog;
@@ -209,8 +191,8 @@ function AddBid(car_id)
     };
     dialog = ShowTmpDialog("Новая ставка", html, on_shown, on_close_dlg);
 
-    dialog.elem.find('.add_bid_ok').click(function () {
-        var bid_value = dialog.elem.find('.bid_value').val();
+    dialog.elem.find('.js-add_bid_ok').click(function () {
+        var bid_value = dialog.elem.find('.js-bid_value').val();
 
         if (isNaN(bid_value)) {
             alert('Введеное значение "' + bid_value + '" не является числом. Ставка не сделана.');
@@ -243,51 +225,6 @@ function AddBid(car_id)
     });
 }
 
-function ShowCarDetails(car_id)
-{
-    var html = '';
-
-    var car = last_loaded_cars[car_id];
-
-    html += $('#car_details_template').html();
-    var dialog;
-    var on_shown = function () {
-        
-    };
-
-    var on_close_dlg = function (dialog) {
-        dialog.elem.remove(); //clean up
-    };
-
-    dialog = ShowTmpDialog("Сведения об автомобиле", html, on_shown, on_close_dlg);
-
-    var cnt = dialog.elem;
-    FillCarForm(cnt, car);
-
-
-}
-
-function ShowCarDetails_mybids(car_id)
-{
-    var html = '';
-
-    var car = loaded_my_bid_cars[car_id];
-
-    html += $('#car_details_template').html();
-    var dialog;
-    var on_shown = function () {
-        var cnt = dialog.elem;
-        FillCarForm(cnt, car);
-
-    };
-
-    var on_close_dlg = function (dialog) {
-        dialog.elem.remove(); //clean up
-    };
-
-    dialog = ShowTmpDialog("Сведения об автомобиле", html, on_shown, on_close_dlg);
-
-}
 
 function FillTradeHistory()
 {
@@ -328,91 +265,16 @@ function FillTradeHistory_html(carlist)
         if (car_model == ' ') {
             car_model = '[Безымянный автомобиль]';
         }
-        //onclick="ShowCarDetails_4sold(\'' + car.id + '\')"
-        car_row.find('.car_data_row1').html('<a href="CarDetails.html?carid=' + car.id + '" target="_blank"><span>' + car_model + ' ' + my_undefined(car['main.Year']) + '</span></a>');
-        car_row.find('.car_data_row2').html(my_undefined(car['main.Modification']) + ' ' + my_undefined(car['main.Drivetrain']) + ' ' + my_undefined(car['main.Engine_type']))
 
-        car_row.find('.auct_end_dt').html('Дата продажи: ' + moment(car.trades[0].dt).format('lll') + '');
+        car_row.find('.js-car_data_row1').html('<a href="CarDetails.html?carid=' + car.id + '" target="_blank"><span>' + car_model + ' ' + my_undefined(car['main.Year']) + '</span></a>');
+        car_row.find('.js-car_data_row2').html(my_undefined(car['main.Modification']) + ' ' + my_undefined(car['main.Drivetrain']) + ' ' + my_undefined(car['main.Engine_type']))
 
-        //car_row.find('.car_buyer_name').html('Покупатель: ' + my_undefined(buyer.name) + ' (тел: ' + my_undefined(buyer.phone) + ')');
-        car_row.find('.trade_summ').html('Цена: <strong>' + numeral(car.trades[0].price).format('0,0[.]00') + ' ₽</strong>');
+        car_row.find('.js-auct_end_dt').html('Дата продажи: ' + moment(car.trades[0].dt).format('lll') + '');
+
+        car_row.find('.js-trade_summ').html('Цена: <strong>' + numeral(car.trades[0].price).format('0,0[.]00') + ' ₽</strong>');
         cnt.append(car_row);
     }
 
-}
-
-
-function ShowCarDetails_4sold(car_id) {
-    var car = loaded_sold_cars[car_id];
-    var html = '';
-
-
-    html += $('#car_details_template').html();
-    var dialog;
-    var on_shown = function () {
-        var cnt = dialog.elem;
-        FillCarForm(cnt, car);
-
-    };
-
-    var on_close_dlg = function (dialog) {
-        dialog.elem.remove(); //clean up
-    };
-
-    dialog = ShowTmpDialog("Сведения об автомобиле", html, on_shown, on_close_dlg);
-}
-
-function Login()
-{
-    var html = $('#login_form_teample').html();
-
-
-    var dialog;
-    var on_shown = function () {
-        var cnt = dialog.elem;
-        cnt.find('.btn-cancel').click(function() {
-            dialog.close();
-        })
-        cnt.find('.btn-login').click(function () {
-
-            ShowLoading('body');
-            var login = cnt.find('[name=username]').val();
-            var pwd = cnt.find('[name=password]').val();
-
-            db.load('car_buyer', { filter: '(username eq \'' + login + '\') and (pwd eq \'' + pwd + '\')' })
-            .done(function (buyers) {
-                if (buyers.length == 0)
-                {
-                    alert('Введена неверная пара имя пользователя/пароль');
-                } else
-                {
-                    localStorage['new_buyer_id'] = buyers[0].id;
-                    location.reload();
-                }
-            })
-            .fail(function () {
-                alert('Введена неверная пара имя пользователя/пароль');
-            })
-            .always(function () {
-                HideLoading('body');
-            })
-
-        })
-    };
-
-    var on_close_dlg = function (dialog) {
-        dialog.elem.remove(); //clean up
-
-    };
-
-    dialog = ShowTmpDialog("Вход в Систему", html, on_shown, on_close_dlg);
-
-}
-
-function Logout()
-{
-    delete localStorage['new_buyer_id'];
-    location.reload();
 }
 
 function FillMyBids()
@@ -467,24 +329,24 @@ function FillMyBids_html(cars)
             if (car_model == ' ') {
                 car_model = '[Безымянный автомобиль]';
             }
-            car_row.find('.car_data_row1').html('<a href="CarDetails.html?carid=' + car.id + '" target="_blank"><span>' + car_model + ' ' + my_undefined(car['main.Year']) + '</span></a>');
-            car_row.find('.car_data_row2').html(my_undefined(car['main.Modification']) + ' ' + my_undefined(car['main.Drivetrain']) + ' ' + my_undefined(car['main.Engine_type']))
+            car_row.find('.js-car_data_row1').html('<a href="CarDetails.html?carid=' + car.id + '" target="_blank"><span>' + car_model + ' ' + my_undefined(car['main.Year']) + '</span></a>');
+            car_row.find('.js-car_data_row2').html(my_undefined(car['main.Modification']) + ' ' + my_undefined(car['main.Drivetrain']) + ' ' + my_undefined(car['main.Engine_type']))
 
             var time_left = CalculateTimeLeft(car);
-            car_row.find('.trade_summ').html('Ваша ставка: <strong>' + numeral(my_max_bid.value).format('0,0[.]00') + ' ₽</strong>');
+            car_row.find('.js-trade_summ').html('Ваша ставка: <strong>' + numeral(my_max_bid.value).format('0,0[.]00') + ' ₽</strong>');
             if (time_left >= 0)
             {  
                 if (my_max_bid.id == car.max_bid.id) {
-                    car_row.find('.bid_status').html('<span class="bg-success">Вы выигрываете</span>');
+                    car_row.find('.js-bid_status').html('<span class="bg-success">Вы выигрываете</span>');
                 } else {
-                    car_row.find('.bid_status').html('<span class="bg-danger">Вы проигрываете</span>  <p class="text-danger">Макс. ставка: ' + numeral(car.max_bid.value).format('0,0[.]00') + '₽</p>');
+                    car_row.find('.js-bid_status').html('<span class="bg-danger">Вы проигрываете</span>  <p class="text-danger">Макс. ставка: ' + numeral(car.max_bid.value).format('0,0[.]00') + '₽</p>');
                 }
             } else
             {
                 if (my_max_bid.id == car.max_bid.id) {
-                    car_row.find('.bid_status').html('<span class="bg-success">Аукцион завершен. Вы победили.</span><br/>Ожидание решения менеджера.');
+                    car_row.find('.js-bid_status').html('<span class="bg-success">Аукцион завершен. Вы победили.</span><br/>Ожидание решения менеджера.');
                 } else {
-                    car_row.find('.bid_status').html('<span class="bg-danger">Аукцион завершен. Вы проиграли.</span>  <p class="text-danger">Макс. ставка: ' + numeral(car.max_bid.value).format('0,0[.]00') + '₽</p>');
+                    car_row.find('.js-bid_status').html('<span class="bg-danger">Аукцион завершен. Вы проиграли.</span>  <p class="text-danger">Макс. ставка: ' + numeral(car.max_bid.value).format('0,0[.]00') + '₽</p>');
                 }
             }
 

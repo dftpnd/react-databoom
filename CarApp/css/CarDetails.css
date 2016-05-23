@@ -1,0 +1,58 @@
+﻿
+.hovered_checklist_item
+{
+    font-size: 1.3em !important;
+}
+
+.car-image-thumbnail
+{
+    background-size:contain;
+    background-repeat: no-repeat;
+    height:110px;
+}
+
+.my-image-thumb, .my-image-thumb img {
+  position:relative;
+  width:200px;
+}
+
+.my-image-fav {
+    display:none;
+    position:absolute;
+    bottom:95%;
+    left:88%;
+    width:25px;
+    height:25px;
+    font-size: 1.4em;
+    opacity: 0.8;
+    color:navy;
+    background-color: white;
+    border-radius: 5px;
+    vertical-align: middle;
+}
+
+.my-image-thumb:hover .my-image-fav {
+    display:block;
+}
+
+.my-image-car-bg{
+    background-size:contain;
+    background-repeat: no-repeat;
+    height:85vh;
+    width:100%;
+    cursor: pointer;
+}
+
+.js-btn-refresh
+{
+    margin-top: 10px;
+}
+
+.js-defect-name-area{
+    margin-top: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+
+

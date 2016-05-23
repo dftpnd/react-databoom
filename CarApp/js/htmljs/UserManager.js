@@ -35,15 +35,15 @@ function FillUsersList()
 function FillUsersList_html(users)
 {
     var html = '';
-    html += '<table class="table table-hover">';
+    html += '<table class="table table-hover my-users-table">';
     html += '<thead>';
-    html += '<th style="text-align: left">Имя пользователя</th><th>ФИО</th><th>Уровень доступа</th><th></th>';
+    html += '<th>Имя пользователя</th><th>ФИО</th><th>Уровень доступа</th><th></th>';
     html += '</thead>';
-    html += '<tbody style="text-align:center">';
+    html += '<tbody>';
     for (var i in users) {
         var user = users[i];
         html += '<tr>';
-        html += '<td style="text-align:left;white-space: nowrap;"><a href="javascript:void(0)" onclick="EditUser(\'' + user.id + '\')"><i class="fa fa-pencil-square-o"></i></a> ' + my_undefined(user.username) + '</td>';
+        html += '<td><a href="javascript:void(0)" onclick="EditUser(\'' + user.id + '\')"><i class="fa fa-pencil-square-o"></i></a> ' + my_undefined(user.username) + '</td>';
         html += '<td>' + UserFio(user) + '</td>';
         html += '<td>' + UserAccessLevelStr(user) + '</td>';
         html += '<td><a href="javascript:void(0)" onclick="DeleteUser(\'' + user.id + '\')" title="Удалить"><i class="fa fa-times"></i></a></td>';
@@ -91,8 +91,8 @@ function EditUser(user_id) {
     var on_shown = function () {
         var cnt = dialog.elem;
 
-        cnt.find('.btn-close').click(function () { dialog.close() });
-        cnt.find('.btn-save').click(function () {
+        cnt.find('.js-btn-close').click(function () { dialog.close() });
+        cnt.find('.js-btn-save').click(function () {
 
             var save_data = { id: user_id };
             cnt.find('[data-field]').each(function () {

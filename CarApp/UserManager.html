@@ -21,23 +21,13 @@
 
     <script src="js/databoom.js"></script>
 
+    <link href="css/common.js.css" rel="stylesheet" />
     <script src="js/htmljs/Common.js?v=3"></script>
+
     <script src="js/htmljs/UserManager.js?v=3"></script>
-
+   
     <link href="css/common.css" rel="stylesheet" />
-
-    <style>
-       
-    body { /* Предотвращение дергания картинки при появлении вертикального скролл-бара */
-        /*width: calc(100vw - 34px);*/
-        color: navy;
-    }
-
-    body.noscroll{
-        overflow-x: hidden;
-    }
-
-</style>
+    <link href="css/UserManager.css" rel="stylesheet" />
 
 </head>
 <body class="noscroll">
@@ -47,12 +37,10 @@
 <span class="btn btn-info pull-right" onclick="UsersRefresh()">Обновить <i class="fa fa-refresh"></i></span>
 <div id="users_list_area" class="container">
 
-
 </div>
 </div>
 
-
-<div style="height:300px">
+<div class="my-div-300px">
 
 </div>
 
@@ -108,8 +96,6 @@
             </div>
         </div>
 
-
-
         <div class="form-group">
             <label class="col-xs-5 control-label">Покупатель</label>
             <div class="col-xs-2">
@@ -142,10 +128,10 @@
 
         <div class="form-group">
             <div class="col-xs-5 col-md-offset-1">
-                <span class="btn btn-default btn-close pull-left">Закрыть</span>
+                <span class="btn btn-default js-btn-close pull-left">Закрыть</span>
             </div>
             <div class="col-xs-5">
-                <span class="btn btn-success btn-save pull-right">Сохранить <i class="fa fa-floppy-o"></i></span>
+                <span class="btn btn-success js-btn-save pull-right">Сохранить <i class="fa fa-floppy-o"></i></span>
             </div>
         </div>        
     </div>

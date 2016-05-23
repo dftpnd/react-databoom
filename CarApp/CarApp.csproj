@@ -60,8 +60,14 @@
     <Content Include="Auction.html" />
     <Content Include="CarDetails.html" />
     <Content Include="CarForm.html" />
+    <Content Include="css\Auction.css" />
+    <Content Include="css\CarDetails.css" />
+    <Content Include="css\CarForm.css" />
     <Content Include="css\common.css" />
+    <Content Include="css\common.js.css" />
     <Content Include="css\FhHRx.gif" />
+    <Content Include="css\Manager.css" />
+    <Content Include="css\UserManager.css" />
     <Content Include="js\databoom.js" />
     <Content Include="js\htmljs\Auction.js" />
     <Content Include="js\htmljs\AuctionLogic.js" />

@@ -21,79 +21,28 @@
 
     <script src="js/databoom.js"></script>
 
+    <link href="css/common.js.css" rel="stylesheet" />
     <script src="js/htmljs/Common.js?v=3"></script>
+
     <script src="js/htmljs/CarUICommon.js?v=3"></script>
     <script src="js/htmljs/CarStruct.js?v=3"></script>
     <script src="js/htmljs/CarForm.js?v=3"></script>
 
     <link href="css/common.css" rel="stylesheet" />
 
-    <style>
-       
-    body { /* Предотвращение дергания картинки при появлении вертикального скролл-бара */
-        /*width: calc(100vw - 34px);*/
-        color: navy;
-    }
-
-    body.noscroll{
-        overflow-x: hidden;
-    }
-
-    .hovered_checklist_item
-    {
-        font-size: 1.3em !important;
-    }
-
-    /*.mosaic-item {
-      clip-path: inset(10px 20px 30px 40px);
-
-    }*/
-
-
-.image-thumb, .image-thumb img {
-  position:relative;
-  width:200px;
-}
-
-.image-fav {
-  display:none;
-  position:absolute;
-  bottom:95%;
-  left:88%;
-  width:25px;
-  height:60px;
-  font-size: 1.4em;
-  opacity: 0.8;
-  color:navy;
-  background-color: white;
-  border-radius: 5px;
-  vertical-align: middle;
-}
-
-.image-thumb:hover .image-fav {
-    display:block;
-}
-
-.image-car-bg{
-    background-size:contain;
-    background-repeat: no-repeat;
-}
-
-
-
-</style>
+    <link href="css/CarForm.css" rel="stylesheet" />
 
 </head>
 <body class="noscroll">
 
-<div id="body_content" style="max-width:1300px;margin-left:auto;margin-right:auto">
+<div id="body_content">
 
 <div id="auction_msg_area"></div>
 
-<div class="current-page" data-page="1">
+<div class="js-current-page" data-page="1">
 
 <h3>Ввод данных автомобиля</h3>
-<form class="form-horizontal car-form">
+<form class="form-horizontal js-car-form">
   <fieldset>
     <legend></legend>
 
@@ -272,9 +221,9 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <span class="lead">Основные фотографии</span>
-            <span class="btn btn-info btn-sm" onclick="AddPhotoClick(this)" data-filefield="images_main" style="margin-bottom:6px; margin-left:30px">Добавить фото <i class="fa fa-camera"></i></span>
+            <span class="btn btn-info btn-sm js-btn-add-photo" onclick="AddPhotoClick(this)" data-filefield="images_main" >Добавить фото <i class="fa fa-camera"></i></span>
             <input type="file" class="form-control" data-filefield="images_main" multiple="multiple" style="display:none"/>
-            <div class="col-xs-12 images-mosaic" data-field="images_main">
+            <div class="col-xs-12 js-images-mosaic" data-field="images_main">
             </div>       
         </div>
     </div>
@@ -290,50 +239,33 @@
 </div>
 
 
-<!--<div >
-    <form action="/file-upload" class="dropzone">
-        <div class="fallback dropzone needsclick dz-clickable dz-started" style="height:100px;width:200px;">
-        <input name="file" type="file" multiple />
-        </div>
-    </form>        
-</div>-->
-
-<div style="height:300px">
+<div class="my-div-300px">
 
 </div>
 
 <div id="checklist_template" style="display: none">
-    <div data-field="" style="margin-bottom: 5px" class="row">
+    <div data-field="" class="row my-checklist-item">
         <h4  class="col-lg-8 col-xs-9 checklist-label"></h4>
         <div class="col-lg-4 col-xs-3">
-            <span class="btn btn-success btn-yes" style="margin:3px">Да</span>
-            <span class="btn btn-default btn-no">Нет</span>
+            <span class="btn btn-success js-btn-yes">Да</span>
+            <span class="btn btn-default js-btn-no">Нет</span>
         </div>
     </div>
 </div>
 
-<!--<div id="appeareance_row_template" style="display: none">
-    <div data-field="" style="margin-bottom: 5px" class="row">
-        <h4  class="col-lg-8 col-xs-9 checklist-label"></h4>
-        <div class="col-lg-4 col-xs-3">
-            <span class="btn btn-success btn-yes" style="margin:3px">Да</span>
-            <span class="btn btn-default btn-no">Нет</span>
-        </div>
-    </div>
-</div>-->
 
 <div id="checklist_page_template" style="display: none">
     <div data-page="" class="">
         <div class="row">
             <div class="col-lg-10 col-xs-12">
-                <span class="btn btn-primary pull-right btn-next" onclick="GoToPage(1);">Далее <i class="fa fa-arrow-circle-right"></i></span>
-                <span class="btn btn-primary btn-prev" onclick="GoToPage(1);"><i class="fa fa-arrow-circle-left"></i> Назад</span>
+                <span class="btn btn-primary pull-right js-btn-next" onclick="GoToPage(1);">Далее <i class="fa fa-arrow-circle-right"></i></span>
+                <span class="btn btn-primary js-btn-prev" onclick="GoToPage(1);"><i class="fa fa-arrow-circle-left"></i> Назад</span>
             </div>
        </div>
 
         <div>
-            <h3 class="checklist_header">checklist_header</h3>
-            <div class="checklist-area"></div>
+            <h3 class="js-checklist_header">checklist_header</h3>
+            <div class="js-checklist-area"></div>
         </div>
     </div>
 </div>
@@ -343,27 +275,27 @@
     <div>
     <div class="defect-name lead text-danger"></div>
     <label class="form-label">Введите комментарий по данному дефекту</label>
-    <textarea class="form-control comments-text" style="height:150px">
+    <textarea class="form-control comments-text" rows="5">
 
     </textarea>
     <div class="panel panel-default">
         <div class="panel-body">
             <span class="lead">Фотографии дефекта</span>
-            <span class="btn btn-primary btn-add-photo" style="margin-bottom:6px; margin-left:30px">
+            <span class="btn btn-primary js-btn-add-photo">
                 Добавить фото <i class="fa fa-camera"></i>
             </span>
-            <input type="file" class="form-control upl-input" multiple="multiple" style="display:none"/>
-            <div class="col-xs-12 images-mosaic">
+            <input type="file" class="form-control js-upl-input" multiple="multiple" style="display:none"/>
+            <div class="col-xs-12 js-images-mosaic">
 
             </div>       
         </div>
 
     </div>
 
-    <span class="btn btn-success btn-save" style="margin-bottom:6px; margin-left:30px">
+    <span class="btn btn-success js-btn-save">
         Сохранить <i class="fa fa-save"></i>
     </span>
-    <span class="btn btn-default btn-close" style="margin-bottom:6px; margin-left:30px">
+    <span class="btn btn-default js-btn-close">
         Закрыть без сохранения
     </span>
 
@@ -373,11 +305,6 @@
 
 </div>
 
-<!--<div id="model_selector_template" style="display: none">
-    <div style="colu">
-
-    </div>
-</div>-->
 
 
 <div id="model_selector_year_templ" style="display:none">
@@ -399,8 +326,10 @@
 </div>
 
 <div id="model_selector_templ" style="display:none">
-    <div class="form-group" style="margin-bottom: 20px;">
-        <label class="col-md-3 col-xs-2 control-label" style="margin-top:10px">Марка и модельный ряд</label>
+    <div class="my-div-20px"></div>
+    <div class="form-group">
+        <div class="my-div-10px"></div>
+        <label class="col-md-3 col-xs-2 control-label">Марка и модельный ряд</label>
         <div class="col-md-9 col-xs-10">
             $$content$$
         </div>
@@ -722,52 +651,6 @@ c74 0 136 4 140 9 6 11 -63 69 -110 93 -105 54 -174 78 -228 78 -39 0 -57 -4
 
 
 </div>
-
-
-<!--<div id="schemepart_editor_teample" style ="display: none">
-
-    <div>
-
-    </div>
-</div>-->
-
-
-<!--<div id="schemepart_row_gallery_template" style="display: none">
-    <div>
-    <div class="defect-name lead text-danger"></div>
-    <label class="form-label">Тип повреждения</label>
-    <textarea class="form-control damage-type" rows="2"></textarea>
-
-    <label class="form-label">Тип ремонта</label>
-    <textarea class="form-control repair-type"  rows="2"></textarea>
-
-
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <span class="lead">Фотографии</span>
-            <span class="btn btn-primary btn-add-photo" style="margin-bottom:6px; margin-left:30px">
-                Добавить фото <i class="fa fa-camera"></i>
-            </span>
-            <input type="file" class="form-control upl-input" multiple="multiple" style="display:none"/>
-            <div class="col-xs-12 images-mosaic">
-
-            </div>       
-        </div>
-
-    </div>
-        <hr/>
-        <div class="row">
-            <div class="col-xs-12">
-                <span class="btn btn-success btn-save pull-right" style="margin-left: 20px;">Сохранить <i class="fa fa-floppy-o"></i></span>
-                <span class="btn btn-info btn-close pull-right">Закрыть</span>
-            </div>
-        </div>
-
-    
-    </div>
-</div>-->
-
-
 
 
 </body>

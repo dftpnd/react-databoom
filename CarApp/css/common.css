@@ -1,25 +1,43 @@
+/* body */
+
+body { /* Предотвращение дергания картинки при появлении вертикального скролл-бара */
+    /*width: calc(100vw - 34px);*/
+    color: navy;
+}
+
+body.noscroll{
+    overflow-x: hidden;
+}
+
 @media (min-width: 1300px) {
   .container {
     width: 1300px !important;
   }
 }
 
+#body_content{
+    max-width:1300px;
+    margin-left:auto;
+    margin-right:auto;
+}
 
+
+/* stuff */
 div.blockOverlay {
-        background: rgba( 220, 220, 220, 1.0 ) 
-                url('FhHRx.gif') 
-                50% 50% 
-                no-repeat !important;
-        z-index: 1000;
-        border: none;
-        margin: 0px;
-        padding: 0px;
-        width: 100%;
-        height: 100%;
-        top: 0px;
-        left: 0px;
-        cursor: wait;
-        position: absolute;
+    background: rgba( 220, 220, 220, 1.0 ) 
+            url('FhHRx.gif') 
+            50% 50% 
+            no-repeat !important;
+    z-index: 1000;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    cursor: wait;
+    position: absolute;
 }
 
 
@@ -83,27 +101,16 @@ th
     font-size: 1.15em;
 }
 
-@media (min-width: 1000px) {
-    .logout_btn_margin {
-        margin-top: 22px;
-    }
-}
-
-@media (max-width: 1000px) {
-    .logout_btn_margin {
-        margin-top: 8px;
-    }
-}
-
-.textstar{
+.my-textstar{
     color: rgba(255, 106, 0, 0.40)
+
 }
 
-.textstar:hover{
+.my-textstar:hover{
     -webkit-filter: brightness(150%);
 }
 
-.textstar span{
+.my-textstar span{
     /*background-color: white;*/
     border-radius: 50%;
     font-size: .4em;
@@ -147,4 +154,133 @@ svg {
     top: 0;
     left: 0;
     max-height: 600px;
+}
+
+
+/* my-hidden - для замены записи style="display: none;", которая признана некорректной 
+    
+    для элементов, которые скрыты при первоначальной отрисовке (и которые могут быть в дальнейшем показаны)
+    */
+.my-hidden{
+    display: none;
+}
+
+.my-div-10px
+{
+    height:10px;
+}
+
+.my-div-20px{
+    height:20px;
+}
+
+.my-div-30px{
+    height:30px;
+}
+
+.my-div-40px{
+    height:40px;
+}
+
+.my-div-500px{
+    height:500px;
+}
+
+.my-div-300px{
+    height:300px;
+}
+
+.my-div-200px{
+    height:300px;
+}
+
+
+.my-cmd-col{
+    text-align:left;
+    white-space: nowrap;
+}
+
+
+.my-col-lefted{
+    text-align: left;
+}
+
+.my-col-centered{
+    text-align: center;
+}
+
+.my-btn-add-photo
+{
+
+}
+
+
+
+.js-star-button i{
+    font-size:2.9em;
+}
+
+.my-del-schemepart-row
+{
+    font-size: 1.5em;
+}
+
+tr.js-command-add-row .js-btn-add-partrow{
+    font-size:1.3em;
+}
+
+
+
+
+/* schemerow controls */
+
+textarea.js-damage-type,textarea.js-repair-type{
+    width:100%;
+}
+
+tr.js-command-add-row td{
+    text-align:center;
+    white-space: nowrap;
+}
+
+.my-schemerows-bottom .js-btn-save{
+    margin-left: 20px;
+}
+
+/* my-schemerows-table*/
+
+.my-schemerows-table{
+    margin-top: -8px;
+}
+
+.my-schemerows-table thead th:nth-child(4){
+    width:20px
+}
+
+
+.my-schemerows-table tr[data-partrow-id] td{
+    vertical-align:middle;
+}
+
+/* schemepart gallery */
+
+.js-btn-add-photo
+{
+    margin-bottom:6px;
+    margin-left:30px;
+}
+
+.my-schemepart-gallery
+{
+    margin-top: -17px;
+}
+
+.my-schemepart-gallery .js-btn-save
+{
+    margin-left: 20px;
+}
+
+.my-schemepart-gallery .my-image-item
+{
+    width:200px;
 }

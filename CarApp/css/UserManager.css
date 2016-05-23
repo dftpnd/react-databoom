@@ -1,0 +1,14 @@
+﻿/* my-users-table */
+.my-users-table thead th:first-child{
+    text-align: left;
+}
+
+.my-users-table tbody{
+    text-align:center;
+}
+
+.my-users-table tbody tr td:first-child{
+    text-align:left;
+    white-space: nowrap;
+}
+

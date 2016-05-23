@@ -1,9 +1,9 @@
 ﻿
 function FillCarForm(cnt, car, options) {
-    var main = cnt.find('.MainInfo');
+    var main = cnt.find('.js-MainInfo');
     if (car.images_main) {
         var images_html = FillCarImages(car, 'images_main');
-        main.find('.images-mosaic[data-field="images_main"]').html(images_html);
+        main.find('.js-images-mosaic[data-field="images_main"]').html(images_html);
     }
 
     var html = '<table class="table table-hover">';
@@ -23,13 +23,13 @@ function FillCarForm(cnt, car, options) {
     main.append(html);
 
     main.prepend('<p>' + my_undefined(car['main.Modification']) + ' ' + my_undefined(car['main.Drivetrain']) + ' ' + my_undefined(car['main.Engine_type']) + '</p>');
-    main.prepend('<hr/><span  class="lead">' + my_undefined(car['main.Model_mark']) + ' ' + my_undefined(car['main.Model']) + ' ' + my_undefined(car['main.Year']) + '</span>');
+    main.prepend('<hr/><span class="lead">' + my_undefined(car['main.Model_mark']) + ' ' + my_undefined(car['main.Model']) + ' ' + my_undefined(car['main.Year']) + '</span>');
 
-    var defects_cnt = cnt.find('.defects-area');
+    var defects_cnt = cnt.find('.js-defects-area');
     ShowLoading(defects_cnt);
     FillDefects(car, defects_cnt, function () { HideLoading(defects_cnt) });
 
-    FillCarAppearance(cnt.find('.appear-area'), car, options ? options.readmode==true : false);
+    FillCarAppearance(cnt.find('.js-appear-area'), car, options ? options.readmode==true : false);
 }
 
 var opened_images_dict;
@@ -41,9 +41,9 @@ function FillCarImages(car, img_fld) {
     for (var im in images) {
         var im = parseInt(im);
         var img = images[im];
-        html1 += '<span class="image-thumb mosaic-item" data-image-id="' + img.id + '" onclick="PreviewImage(\'' + img.id + '\')" style="cursor:pointer">';
+        html1 += '<span class="my-image-thumb" data-image-id="' + img.id + '" onclick="PreviewImage(\'' + img.id + '\')" style="cursor:pointer">';
         html1 += '<img src="' + db_files + img.filename + '"/>';
-        html1 += '<span class="image-fav">';
+        html1 += '<span class="my-image-fav">';
         html1 += '<i class="fa fa-search" style="margin:3px"></i>';
         html1 += '</span>';
         html1 += '</span>';   
@@ -74,26 +74,15 @@ function FillCarImages(car, img_fld) {
     return html1;
 }
 
-
-
-
 function PreviewImage(image_id) {
 
-//car_data = last_loaded_cars[car_id];
-    //var img_data = null;
-    //for (var i in car_data[image_field]) {
-    //    var image = car_data[image_field][i];
-    //    if (image.id == image_id) {
-    //        img_data = image;
-    //        break;
-    //    }
-    //}
 
     var img_list_item = opened_images_dict[image_id];
     image_filename = img_list_item.img.filename;
 
     var html = '';
-    html += '<span class="btn btn-info btn-sm btn-close pull-right">Закрыть</span><div style="height:30px"></div><div class="image-car-bg" style="height:85vh; width:100%; background-image:url(' + db_files + image_filename + ')"></div>';//<img src="' + db_files + img_data.filename + '"/>';
+    html += '<span class="btn btn-info btn-sm js-btn-close pull-right">Закрыть</span><div class="my-div-30px"></div>\
+        <div class="my-image-car-bg" style="background-image:url(' + db_files + image_filename + ')"></div>';
 
     var dialog;
     var on_shown = function () {
@@ -105,18 +94,14 @@ function PreviewImage(image_id) {
     };
     dialog = ShowTmpDialog("Просмотр фотографий", html, on_shown, on_close_dlg);
 
-    dialog.elem.find('.btn-close').click(function () {
+    dialog.elem.find('.js-btn-close').click(function () {
         dialog.close();
     })
 
-    dialog.elem.find('.image-car-bg').click(function () {
-        //if (next_image) {
-        //    dialog.close();
-        //    PreviewImage(next_image);
-        //}
+    dialog.elem.find('.my-image-car-bg').click(function () {
         img_list_item = img_list_item.next;
-        dialog.elem.find('.image-car-bg').css('background-image', 'url(' + db_files + img_list_item.img.filename + ')');
-    }).css('cursor', 'pointer');
+        dialog.elem.find('.my-image-car-bg').css('background-image', 'url(' + db_files + img_list_item.img.filename + ')');
+    });
 
 }
 
@@ -131,19 +116,19 @@ function FillDefects(car, container, after_fill) {
             var def = defects[i];
             var row = $($('#defect_row_template').html());
 
-            row.find('.defect-name-area').html(car_fields_map[def.car_field]);
+            row.find('.js-defect-name-area').html(car_fields_map[def.car_field]);
             if (def.comment) {
-                row.find('.defect-comment-area').html(def.comment);
+                row.find('.js-defect-comment-area').html(def.comment);
             }
             if (def.images && def.images.length > 0) {
-                var img_cnt = row.find('.defect-images-area');
+                var img_cnt = row.find('.js-defect-images-area');
                 for (var j in def.images) {
                     var img = def.images[j];
                     img_cnt.append('<a href="javascript:void(0)" onclick="DefectImagePreview(\'' + ImgUrl(img.filename) + '\')" data-image-path="' + ImgUrl(img.filename) + '"><img style="width:100px" src="' + ImgUrl(img.filename) + '"/></a>')
                 }
             } else {
-                row.find('.defect-images-area').remove();
-                row.find('.change-width').removeClass('col-xs-6').addClass('col-xs-12');
+                row.find('.js-defect-images-area').remove();
+                row.find('.js-change-width').removeClass('col-xs-6').addClass('col-xs-12');
             }
 
             container.append(row);
@@ -163,7 +148,7 @@ function FillDefects(car, container, after_fill) {
 function DefectImagePreview(img_src) {
 
     var html = '';
-    html += '<div class="image-car-bg" style="height:85vh; width:100%; background-image:url(' + img_src + ')"></div>';//<img src="' + db_files + img_data.filename + '"/>';
+    html += '<div class="my-image-car-bg" style="background-image:url(' + img_src + ')"></div>';//<img src="' + db_files + img_data.filename + '"/>';
 
     var dialog;
     var on_shown = function () {
@@ -195,12 +180,13 @@ function FillCarAppearance(container, car, readmode) {
 
     if (readmode)
     {
+        /* Hide all edit buttons even newly created */
         $('#readmode_style').remove();
         $("<style>")
             .prop("type", "text/css")
             .prop("id", "readmode_style")
             .html("\
-            .btn-edit-action {\
+            .js-btn-edit-action {\
                 display:none;\
             }")
             .appendTo("head");
@@ -278,9 +264,9 @@ function OpenAppearancePartDetails(car, part_id, svg_id, on_after_part_saved) {
         part.rows_to_delete = {};
         var html = '';
 
-        html += '<table class="table table-hover schemerows-table" data-car-id="' + car.id + '" style="margin-top: -8px">';
+        html += '<table class="table table-hover my-schemerows-table" data-car-id="' + car.id + '">';
         html += '<thead>';
-        html += '<th style="text-align: left">Тип повреждения</th><th>Тип ремонта</th><th style="text-align: center;" class="col-lg-2 col-xs-1">Готово</th><th style="width:20px"></th';//<th></th>
+        html += '<th class="my-col-lefted">Тип повреждения</th><th>Тип ремонта</th><th class="col-lg-2 col-xs-1 my-col-centered">Готово</th><th></th';//<th></th>
         html += '</thead>';
         html += '<tbody>';
         if (part.rows.length > 0) {
@@ -295,9 +281,9 @@ function OpenAppearancePartDetails(car, part_id, svg_id, on_after_part_saved) {
             html += partrow_html(GuidPlaceholder());
         }
 
-        html += '<tr class="command-add-row">';
-        html += '<td style="text-align:center;white-space: nowrap;" colspan="4">';
-        html += '<span class="btn btn-default btn-add-partrow btn-edit-action" style="font-size:1.3em">Добавить <i class="fa fa-plus"></i></span>';
+        html += '<tr class="js-command-add-row">';
+        html += '<td colspan="4">';
+        html += '<span class="btn btn-default js-btn-add-partrow js-btn-edit-action" >Добавить <i class="fa fa-plus"></i></span>';
         html += '</td>';
         html += '</tr>';
 
@@ -305,9 +291,9 @@ function OpenAppearancePartDetails(car, part_id, svg_id, on_after_part_saved) {
         html += '</table>';
 
         html += '\
-            <hr/><div class="row"><div class="col-xs-12">\
-                <span class="btn btn-success btn-save pull-right btn-edit-action" style="margin-left: 20px;">Сохранить <i class="fa fa-floppy-o"></i></span>\
-                <span class="btn btn-info btn-close pull-right">Закрыть</span>\
+            <hr/><div class="row my-schemerows-bottom"><div class="col-xs-12">\
+                <span class="btn btn-success js-btn-save pull-right js-btn-edit-action">Сохранить <i class="fa fa-floppy-o"></i></span>\
+                <span class="btn btn-info js-btn-close pull-right">Закрыть</span>\
             </div><div>\
         ';
 
@@ -322,32 +308,32 @@ function OpenAppearancePartDetails(car, part_id, svg_id, on_after_part_saved) {
         };
         dialog = ShowTmpDialog("Ввод данных по детали", html, on_shown, on_close_dlg);
 
-        dialog.elem.find('.btn-add-partrow').click(function () {
+        dialog.elem.find('.js-btn-add-partrow').click(function () {
             var btn = $(this);
             var html = '';
             html += partrow_html(GuidPlaceholder());
             var tr = $(html);
-            btn.parents('tr.command-add-row').before(tr);
-            tr.find('.star-button').click(function () {
+            btn.parents('tr.js-command-add-row').before(tr);
+            tr.find('.js-star-button').click(function () {
                 var btn = $(this);
                 var partrow_id = btn.parents('tr[data-partrow-id]').attr('data-partrow-id');
                 OpenEditRowDialog(partrow_id);
             });
 
-            tr.find('.btn-del-row').click(function () {
+            tr.find('.js-btn-del-row').click(function () {
                 DeleteRowClick($(this));
             })
 
         });
 
-        dialog.elem.find('.btn-save').click(function () {
+        dialog.elem.find('.js-btn-save').click(function () {
             var rows = [];
             dialog.elem.find('tr[data-partrow-id]').each(function () {
                 var tr = $(this);
                 rows.push({
                     id: tr.attr('data-partrow-id'),
-                    damage_type: tr.find('.damage-type').val(),
-                    repair_type: tr.find('.repair-type').val(),
+                    damage_type: tr.find('.js-damage-type').val(),
+                    repair_type: tr.find('.js-repair-type').val(),
                     collections: [{ id: 'schemepart_row' }],
                 });
             });
@@ -405,17 +391,17 @@ function OpenAppearancePartDetails(car, part_id, svg_id, on_after_part_saved) {
             });
         });
 
-        dialog.elem.find('.btn-close').click(function () {
+        dialog.elem.find('.js-btn-close').click(function () {
             dialog.close();
         });
 
-        dialog.elem.find('.star-button').click(function () {
+        dialog.elem.find('.js-star-button').click(function () {
             var btn = $(this);
             var partrow_id = btn.parents('tr[data-partrow-id]').attr('data-partrow-id');
             OpenEditRowDialog(partrow_id);
         });
 
-        dialog.elem.find('.btn-del-row').click(function () {
+        dialog.elem.find('.js-btn-del-row').click(function () {
             DeleteRowClick($(this));
         })
 
@@ -426,12 +412,12 @@ function OpenAppearancePartDetails(car, part_id, svg_id, on_after_part_saved) {
 
             var html = '';
             html += '<tr data-partrow-id="' + row_id + '">';
-            html += '<td style="text-align:left;white-space: nowrap;">' + '<textarea rows="2" style="width:100%" class="damage-type">' + col1 + '</textarea>' + '</td>';
-            html += '<td>' + '<textarea rows="2" style="width:100%"  class="repair-type">' + col2 + '</textarea>' + '</td>';
-            html += '<td style="text-align: center;">';
-            html += '<a href="javascript:void(0)" class="star-button" title="Добавить/удалить фото"><i class="fa fa-star textstar" style="font-size:2.9em;"><span class="sn">' + col3 + '</span></i></a>';
+            html += '<td class="my-cmd-col">' + '<textarea rows="2" class="js-damage-type">' + col1 + '</textarea>' + '</td>';
+            html += '<td>' + '<textarea rows="2" class="js-repair-type">' + col2 + '</textarea>' + '</td>';
+            html += '<td class="my-col-centered">';
+            html += '<a href="javascript:void(0)" class="js-star-button" title="Добавить/удалить фото"><i class="fa fa-star my-textstar"><span class="sn">' + col3 + '</span></i></a>';
             html += '</td>';
-            html += '<td style="vertical-align:middle;"><a href="javascript:void(0)" style="font-size: 1.5em;" title="Удалить строку" class="btn-del-row btn-edit-action"><i class="fa fa-times-circle"></i></a></td>';
+            html += '<td><a href="javascript:void(0)" class="my-del-schemepart-row" title="Удалить строку" class="js-btn-del-row js-btn-edit-action"><i class="fa fa-times-circle"></i></a></td>';
             html += '</tr>';
 
             return html;
@@ -440,13 +426,13 @@ function OpenAppearancePartDetails(car, part_id, svg_id, on_after_part_saved) {
         function OpenEditRowDialog(partrow_id) {
             var tr = dialog.elem.find('tr[data-partrow-id="' + partrow_id + '"]');
             var form_data = {
-                damage_type: tr.find('.damage-type').val(),
-                repair_type: tr.find('.repair-type').val(),
+                damage_type: tr.find('.js-damage-type').val(),
+                repair_type: tr.find('.js-repair-type').val(),
             };
             var on_saved = function (part, row) {
                 var rowtr = dialog.elem.find('[data-partrow-id="' + row.id + '"]');
-                rowtr.find('.damage-type').val(row.damage_type);
-                rowtr.find('.repair-type').val(row.damage_type);
+                rowtr.find('.js-damage-type').val(row.damage_type);
+                rowtr.find('.js-repair-type').val(row.damage_type);
                 rowtr.find('.sn').html(row.images.length);
                 on_after_part_saved(part);
             }
@@ -495,23 +481,23 @@ function OpenAppearancePartDetails(car, part_id, svg_id, on_after_part_saved) {
         var html = '';
 
         var templhtml = '\
-            <div>\
-    <div class="defect-name lead text-danger"></div>\
+    <div>\
+    <div class="js-defect-name lead text-danger"></div>\
     <label class="form-label">Тип повреждения</label>\
-    <textarea class="form-control damage-type" rows="2"></textarea>\
+    <textarea class="form-control js-damage-type" rows="2"></textarea>\
 \
         <label class="form-label">Тип ремонта</label>\
-        <textarea class="form-control repair-type"  rows="2"></textarea>\
+        <textarea class="form-control js-repair-type" rows="2"></textarea>\
 \
 \
         <div class="panel panel-default">\
             <div class="panel-body">\
                 <span class="lead">Фотографии</span>\
-                <span class="btn btn-primary btn-add-photo btn-edit-action" style="margin-bottom:6px; margin-left:30px">\
+                <span class="btn btn-primary js-btn-add-photo js-btn-edit-action">\
                     Добавить фото <i class="fa fa-camera"></i>\
                 </span>\
-                <input type="file" class="form-control upl-input" multiple="multiple" style="display:none"/>\
-                <div class="col-xs-12 images-mosaic">\
+                <input type="file" class="form-control js-upl-input" multiple="multiple" style="display:none"/>\
+                <div class="col-xs-12 js-images-mosaic">\
     \
                 </div>       \
             </div>\
@@ -520,15 +506,15 @@ function OpenAppearancePartDetails(car, part_id, svg_id, on_after_part_saved) {
             <hr/>\
             <div class="row">\
                 <div class="col-xs-12">\
-                    <span class="btn btn-success btn-save pull-right btn-edit-action" style="margin-left: 20px;">Сохранить <i class="fa fa-floppy-o"></i></span>\
-                    <span class="btn btn-info btn-close pull-right">Закрыть</span>\
+                    <span class="btn btn-success js-btn-save pull-right js-btn-edit-action">Сохранить <i class="fa fa-floppy-o"></i></span>\
+                    <span class="btn btn-info js-btn-close pull-right">Закрыть</span>\
                 </div>\
             </div>\
 \
     \
         </div>';
 
-        html += '<div style="margin-top: -17px">' + templhtml + '</div>';
+        html += '<div class="my-schemepart-gallery">' + templhtml + '</div>';
 
         var dialog;
         var on_shown = function () {
@@ -543,34 +529,34 @@ function OpenAppearancePartDetails(car, part_id, svg_id, on_after_part_saved) {
         dialog.added_files = [];
 
         if (partrow.images) {
-            var img_mosaic = dialog.elem.find('.images-mosaic');
+            var img_mosaic = dialog.elem.find('.js-images-mosaic');
             for (var m in partrow.images) {
                 var img = partrow.images[m];
-                img_mosaic.append('<img src="' + ImgUrl(img.filename) + '" style="width:200px"/>');
+                img_mosaic.append('<img src="' + ImgUrl(img.filename) + '" class="my-image-item"/>');
             }
         }
 
-        dialog.elem.find('.damage-type').val(partrow.damage_type);
-        dialog.elem.find('.repair-type').val(partrow.repair_type);
+        dialog.elem.find('.js-damage-type').val(partrow.damage_type);
+        dialog.elem.find('.js-repair-type').val(partrow.repair_type);
 
-        dialog.elem.find('.btn-add-photo').click(function () {
-            dialog.elem.find('.upl-input')[0].click();
+        dialog.elem.find('.js-btn-add-photo').click(function () {
+            dialog.elem.find('.js-upl-input')[0].click();
         });
 
-        dialog.elem.find('.upl-input').change(function (evt) {
-            var mosaic = dialog.elem.find('.images-mosaic');
+        dialog.elem.find('.js-upl-input').change(function (evt) {
+            var mosaic = dialog.elem.find('.js-images-mosaic');
             for (var i = 0; i < evt.target.files.length; i++) {
                 var file = evt.target.files[i];
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    mosaic.append('<img src="' + e.target.result + '" style="width:200px"/>');
+                    mosaic.append('<img src="' + e.target.result + '" class="my-image-item"/>');
                 }
                 reader.readAsDataURL(file);
                 dialog.added_files.push(file);
             };
         });
 
-        dialog.elem.find('.btn-save').click(function () {
+        dialog.elem.find('.js-btn-save').click(function () {
             ShowLoading(dialog.elem);
             var images = [];
             var promises = [];
@@ -585,8 +571,8 @@ function OpenAppearancePartDetails(car, part_id, svg_id, on_after_part_saved) {
                         });
                     }));
             }
-            partrow.damage_type = dialog.elem.find('.damage-type').val();
-            partrow.repair_type = dialog.elem.find('.repair-type').val();
+            partrow.damage_type = dialog.elem.find('.js-damage-type').val();
+            partrow.repair_type = dialog.elem.find('.js-repair-type').val();
             partrow.images = images;
 
             var partdata = {
@@ -622,7 +608,7 @@ function OpenAppearancePartDetails(car, part_id, svg_id, on_after_part_saved) {
             });
         });
 
-        dialog.elem.find('.btn-close').click(function () {
+        dialog.elem.find('.js-btn-close').click(function () {
             dialog.close();
         });
     }

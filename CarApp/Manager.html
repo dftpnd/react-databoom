@@ -28,7 +28,9 @@
     <script src="js/adamwdraper-Numeral-js-7487acb/min/numeral.min.js"></script>
     <script src="js/adamwdraper-Numeral-js-7487acb/min/languages/ru.min.js"></script>
 
+    <link href="css/common.js.css" rel="stylesheet" />
     <script src="js/htmljs/Common.js?v=3"></script>
+
     <script src="js/htmljs/CarStruct.js?v=3"></script>
     <script src="js/htmljs/AuctionLogic.js?v=3"></script>
     <script src="js/htmljs/CarUICommon.js?v=3"></script>
@@ -37,75 +39,22 @@
     
     <link href="css/common.css" rel="stylesheet" />
 
-    <style>
-       
-    body { /* Предотвращение дергания картинки при появлении вертикального скролл-бара */
-        /*width: calc(100vw - 34px);*/
-        color: navy;
-    }
-
-    body.noscroll{
-        overflow-x: hidden;
-    }
-
-    .hovered_checklist_item
-    {
-        font-size: 1.3em !important;
-    }
-
-    .car-image-thumbnail
-    {
-        background-size:contain;
-        background-repeat: no-repeat;
-        height:110px;
-    }
-
-.image-thumb, .image-thumb img {
-  position:relative;
-  width:200px;
-}
-
-    .image-fav {
-      display:none;
-      position:absolute;
-      bottom:95%;
-      left:88%;
-      width:25px;
-      height:25px;
-      font-size: 1.4em;
-      opacity: 0.8;
-      color:navy;
-      background-color: white;
-      border-radius: 5px;
-      vertical-align: middle;
-    }
-
-    .image-thumb:hover .image-fav {
-        display:block;
-    }
-
-    .image-car-bg{
-        background-size:contain;
-        background-repeat: no-repeat;
-    }
-
-
-    </style>
+    <link href="css/Manager.css" rel="stylesheet" />
 
 </head>
 <body class="noscroll">
 
-<div id="body_content" style="max-width:1300px;margin-left:auto;margin-right:auto">
+<div id="body_content">
     
-<div class="common-tabs" style="height:88vh; overflow-x:scroll;overflow-x:auto">
+<div class="js-common-tabs my-scrollable">
     <ul class="nav nav-pills">
-        <li role="presentation" class="active"><a href="javascript:void(0)" data-pills-page="MainInfo"  onclick="Common_OnClickTab(this)">Автомобили, с завершившимся аукционом</a></li>
-        <li role="presentation"><a href="javascript:void(0)" data-pills-page="SoldAutos" onclick="Common_OnClickTab(this)">Проданные авто</a></li>
-        <li role="presentation"><a href="javascript:void(0)" data-pills-page="MyClients" onclick="Common_OnClickTab(this)">Мои клиенты</a></li>
+        <li role="presentation" class="active"><a href="javascript:void(0)" data-pills-page="js-MainInfo"  onclick="Common_OnClickTab(this)">Автомобили, с завершившимся аукционом</a></li>
+        <li role="presentation"><a href="javascript:void(0)" data-pills-page="js-SoldAutos" onclick="Common_OnClickTab(this)">Проданные авто</a></li>
+        <li role="presentation"><a href="javascript:void(0)" data-pills-page="js-MyClients" onclick="Common_OnClickTab(this)">Мои клиенты</a></li>
     </ul>
 
     <div class="tab-content">
-        <div class="tab-pane fade in active MainInfo">
+        <div class="tab-pane fade in active js-MainInfo">
             <span class="btn btn-info pull-right" onclick="FillData()">Обновить <i class="fa fa-refresh"></i></span>
             <h3>Завершенные аукционы</h3>
 
@@ -113,7 +62,7 @@
 
             </div>   
         </div>
-        <div class="tab-pane fade SoldAutos" data-event-shown="FillSoldCars">
+        <div class="tab-pane fade js-SoldAutos" data-event-shown="FillSoldCars">
             <span class="btn btn-info pull-right" id="refresh_sold_autos" onclick="FillSoldCars()">Обновить <i class="fa fa-refresh"></i></span>
             <h3>Проданные автомобили</h3>
 
@@ -121,7 +70,7 @@
 
             </div>
         </div>
-        <div class="tab-pane fade MyClients">
+        <div class="tab-pane fade js-MyClients">
             <span class="btn btn-info pull-right" onclick="FillData()">Обновить <i class="fa fa-refresh"></i></span>
             <h3>Мои клиенты</h3>
             <div id="my_clients_area">
@@ -134,11 +83,7 @@
 </div>
 
 
-
-
-
-
-<div style="height:300px">
+<div class="my-div-300px">
 
 </div>
 
@@ -152,10 +97,10 @@
             </div>
             <div class="col-xs-7">
                 <div class="col-xs-12">
-                    <span class="car_data_row1 lead" style="cursor:pointer"></span>
+                    <span class="js-car_data_row1 lead"></span>
                 </div>
                 <div class="col-xs-12">
-                    <span class="car_data_row2"></span>
+                    <span class="js-car_data_row2"></span>
                 </div>
             </div>
         </div>
@@ -180,10 +125,10 @@
             </div>
             <div class="col-xs-7">
                 <div class="col-xs-12">
-                    <span class="car_data_row1 lead" style="cursor:pointer"></span>
+                    <span class="js-car_data_row1 lead"></span>
                 </div>
                 <div class="col-xs-12">
-                    <span class="car_data_row2"></span>
+                    <span class="js-car_data_row2"></span>
                 </div>
             </div>
         </div>
@@ -197,7 +142,7 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 auct_top_str" style="text-align: right">
+            <div class="col-xs-12 my-auct_top_str">
                 <span class="auct_end_dt"></span>
                 <span class="auct_length"></span>
                 <span class="auct_total_bids"></span>
@@ -217,10 +162,10 @@
             </div>
             <div class="col-xs-7">
                 <div class="col-xs-12">
-                    <span class="car_data_row1 lead" style="cursor:pointer"></span>
+                    <span class="js-car_data_row1 lead"></span>
                 </div>
                 <div class="col-xs-12">
-                    <span class="car_data_row2"></span>
+                    <span class="js-car_data_row2"></span>
                 </div>
             </div>
         </div>
@@ -230,44 +175,13 @@
                 <div class="trade_summ col-xs-12 lead"></div>
             </div>
 
-            <div class="col-xs-12 auct_top_str" style="text-align: right">
+            <div class="col-xs-12 my-auct_top_str">
                 <span class="auct_end_dt"></span>
                 <span class="auct_length"></span>
                 <span class="auct_total_bids"></span>
             </div>
         </div>
 
-    </div>
-</div>
-    
-<div id="car_details_template" style="display: none">
-    <div class="common-tabs" style="height:88vh; overflow-x:scroll;overflow-x:auto">
-        <ul class="nav nav-pills">
-          <li role="presentation" class="active"><a href="javascript:void(0)" data-pills-page="MainInfo"  onclick="Common_OnClickTab(this)">Общая информация</a></li>
-          <li role="presentation"><a href="javascript:void(0)" data-pills-page="Components" onclick="Common_OnClickTab(this)">Комплектация</a></li>
-          <li role="presentation"><a href="javascript:void(0)" data-pills-page="Damage"  onclick="Common_OnClickTab(this)">Повреждения</a></li>
-        </ul>
-
-        <div class="tab-content">
-            <div class="tab-pane fade in active MainInfo">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="col-xs-12 images-mosaic" data-field="images_main">
-
-                            </div>       
-                        </div>
-
-                    </div>            
-            </div>
-            <div class="tab-pane fade Components">
-                <h3>Комплектация</h3>
-            
-            </div>
-            <div class="tab-pane fade Damage">
-                <h3>Повреждения</h3>
-                <div class="defects-area"></div>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -323,34 +237,6 @@
     <span class="btn btn-success btn-close">Закрыть</span>
 
 </div>
-
-<div id="defect_row_template" style="display: none">
-    <div class="col-xs-12">
-        <div class="col-xs-12 defect-name-area" style="margin-top:10px; font-size:1.2em; font-weight:bold">
-
-        </div>
-
-        <div class="panel panel-default col-xs-12 ">
-            <div class="panel-body">
-   
-            <div class="col-xs-6 change-width">
-                <blockquote>
-                  <p class="defect-comment-area"></p>
-                  <small>Комментарий<cite title="Source Title">...</cite></small>
-                </blockquote>
-
-            </div>
-
-            <div class="col-xs-6 defect-images-area">
-
-            </div>
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
 
 </body>
 </html>
