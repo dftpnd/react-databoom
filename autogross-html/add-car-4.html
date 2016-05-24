@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Auto Gross</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=960, user-scalable=yes">
+	<!--<link href="./favicon.ico" rel="shortcut icon">-->
+	<link href="./css/style.css" rel="stylesheet">
+	<link href="./fancybox/style.css" rel="stylesheet">
+	<script src="./js/jquery.js"></script>
+	<!--[if IE 8]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<header>
+		<div>
+			<img src="./img/logo.png" width="71" height="54" class="logo" alt="">
+			<nav>
+				<ul>
+					<li class="active"><a href="#">Экспресс аукционы</a></li>
+					<li><a href="#">Длительные аукционы</a></li>
+					<li><a href="#">Контакты</a></li>
+				</ul>
+			</nav>
+			<p class="user">Иванов Иван Иванович<img src="./img/user.png" width="50" height="50" alt=""></p>
+		</div>
+	</header>
+	<div class="wrapper">
+		<div>
+			<ul class="progress">
+				<li><a href="#">Автомобиль</a></li>
+				<li><a href="#">Внешний вид</a></li>
+				<li><a href="#">Внешний функционал</a></li>
+				<li><a href="#">Салон</a></li>
+				<li><a href="#">Функционал салона</a></li>
+				<li><a href="#">Шины и тормоза</a></li>
+				<li><a href="#">Двигатель</a></li>
+				<li><a href="#">Подвеска</a></li>
+				<li><a href="#">Тест драйв</a></li>
+				<li class="active"><span>Комплектация</span></li>
+			</ul>
+			<div class="equip-b">
+				<h1>Комплектация</h1>
+				<div class="complectation">
+					<div class="group">
+						<h3>Интерьер</h3>
+						<h5>Обивка салона</h5>
+						<ul>
+							<li><label><input type="radio" name="r-1" checked>ткань</label></li>
+							<li><label><input type="radio" name="r-1">велюр</label></li>
+							<li><label><input type="radio" name="r-1">кожа</label></li>
+							<li><label><input type="radio" name="r-1">комбинированный</label></li>
+						</ul>
+						<h5>Цвет салона</h5>
+						<ul>
+							<li><label><input type="radio" name="r-2" checked>темный</label></li>
+							<li><label><input type="radio" name="r-2">светлый</label></li>
+						</ul>
+					</div>
+					<div class="group">
+						<h3>Экстерьер</h3>
+						<p><label><input type="checkbox" name="c-1" checked>Люк на крыше</label></p>
+						<p><label><input type="checkbox" name="c-1">Тонированные стекла</label></p>
+						<p><label><input type="checkbox" name="c-1">Ксеноновые фары</label></p>
+						<p><label><input type="checkbox" name="c-1">Адаптивные фары</label></p>
+						<p>
+							<label><input type="checkbox" name="c-1">Легкосплавные диски</label>
+							<select>
+								<option>12"</option>
+								<option>13"</option>
+							</select>
+						</p>
+					</div>
+					<div class="group">
+						<h3>Сигнализация</h3>
+						<p><label><input type="checkbox" name="c-2" checked>Иммобиллайзер</label></p>
+						<p><label><input type="checkbox" name="c-2">Штатная</label></p>
+						<p><label><input type="checkbox" name="c-2">Обратная связь</label></p>
+						<p><label><input type="checkbox" name="c-2">Дистанционный запуск двигателя</label></p>
+					</div>
+					<div class="group">
+						<h3>Безопасность</h3>
+						<p><label><input type="checkbox" name="c-3" checked>Антиблокировочная система (ABS)</label></p>
+						<p><label><input type="checkbox" name="c-3">Антиблокировочная система</label></p>
+						<p><label><input type="checkbox" name="c-3">Система курсовой устойчивости</label></p>
+						<p><label><input type="checkbox" name="c-3">Парктроник</label></p>
+						<h5>Подушки безопасности</h5>
+						<ul>
+							<li><label><input type="radio" name="r-3" checked>отсутствуют</label></li>
+							<li><label><input type="radio" name="r-3">светлый</label></li>
+							<li><label><input type="radio" name="r-3">водителя и пассажира</label></li>
+							<li><label><input type="radio" name="r-3">передние и боковые</label></li>
+						</ul>
+					</div>
+					<div class="group">
+						<h3>Функционально оборудование</h3>
+						<p><label><input type="checkbox" name="c-4" checked>Бортовой компьютер</label></p>
+						<p><label><input type="checkbox" name="c-4">Газобалонное оборудование</label></p>
+						<p><label><input type="checkbox" name="c-4">Датчик дождя</label></p>
+						<p><label><input type="checkbox" name="c-4">Датчик света</label></p>
+						<p><label><input type="checkbox" name="c-4">Круиз-контроль</label></p>
+						<p><label><input type="checkbox" name="c-4" checked>Навигационная система</label></p>
+						<p><label><input type="checkbox" name="c-4">Обогрев зеркал</label></p>
+						<p><label><input type="checkbox" name="c-4">Омыватель фар</label></p>
+						<p><label><input type="checkbox" name="c-4">Усилитель руля</label></p>
+						<p><label><input type="checkbox" name="c-4">Центральный замок</label></p>
+						<p><label><input type="checkbox" name="c-4">Пневмоподвеска</label></p>
+					</div>
+					<div class="group">
+						<h3>Комфорт</h3>
+						<p><label><input type="checkbox" name="c-5" checked>Подогрев руля</label></p>
+						<p><label><input type="checkbox" name="c-5">Обогрев сидений</label></p>
+						<p>
+							<label><input type="checkbox" name="c-5">Количество мест</label>
+							<select>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</p>
+						<h5>Климат</h5>
+						<ul>
+							<li><label><input type="radio" name="r-4" checked>отсутствует</label></li>
+							<li><label><input type="radio" name="r-4">кондиционер</label></li>
+							<li><label><input type="radio" name="r-4">климат-контроль 1-зонный</label></li>
+							<li><label><input type="radio" name="r-4">климат-контроль 2-зонный</label></li>
+							<li><label><input type="radio" name="r-4">климат-контроль 3-зонный</label></li>
+						</ul>
+					</div>
+					<div class="group">
+						<h3>Мультимедиа</h3>
+						<p><label><input type="checkbox" name="c-6" checked>Кассетник</label></p>
+						<p><label><input type="checkbox" name="c-6">CD</label></p>
+						<p><label><input type="checkbox" name="c-6">TV</label></p>
+					</div>
+					<div class="group">
+						<h3>Регулировки</h3>
+						<p><label><input type="checkbox" name="c-7" checked>Электропривод зеркал</label></p>
+						<h5>Стеклоподъемники</h5>
+						<ul>
+							<li><label><input type="radio" name="r-5" checked>ручные</label></li>
+							<li><label><input type="radio" name="r-5">электро передние</label></li>
+							<li><label><input type="radio" name="r-5">электро все</label></li>
+						</ul>
+						<h5>Сиденье водителя</h5>
+						<ul>
+							<li><label><input type="radio" name="r-5" checked>ручная регулировка</label></li>
+							<li><label><input type="radio" name="r-5">ручная регулировка по высоте</label></li>
+							<li><label><input type="radio" name="r-5">электро регулировка</label></li>
+							<li><label><input type="radio" name="r-5">с памятью положения</label></li>
+						</ul>
+						<h5>Сиденье пассажира</h5>
+						<ul>
+							<li><label><input type="radio" name="r-5" checked>ручная регулировка</label></li>
+							<li><label><input type="radio" name="r-5">ручная регулировка по высоте</label></li>
+							<li><label><input type="radio" name="r-5">электро регулировка</label></li>
+							<li><label><input type="radio" name="r-5">с памятью положения</label></li>
+						</ul>
+						<h5>Регулировка руля</h5>
+						<ul>
+							<li><label><input type="radio" name="r-5" checked>отсутствует</label></li>
+							<li><label><input type="radio" name="r-5">в одной плоскости</label></li>
+							<li><label><input type="radio" name="r-5">в двух плоскостях</label></li>
+							<li><label><input type="radio" name="r-5">электро регулировка</label></li>
+						</ul>
+					</div>
+				</div>
+				<div class="controls">
+					<button class="prev">Назад</button>
+					<button class="put-on" data-open="put-on">Выставить на аукцион</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="fade"></div>
+	<div class="modal" data-target="put-on">
+		<h3>Выставление автомобиля на аукцион</h3>
+		<p class="hours"><span>Время торгов <em>(в минутах)</em></span><input type="text" value="24"></p>
+		<button class="put-on">Выставить на аукцион</button>
+	</div>
+	<script src="./fancybox/script.js"></script>
+	<script src="./js/uniform.js"></script>
+	<script src="./js/dynamic.js"></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Auto Gross</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=960, user-scalable=yes">
+	<!--<link href="./favicon.ico" rel="shortcut icon">-->
+	<link href="./css/style.css" rel="stylesheet">
+	<link href="./fancybox/style.css" rel="stylesheet">
+	<script src="./js/jquery.js"></script>
+	<!--[if IE 8]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<header>
+		<div>
+			<img src="./img/logo.png" width="71" height="54" class="logo" alt="">
+			<nav>
+				<ul>
+					<li class="active"><a href="#">Экспресс аукционы</a></li>
+					<li><a href="#">Длительные аукционы</a></li>
+					<li><a href="#">Контакты</a></li>
+				</ul>
+			</nav>
+			<p class="user" data-open="login">Иванов Иван Иванович<img src="./img/user.png" width="50" height="50" alt=""></p>
+		</div>
+	</header>
+	<div class="wrapper">
+		<div>
+			<div class="car-title">
+				<h1>BMW 1er II (F20-F21) 116i</h1>
+				<p>1,6 AT (136 л.с.) бензин, задний привод</p>
+				<button>Сделать ставку</button>
+			</div>
+			<ul class="tabs-nav">
+				<li class="active"><a href="1">Общая информация</a></li>
+				<li><a href="2">Комплектация</a></li>
+				<li><a href="3">Повреждения<sub>3</sub></a></li>
+			</ul>
+			<div class="car-info tab" data-tab="1">
+				<div class="pic">
+					<a href="./pic/b-1.jpg" class="zoom" rel="group"><img src="./pic/c-1.jpg" width="240" height="180" data-big="1" alt=""></a>
+					<a href="./pic/b-2.jpg" class="zoom" rel="group"><img src="./pic/c-2.jpg" width="240" height="180" data-big="2" alt=""></a>
+				</div>
+				<ul class="gallery">
+					<li data-preview="1"><img src="./pic/p-1.png" width="80" height="80" alt=""></li>
+					<li data-preview="2"><img src="./pic/p-2.png" width="80" height="80" alt=""></li>
+					<li data-preview="1"><img src="./pic/p-1.png" width="80" height="80" alt=""></li>
+					<li data-preview="2"><img src="./pic/p-2.png" width="80" height="80" alt=""></li>
+					<li data-preview="1"><img src="./pic/p-1.png" width="80" height="80" alt=""></li>
+					<li data-preview="2"><img src="./pic/p-2.png" width="80" height="80" alt=""></li>
+					<li data-preview="1"><img src="./pic/p-1.png" width="80" height="80" alt=""></li>
+					<li data-preview="2"><img src="./pic/p-2.png" width="80" height="80" alt=""></li>
+					<li data-preview="1"><img src="./pic/p-1.png" width="80" height="80" alt=""></li>
+					<li data-preview="2"><img src="./pic/p-2.png" width="80" height="80" alt=""></li>
+					<li data-preview="1"><img src="./pic/p-1.png" width="80" height="80" alt=""></li>
+					<li data-preview="2"><img src="./pic/p-2.png" width="80" height="80" alt=""></li>
+					<li data-preview="1"><img src="./pic/p-1.png" width="80" height="80" alt=""></li>
+					<li data-preview="2"><img src="./pic/p-2.png" width="80" height="80" alt=""></li>
+					<li data-preview="1"><img src="./pic/p-1.png" width="80" height="80" alt=""></li>
+				</ul>
+				<div class="description">
+					<h3>Описание автомобиля</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<ul class="more">
+						<li>Марка <span>BMW</span></li>
+						<li>Модель <span>1er</span></li>
+						<li>Модификация <span>F20-F21</span></li>
+						<li>Год выпуска <span>2012</span></li>
+						<li>Двигатель, объем <span>1.6</span></li>
+						<li>Двигатель, л.с. <span>176 л.с.</span></li>
+						<li>Двигатель, тип <span>Бензин</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="complectation tab" data-tab="2">
+				<div class="group">
+					<h3>Интерьер</h3>
+					<h5>Обивка салона</h5>
+					<ul>
+						<li><label><input type="radio" name="r-1" checked>ткань</label></li>
+						<li><label><input type="radio" name="r-1">велюр</label></li>
+						<li><label><input type="radio" name="r-1">кожа</label></li>
+						<li><label><input type="radio" name="r-1">комбинированный</label></li>
+					</ul>
+					<h5>Цвет салона</h5>
+					<ul>
+						<li><label><input type="radio" name="r-2" checked>темный</label></li>
+						<li><label><input type="radio" name="r-2">светлый</label></li>
+					</ul>
+				</div>
+				<div class="group">
+					<h3>Экстерьер</h3>
+					<p><label><input type="checkbox" name="c-1" checked>Люк на крыше</label></p>
+					<p><label><input type="checkbox" name="c-1">Тонированные стекла</label></p>
+					<p><label><input type="checkbox" name="c-1">Ксеноновые фары</label></p>
+					<p><label><input type="checkbox" name="c-1">Адаптивные фары</label></p>
+					<p>
+						<label><input type="checkbox" name="c-1">Легкосплавные диски</label>
+						<select>
+							<option>12"</option>
+							<option>13"</option>
+						</select>
+					</p>
+				</div>
+				<div class="group">
+					<h3>Сигнализация</h3>
+					<p><label><input type="checkbox" name="c-2" checked>Иммобиллайзер</label></p>
+					<p><label><input type="checkbox" name="c-2">Штатная</label></p>
+					<p><label><input type="checkbox" name="c-2">Обратная связь</label></p>
+					<p><label><input type="checkbox" name="c-2">Дистанционный запуск двигателя</label></p>
+				</div>
+				<div class="group">
+					<h3>Безопасность</h3>
+					<p><label><input type="checkbox" name="c-3" checked>Антиблокировочная система (ABS)</label></p>
+					<p><label><input type="checkbox" name="c-3">Антиблокировочная система</label></p>
+					<p><label><input type="checkbox" name="c-3">Система курсовой устойчивости</label></p>
+					<p><label><input type="checkbox" name="c-3">Парктроник</label></p>
+					<h5>Подушки безопасности</h5>
+					<ul>
+						<li><label><input type="radio" name="r-3" checked>отсутствуют</label></li>
+						<li><label><input type="radio" name="r-3">светлый</label></li>
+						<li><label><input type="radio" name="r-3">водителя и пассажира</label></li>
+						<li><label><input type="radio" name="r-3">передние и боковые</label></li>
+					</ul>
+				</div>
+				<div class="group">
+					<h3>Функционально оборудование</h3>
+					<p><label><input type="checkbox" name="c-4" checked>Бортовой компьютер</label></p>
+					<p><label><input type="checkbox" name="c-4">Газобалонное оборудование</label></p>
+					<p><label><input type="checkbox" name="c-4">Датчик дождя</label></p>
+					<p><label><input type="checkbox" name="c-4">Датчик света</label></p>
+					<p><label><input type="checkbox" name="c-4">Круиз-контроль</label></p>
+					<p><label><input type="checkbox" name="c-4" checked>Навигационная система</label></p>
+					<p><label><input type="checkbox" name="c-4">Обогрев зеркал</label></p>
+					<p><label><input type="checkbox" name="c-4">Омыватель фар</label></p>
+					<p><label><input type="checkbox" name="c-4">Усилитель руля</label></p>
+					<p><label><input type="checkbox" name="c-4">Центральный замок</label></p>
+					<p><label><input type="checkbox" name="c-4">Пневмоподвеска</label></p>
+				</div>
+				<div class="group">
+					<h3>Комфорт</h3>
+					<p><label><input type="checkbox" name="c-5" checked>Подогрев руля</label></p>
+					<p><label><input type="checkbox" name="c-5">Обогрев сидений</label></p>
+					<p>
+						<label><input type="checkbox" name="c-5">Количество мест</label>
+						<select>
+							<option>4</option>
+							<option>5</option>
+						</select>
+					</p>
+					<h5>Климат</h5>
+					<ul>
+						<li><label><input type="radio" name="r-4" checked>отсутствует</label></li>
+						<li><label><input type="radio" name="r-4">кондиционер</label></li>
+						<li><label><input type="radio" name="r-4">климат-контроль 1-зонный</label></li>
+						<li><label><input type="radio" name="r-4">климат-контроль 2-зонный</label></li>
+						<li><label><input type="radio" name="r-4">климат-контроль 3-зонный</label></li>
+					</ul>
+				</div>
+				<div class="group">
+					<h3>Мультимедиа</h3>
+					<p><label><input type="checkbox" name="c-6" checked>Кассетник</label></p>
+					<p><label><input type="checkbox" name="c-6">CD</label></p>
+					<p><label><input type="checkbox" name="c-6">TV</label></p>
+				</div>
+				<div class="group">
+					<h3>Регулировки</h3>
+					<p><label><input type="checkbox" name="c-7" checked>Электропривод зеркал</label></p>
+					<h5>Стеклоподъемники</h5>
+					<ul>
+						<li><label><input type="radio" name="r-5" checked>ручные</label></li>
+						<li><label><input type="radio" name="r-5">электро передние</label></li>
+						<li><label><input type="radio" name="r-5">электро все</label></li>
+					</ul>
+					<h5>Сиденье водителя</h5>
+					<ul>
+						<li><label><input type="radio" name="r-5" checked>ручная регулировка</label></li>
+						<li><label><input type="radio" name="r-5">ручная регулировка по высоте</label></li>
+						<li><label><input type="radio" name="r-5">электро регулировка</label></li>
+						<li><label><input type="radio" name="r-5">с памятью положения</label></li>
+					</ul>
+					<h5>Сиденье пассажира</h5>
+					<ul>
+						<li><label><input type="radio" name="r-5" checked>ручная регулировка</label></li>
+						<li><label><input type="radio" name="r-5">ручная регулировка по высоте</label></li>
+						<li><label><input type="radio" name="r-5">электро регулировка</label></li>
+						<li><label><input type="radio" name="r-5">с памятью положения</label></li>
+					</ul>
+					<h5>Регулировка руля</h5>
+					<ul>
+						<li><label><input type="radio" name="r-5" checked>отсутствует</label></li>
+						<li><label><input type="radio" name="r-5">в одной плоскости</label></li>
+						<li><label><input type="radio" name="r-5">в двух плоскостях</label></li>
+						<li><label><input type="radio" name="r-5">электро регулировка</label></li>
+					</ul>
+				</div>
+			</div>
+			<div class="damage tab" data-tab="3">
+				<table>
+					<thead>
+						<tr>
+							<th>Поврежденная деталь</th>
+							<th>Тип повреждения</th>
+							<th>Тип ремонта</th>
+							<th>Фото</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Переднее правое крыло</td>
+							<td>Вмятина</td>
+							<td>Утилизация автомобиля</td>
+							<td>
+								<sup>3</sup>
+								<div>
+									<img src="./pic/d-1.png" width="80" height="80" alt="">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>Фара левая</td>
+							<td>Разбита</td>
+							<td>Замена</td>
+							<td>
+								<div>
+									<img src="./pic/d-2.png" width="80" height="80" alt="">
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script src="./fancybox/script.js"></script>
+	<script src="./js/uniform.js"></script>
+	<script src="./js/dynamic.js"></script>
+</body>
+</html>
