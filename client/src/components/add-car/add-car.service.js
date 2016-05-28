@@ -6,8 +6,9 @@ class AddCarService {
 			instance = this;
 		}
 
-		// to test whether we have singleton or not
-		this.time = new Date();
+		const defaultStep = 'appearance';
+
+		this.activeStep = defaultStep;
 
 		this.steps = {
 			appearance: {
@@ -42,10 +43,10 @@ class AddCarService {
 			}
 		};
 
-		this.activeStep = 'appearance';
 
 		this.getLabel = this.getLabel.bind(this);
 		this.setActiveStep = this.setActiveStep.bind(this);
+		this.checkStep = this.checkStep.bind(this);
 
 		return instance;
 	}
@@ -57,8 +58,16 @@ class AddCarService {
 		return this.steps[step].label;
 	}
 
+	checkStep() {
+		return true
+	}
+
+	getActiveStep() {
+		return this.activeStep;
+	}
+
 	setActiveStep(step) {
-		this.activeStep = step;
+		return this.activeStep = step;
 	}
 
 }

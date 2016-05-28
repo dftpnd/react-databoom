@@ -19,38 +19,27 @@ class AddCar extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			stepState: ''
-		};
-
-
 		this.updateStepState = this.updateStepState.bind(this);
 	}
 
 	componentWillReceiveProps() {
-		//this.updateStepState(this.props.params.stepName);
 
-		//addCarService.setActiveStep(currentStep);
-
-		//alert(this.props.params.stepName);
 	}
 
 
 	componentWillMount() {
-		const currentStep = (this.props.params.stepName === 'go' ? 'appearance' : this.props.params.stepName);
-		this.setState({stepState: currentStep});
-		addCarService.setActiveStep(currentStep);
+		const currentStep = this.props.params.stepName || 'appearance';
+		this.updateStepState(currentStep);
 	}
 
 	updateStepState(newState) {
-		this.state.stepState = newState;
-		browserHistory.push('/add-car/' + newState);
 		addCarService.setActiveStep(newState);
+		browserHistory.push('/add-car/' + newState);
 	}
 
 	render() {
 		var view;
-		var state = this.state.stepState;
+		var state = addCarService.getActiveStep();
 		if (state === 'appearance') {
 			view = <Appearance/>;
 		}

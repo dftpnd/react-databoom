@@ -10,6 +10,7 @@ import './lib/databoom';
 
 import App from 'components/app/app';
 import AddCar from 'components/add-car/add-car';
+import addCarService from 'components/add-car/add-car.service';
 import Auction from 'components/auction/auction';
 import Login from './components/login/login';
 //import Auth from './components/auth/auth';
@@ -22,14 +23,28 @@ function requireAuth() {
 	//	replaceState({nextPathname: nextState.location.pathname}, '/login')
 }
 
+function handlerRouter(nextState, replaceState) {
+	requireAuth(arguments);
+
+	const step = nextState.params.stepName;
+
+	if (addCarService.checkStep(step)) {
+		addCarService.setActiveStep(step);
+	} else {
+		replaceState({nextPathname: nextState.location.pathname}, '/login')
+	}
+
+}
 
 ReactDOM.render((
 	<Router history={browserHistory}>
 		<Route path="/" component={App}>
 			<IndexRoute component={Auction} onEnter={requireAuth}/>
-			<Route path="/auction" component={Auction} onEnter={requireAuth}/>
-			<Route path="/add-car/:stepName" component={AddCar}/>
-			<Route path="/login" component={Login} onEnter={requireAuth}/>
+			<Route path="auction" component={Auction} onEnter={requireAuth}/>
+			<Route path="add-car" component={AddCar}>
+				<Route path=":stepName" component={AddCar} onEnter={handlerRouter}/>
+			</Route>
+			<Route path="login" component={Login} onEnter={requireAuth}/>
 		</Route>
 	</Router>
 ), document.getElementById('app'));
