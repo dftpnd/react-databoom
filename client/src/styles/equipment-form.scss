@@ -1,0 +1,41 @@
+.equipment-form {
+  display: flex;
+  .equipment-form__tab {
+
+    .equipment-form__item {
+      .equipment-form__item-title {
+        font-size: 14px;
+        padding-bottom: 15px;
+        padding-top: 5px;
+      }
+      .equipment-form__item-child-title {
+        font-size: 14px;
+        font-weight: normal;
+        padding-bottom: 15px;
+        //padding-top: 5px;
+      }
+      .equipment-form__label {
+        display: block;
+        padding-bottom: 15px;
+        font-size: 13px;
+        input {
+          margin-right: 10px;
+        }
+        input[type="radio"] {
+          margin-left: 8px;
+        }
+      }
+
+      .equipment-form__label-select {
+        display: flex;
+        align-items: baseline;
+
+        .equipment-form__label {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+
