@@ -23,17 +23,19 @@ function requireAuth() {
 	//	replaceState({nextPathname: nextState.location.pathname}, '/login')
 }
 
-function handlerRouter(nextState, replaceState) {
+let redirected = false;
+function handlerRouter(nextState, replace) {
 	requireAuth(arguments);
-
 	const step = nextState.params.stepName;
-
 	if (addCarService.checkStep(step)) {
 		addCarService.setActiveStep(step);
+		redirected = false;
 	} else {
-		replaceState({nextPathname: nextState.location.pathname}, '/login')
+		if (!redirected) {
+			replace(addCarService.getAvailableStep(step));
+			redirected = true;
+		}
 	}
-
 }
 
 ReactDOM.render((

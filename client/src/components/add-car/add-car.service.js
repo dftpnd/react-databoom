@@ -59,7 +59,7 @@ class AddCarService {
 	}
 
 	checkStep() {
-		return true
+		return true;
 	}
 
 	getActiveStep() {
@@ -70,6 +70,11 @@ class AddCarService {
 		return this.activeStep = step;
 	}
 
+
+	getAvailableStep() {
+		var availableStep = 'engine';
+		return '/add-car/' + availableStep;
+	}
 }
 
 export default new AddCarService();
