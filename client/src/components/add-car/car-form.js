@@ -5,7 +5,11 @@ class CarForm extends React.Component {
 	constructor() {
 		super();
 
-
+		/**
+		 * TODO нужно реализовать проверку объекта из локал сторадж по ключам,
+		 * если он не будет совпадать то очистка сессии
+		 * localStorage.clear();
+		 */
 		this.requiredFields = ['carMake', 'carModel'];
 
 		const defaultState = {
@@ -41,6 +45,7 @@ class CarForm extends React.Component {
 		};
 
 		this.state = JSON.parse(localStorage.getItem('carFormState')) || defaultState;
+
 
 		this.nextPage = this.nextPage.bind(this);
 		this.handleChange = this.handleChange.bind(this);
