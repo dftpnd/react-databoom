@@ -10,21 +10,19 @@ class AddCarStepLink extends React.Component {
 		super(props);
 
 		this.state = {
-			isActive: (this.props.step === addCarService.activeStep)
+			isActive: (this.props.step === addCarService.getActiveStep())
 		};
 
 		this.handleClick = this.handleClick.bind(this);
 	}
 
 	handleClick() {
-		if(confirm('next ?')){
-			this.props.updateState(this.props.step)
-		}
+		this.props.updateState(this.props.step);
 	}
 
 
 	componentWillReceiveProps() {
-		this.state.isActive = this.props.step === addCarService.activeStep;
+		this.state.isActive = this.props.step === addCarService.getActiveStep();
 	}
 
 

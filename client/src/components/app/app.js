@@ -16,9 +16,9 @@ class App extends React.Component {
             <p>Gross</p>
           </Link>
 					<nav className="menu">
-						<Link to='auction' className="item" activeClassName="active">auction</Link>
-						<Link to='/add-car/go' className="item" activeClassName="active">add-car</Link>
-						<Link to='login' className="item" activeClassName="active">login</Link>
+						<Link to='/auction' className="item" activeClassName="active">auction</Link>
+						<Link to='/add-car' className="item" activeClassName="active">add-car</Link>
+						<Link to='/login' className="item" activeClassName="active">login</Link>
 					</nav>
 				</header>
 				<div className="content-wrapper">
