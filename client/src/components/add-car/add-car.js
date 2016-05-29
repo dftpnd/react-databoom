@@ -80,16 +80,16 @@ class AddCar extends React.Component {
 		return (
 			<div className="index">
 				<nav className="add-car-menu">
-					<AddCarStepLink step="appearance" updateState={this.updateStepState}/>
 					<AddCarStepLink step="car-form" updateState={this.updateStepState}/>
-					<AddCarStepLink step="engine" updateState={this.updateStepState}/>
-					<AddCarStepLink step="equipment" updateState={this.updateStepState}/>
 					<AddCarStepLink step="exterior" updateState={this.updateStepState}/>
+					<AddCarStepLink step="exterior-functional" updateState={this.updateStepState}/>
 					<AddCarStepLink step="interior" updateState={this.updateStepState}/>
 					<AddCarStepLink step="interior-functional" updateState={this.updateStepState}/>
+					<AddCarStepLink step="tires-and-brakes" updateState={this.updateStepState}/>
+					<AddCarStepLink step="engine" updateState={this.updateStepState}/>
 					<AddCarStepLink step="suspension" updateState={this.updateStepState}/>
 					<AddCarStepLink step="test-drive" updateState={this.updateStepState}/>
-					<AddCarStepLink step="tires-and-brakes" updateState={this.updateStepState}/>
+					<AddCarStepLink step="equipment" updateState={this.updateStepState}/>
 				</nav>
 				{view}
 				<Fieldset formValue={this.state.formValue}>

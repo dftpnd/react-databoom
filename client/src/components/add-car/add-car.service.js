@@ -11,35 +11,35 @@ class AddCarService {
 		this.activeStep = defaultStep;
 
 		this.steps = {
-			appearance: {
-				label: 'appearance'
-			},
 			'car-form': {
-				label: 'car-form'
+				label: 'автомобиль'
 			},
 			engine: {
-				label: 'engine'
+				label: 'Двигатель'
 			},
 			equipment: {
-				label: 'equipment'
+				label: 'комплектация'
 			},
 			exterior: {
-				label: 'exterior'
+				label: 'внешний фид'
+			},
+			'exterior-functional': {
+				label: 'внешний функционал'
 			},
 			'interior': {
-				label: 'interior'
+				label: 'салон'
 			},
 			'interior-functional': {
-				label: 'interior-functional'
+				label: 'функционал салона'
 			},
 			suspension: {
-				label: 'suspension'
+				label: 'подвеска'
 			},
 			'test-drive': {
-				label: 'test-drive'
+				label: 'тест драйв'
 			},
 			'tires-and-brakes': {
-				label: 'tires-and-brakes'
+				label: 'шины и тормоза'
 			}
 		};
 
