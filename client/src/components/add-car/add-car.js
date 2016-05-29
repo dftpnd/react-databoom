@@ -81,7 +81,7 @@ class AddCar extends React.Component {
 		}
 		return (
 			<div className="index">
-				<nav className="todo-temp-class">
+				<nav className="add-car-menu">
 					<AddCarStepLink step="appearance" updateState={this.updateStepState}/>
 					<AddCarStepLink step="car-form" updateState={this.updateStepState}/>
 					<AddCarStepLink step="engine" updateState={this.updateStepState}/>

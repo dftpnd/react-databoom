@@ -26,13 +26,20 @@ class AddCarStepLink extends React.Component {
 	}
 
 
-	render() {
-		var btnClass = classNames({active: this.state.isActive});
-		return (
-			<button className={btnClass} disabled={this.state.isActive}
-					onClick={this.handleClick}>{addCarService.getLabel(this.props.step)}</button>
-		);
-	}
+  render() {
+    var btnClass = classNames(
+      {
+        'add-car-menu__item': true,
+        active: this.state.isActive
+      }
+    );
+    return (
+      <button className={btnClass} disabled={this.state.isActive}
+              onClick={this.handleClick}>
+        <div className="add-car-menu__label">{addCarService.getLabel(this.props.step)}</div>
+      </button>
+    );
+  }
 }
 
 export default AddCarStepLink;
