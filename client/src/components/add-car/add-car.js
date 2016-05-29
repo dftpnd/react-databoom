@@ -1,5 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import {Fieldset, Field, createValue} from 'react-forms'
 
 import AddCarStepLink from './add-car-step-link';
 import Appearance from './appearance';
@@ -19,11 +20,32 @@ class AddCar extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.form = {
+			firstName: 'John',
+			lastName: 'asd'
+		};
+
+		const schema = {
+			type: 'object',
+			properties: {
+				firstName: {type: 'string'},
+				lastName: {type: 'string'}
+			}
+		};
+
+		let formValue = createValue({
+			value: this.form,
+			onChange: this.onChange.bind(this),
+			schema
+		});
+
+		this.state = {formValue};
+
 		this.updateStepState = this.updateStepState.bind(this);
 	}
 
-	componentWillReceiveProps() {
-
+	onChange(formValue) {
+		this.setState({formValue});
 	}
 
 
@@ -38,47 +60,23 @@ class AddCar extends React.Component {
 	}
 
 	render() {
-		var view;
 		var state = addCarService.getActiveStep();
-		if (state === 'appearance') {
-			view = <Appearance/>;
-		}
 
-		else if (state === 'car-form') {
-			view = <CarForm/>;
-		}
+		var viewMap = {
+			appearance: <Appearance/>,
+			'car-form': <CarForm/>,
+			'engine': <Engine/>,
+			'equipment': <Equipment/>,
+			'exterior': <Exterior/>,
+			'interior': <Interior/>,
+			'interior-functional': <Interior/>,
+			'suspension': <Suspension/>,
+			'test-drive': <TestDrive/>,
+			'tires-and-brakes': <TiresAndBrakes/>
+		};
 
-		else if (state === 'engine') {
-			view = <Engine/>;
-		}
+		var view = viewMap[state];
 
-		else if (state === 'equipment') {
-			view = <Equipment/>;
-		}
-
-		else if (state === 'exterior') {
-			view = <Exterior/>;
-		}
-
-		else if (state === 'Interior') {
-			view = <Interior/>;
-		}
-
-		else if (state === 'interior-functional') {
-			view = <InteriorFunctional/>;
-		}
-
-		else if (state === 'suspension') {
-			view = <Suspension/>;
-		}
-
-		else if (state === 'test-drive') {
-			view = <TestDrive/>;
-		}
-
-		else if (state === 'tires-and-brakes') {
-			view = <TiresAndBrakes />;
-		}
 		return (
 			<div className="index">
 				<nav className="todo-temp-class">
@@ -94,6 +92,10 @@ class AddCar extends React.Component {
 					<AddCarStepLink step="tires-and-brakes" updateState={this.updateStepState}/>
 				</nav>
 				{view}
+				<Fieldset formValue={this.state.formValue}>
+					<Field select="firstName" label="First name"/>
+					<Field select="lastName" label="Last name"/>
+				</Fieldset>
 			</div>
 		);
 	}
