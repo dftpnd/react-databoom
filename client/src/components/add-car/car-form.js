@@ -8,7 +8,7 @@ class CarForm extends React.Component {
 
 		this.requiredFields = ['carMake', 'carModel'];
 
-		this.state = {
+		const defaultState = {
 			carModelOptions: [{name: 'corsa', value: 123}, {name: 'astra', value: 777}],
 			disableCarModel: true,
 			carDescription: '1',
@@ -40,6 +40,7 @@ class CarForm extends React.Component {
 			carTyre: '1'
 		};
 
+		this.state = JSON.parse(localStorage.getItem('carFormState')) || defaultState;
 
 		this.nextPage = this.nextPage.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -62,7 +63,6 @@ class CarForm extends React.Component {
 		if (!event.target.name) {
 			throw new Error(`Input name required`);
 		}
-
 		const newState = {[event.target.name]: event.target.value};
 		this.setState(newState);
 	}
@@ -88,6 +88,11 @@ class CarForm extends React.Component {
 		/**
 		 * todo
 		 */
+	}
+
+
+	componentWillUpdate(_, nextProps) {
+		localStorage.setItem('carFormState', JSON.stringify(nextProps));
 	}
 
 	render() {
