@@ -8,7 +8,6 @@ import Engine from './engine';
 import Equipment from './equipment';
 import Exterior from './exterior';
 import Interior from './interior';
-import InteriorFunctional from './interior-functional';
 import Suspension from './suspension';
 import TestDrive from './test-drive';
 import TiresAndBrakes from './tires-and-brakes';
