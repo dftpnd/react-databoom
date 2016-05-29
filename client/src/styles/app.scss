@@ -1,3 +1,5 @@
+@import 'add-car-menu';
+
 * {
   margin: 0;
   padding: 0;
@@ -70,90 +72,4 @@ body {
 
 .footer {
   border: 1px solid black;
-}
-
-/**
-*/
-.todo-temp-class {
-  display: flex;
-  background: #fff;
-  font-size: 12px;
-  border-right: none;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  height: 40px;
-
-
-  :first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-
-  * {
-    padding: 5px;
-    cursor: pointer;
-    color: #000;
-    background: none;
-    border: none;
-    outline: none;
-    position: relative;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-  }
-  [disabled] {
-    background: red;
-  }
-  .active {
-    background: #17314c !important;
-    color: #fff;
-
-      position: relative;
-
-    &:after {
-      left: 100%;
-      top: 50%;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-      border-color: rgba(23, 49, 76, 0);
-      border-left-color: #17314c;
-      border-width: 19px;
-      margin-top: -19px;
-    }
-  }
-}
-
-
-.todo-temp-class button {
-  position: relative;
-  background: #fff;
-  padding-right: 20px;
-}
-
-.todo-temp-class button:after, .todo-temp-class button:before {
-  left: 100%;
-  top: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.todo-temp-class button:after {
-  border-color: rgba(255, 255, 255, 0);
-  border-left-color: #fff;
-  border-width: 19px;
-  margin-top: -19px;
-}
-.todo-temp-class button:before {
-  border-color: rgba(204, 204, 204, 0);
-  border-left-color: #ccc;
-  border-width: 20px;
-  margin-top: -20px;
 }
