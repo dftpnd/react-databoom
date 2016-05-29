@@ -1,6 +1,5 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import {Fieldset, Field, createValue} from 'react-forms'
 
 import AddCarStepLink from './add-car-step-link';
 import Appearance from './appearance';
@@ -20,34 +19,8 @@ class AddCar extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.form = {
-			firstName: 'John',
-			lastName: 'asd'
-		};
-
-		const schema = {
-			type: 'object',
-			properties: {
-				firstName: {type: 'string'},
-				lastName: {type: 'string'}
-			}
-		};
-
-		let formValue = createValue({
-			value: this.form,
-			onChange: this.onChange.bind(this),
-			schema
-		});
-
-		this.state = {formValue};
-
 		this.updateStepState = this.updateStepState.bind(this);
 	}
-
-	onChange(formValue) {
-		this.setState({formValue});
-	}
-
 
 	componentWillMount() {
 		const currentStep = this.props.params.stepName || 'appearance';
@@ -92,10 +65,6 @@ class AddCar extends React.Component {
 					<AddCarStepLink step="equipment" updateState={this.updateStepState}/>
 				</nav>
 				{view}
-				<Fieldset formValue={this.state.formValue}>
-					<Field select="firstName" label="First name"/>
-					<Field select="lastName" label="Last name"/>
-				</Fieldset>
 			</div>
 		);
 	}

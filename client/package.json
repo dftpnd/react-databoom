@@ -70,7 +70,6 @@
     "normalize.css": "^4.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
-    "react-forms": "^2.0.0-beta15",
     "react-router": "^2.4.1"
   }
 }
