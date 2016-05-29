@@ -24,7 +24,6 @@ class App extends React.Component {
 				<div className="content-wrapper">
 					{this.props.children }
 				</div>
-				<footer className="footer">footer</footer>
 			</section>
 		);
 	}
