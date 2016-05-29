@@ -34,7 +34,7 @@ class AddCarStepLink extends React.Component {
       }
     );
     return (
-      <button className={btnClass} disabled={this.state.isActive}
+      <button tabindex="0" className={btnClass} disabled={this.state.isActive}
               onClick={this.handleClick}>
         <div className="add-car-menu__label">{addCarService.getLabel(this.props.step)}</div>
       </button>
