@@ -104,7 +104,6 @@ class AddCar extends React.Component {
 					<AddCarStepLink step="test-drive" updateState={this.updateStepState}/>
 					<AddCarStepLink step="tires-and-brakes" updateState={this.updateStepState}/>
 				</nav>
-				<hr/>
 				{view}
 			</div>
 		);

@@ -11,7 +11,10 @@ class App extends React.Component {
 		return (
 			<section className="app">
 				<header className="header">
-					<Link to='/' className="header__logo">logo</Link>
+					<Link to='/' className="header__logo">
+            <p className="header__logo--grey">Auto</p>
+            <p>Gross</p>
+          </Link>
 					<nav className="menu">
 						<Link to='auction' className="item" activeClassName="active">auction</Link>
 						<Link to='/add-car/go' className="item" activeClassName="active">add-car</Link>
