@@ -1,0 +1,60 @@
+.appearance-form__item {
+  display: flex;
+  margin: 20px 0;
+  align-items: baseline;
+  position: relative;
+
+  .custom-field {
+    text-indent: 6px;
+    border: 1px solid #ccc;
+    color: #757575;
+    background: #fff;
+    font-size: 14px;
+    flex: 1;
+    margin-right: 100px;
+  }
+
+  .custom-field__select {
+    height: 40px;
+  }
+
+  .custom-field__textarea {
+    border-radius: 5px;
+    padding: 5px 0;
+  }
+
+  label {
+    font-size: 14px;
+    width: 250px;
+  }
+
+
+}
+
+.custom-btn {
+  height: 50px;
+  background: #17314c;
+  text-transform: uppercase;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 0 20px 0 25px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.field-error:after {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #ed7576;
+  content: '!';
+  text-align: center;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  color: #fff;
+  margin-top: -10px;
+
+
+}

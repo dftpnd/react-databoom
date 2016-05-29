@@ -1,13 +1,13 @@
 .add-car-menu {
   display: flex;
+  flex-wrap: wrap;
   background: #fff;
   font-size: 12px;
   border-right: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  height: 40px;
 
-  :first-child {
+  :first-child.add-car-menu__item {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     .add-car-menu__label {
@@ -27,6 +27,8 @@
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     border-left: 1px solid #ccc;
+    height: 40px;
+    margin-bottom: 20px;
 
     &:after, &:before {
       left: 100%;
@@ -55,14 +57,14 @@
     }
 
     &:focus {
-      background: lighten(#17314c, 70%);
-      &:after {
-        border-left-color: lighten(#17314c, 70%);
-      }
+      color: lighten(#000000, 70%);
     }
 
     .add-car-menu__label {
       padding-left: 20px;
+      &:first-letter{
+        text-transform: uppercase;
+      }
     }
 
     [disabled] {
