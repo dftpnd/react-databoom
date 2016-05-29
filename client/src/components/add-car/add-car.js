@@ -1,5 +1,4 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 
 import AddCarStepLink from './add-car-step-link';
 import Appearance from './appearance';
@@ -29,7 +28,7 @@ class AddCar extends React.Component {
 
 	updateStepState(newState) {
 		addCarService.setActiveStep(newState);
-		browserHistory.push('/add-car/' + newState);
+		addCarService.updateRoute(newState);
 	}
 
 	render() {
@@ -54,16 +53,16 @@ class AddCar extends React.Component {
 		return (
 			<div className="index">
 				<nav className="add-car-menu">
-					<AddCarStepLink step="car-form" updateState={this.updateStepState}/>
-					<AddCarStepLink step="exterior" updateState={this.updateStepState}/>
-					<AddCarStepLink step="exterior-functional" updateState={this.updateStepState}/>
-					<AddCarStepLink step="interior" updateState={this.updateStepState}/>
-					<AddCarStepLink step="interior-functional" updateState={this.updateStepState}/>
-					<AddCarStepLink step="tires-and-brakes" updateState={this.updateStepState}/>
-					<AddCarStepLink step="engine" updateState={this.updateStepState}/>
-					<AddCarStepLink step="suspension" updateState={this.updateStepState}/>
-					<AddCarStepLink step="test-drive" updateState={this.updateStepState}/>
-					<AddCarStepLink step="equipment" updateState={this.updateStepState}/>
+					<AddCarStepLink step="car-form" />
+					<AddCarStepLink step="exterior" />
+					<AddCarStepLink step="exterior-functional" />
+					<AddCarStepLink step="interior" />
+					<AddCarStepLink step="interior-functional" />
+					<AddCarStepLink step="tires-and-brakes" />
+					<AddCarStepLink step="engine" />
+					<AddCarStepLink step="suspension" />
+					<AddCarStepLink step="test-drive" />
+					<AddCarStepLink step="equipment" />
 				</nav>
 				{view}
 			</div>

@@ -1,3 +1,5 @@
+import { browserHistory } from 'react-router';
+
 let instance = null;
 
 class AddCarService {
@@ -68,6 +70,10 @@ class AddCarService {
 
 	setActiveStep(step) {
 		return this.activeStep = step;
+	}
+
+	updateRoute(step) {
+		browserHistory.push('/add-car/' + step);
 	}
 
 

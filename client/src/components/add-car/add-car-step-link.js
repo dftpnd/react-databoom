@@ -18,7 +18,7 @@ class AddCarStepLink extends React.Component {
 
 	handleClick() {
 		if(addCarService.checkStep(this.props.step)){
-			this.props.updateState(this.props.step);
+			addCarService.updateRoute(this.props.step);
 		}
 	}
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import addCarService from './add-car.service';
 
 class CarForm extends React.Component {
 	constructor() {
@@ -38,8 +39,19 @@ class CarForm extends React.Component {
 		};
 
 
+		this.nextPage = this.nextPage.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleCarMake = this.handleCarMake.bind(this);
+	}
+
+
+	nextPage(event) {
+		const step = event.target.value;
+
+		if (addCarService.checkStep(step)) {
+			addCarService.setActiveStep(step);
+			addCarService.updateRoute(step);
+		}
 	}
 
 	handleChange(event) {
@@ -325,7 +337,13 @@ class CarForm extends React.Component {
 						<option>type1</option>
 					</select>
 				</div>
-				<button className="custom-btn" type="button">Заполнить чеклист</button>
+
+				<div className="nav-buttons">
+					<div></div>
+					<button className="custom-btn" type="button" onClick={this.nextPage} value="exterior">
+						Заполнить чеклист &#8594;
+					</button>
+				</div>
 			</form>
 		);
 	}
