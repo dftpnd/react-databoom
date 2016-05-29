@@ -1,6 +1,8 @@
 @import 'add-car-menu';
 @import 'appearance';
 @import 'appearance-form';
+@import 'exterior-functional';
+@import 'nav-buttons';
 
 * {
   margin: 0;
@@ -74,4 +76,11 @@ body {
 
 .footer {
   border: 1px solid black;
+}
+
+.app-title {
+  font-size: 18px;
+  border-bottom: 1px solid #e1e1e1;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
 }

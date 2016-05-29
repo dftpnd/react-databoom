@@ -1,0 +1,44 @@
+.exterior-functional__item {
+  display: flex;
+  align-items: baseline;
+  border-bottom: 1px solid #e1e1e1;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+
+  .exterior-functional__label {
+    flex: 1;
+    font-size: 14px;
+    padding-left: 15px;
+  }
+
+  .exterior-functional__btns {
+    width: 180px;
+    .exterior-functional__btn-dft {
+      background: #fff;
+      color: #757575;
+      border: 1px solid #ccc;
+      width: 80px;
+      height: 40px;
+      text-align: center;
+      &.active {
+        color: #fff;
+      }
+    }
+    .exterior-functional__btn-yes {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      &.active {
+        background: #24b031;
+        border-color: #1b8e26;
+      }
+    }
+    .exterior-functional__btn-no {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      &.active {
+        background: #ed392c;
+        border-color: #b8291e;
+      }
+    }
+  }
+}
