@@ -5,7 +5,7 @@ class InteriorFunctional extends React.Component {
 	render() {
 		return (
 			<div className="interior-functional">
-				<h1>InteriorFunctional</h1>
+				<h1 class="app-title">InteriorFunctional</h1>
 
 
 				<div className="nav-buttons">

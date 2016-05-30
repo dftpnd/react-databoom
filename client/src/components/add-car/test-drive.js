@@ -5,7 +5,7 @@ class TestDrive extends React.Component {
 	render() {
 		return (
 			<div className="index">
-				<h1>TestDrive</h1>
+				<h1 class="app-title">TestDrive</h1>
 
 				<div className="nav-buttons">
 					<Link to="/add-car/suspension" className="custom-btn">Назад</Link>

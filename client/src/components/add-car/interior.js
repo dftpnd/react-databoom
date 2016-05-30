@@ -5,7 +5,7 @@ class Interior extends React.Component {
 	render() {
 		return (
 			<div className="interior">
-				<h1>Салон</h1>
+				<h1 class="app-title">Салон</h1>
 
 
 				<div className="nav-buttons">
