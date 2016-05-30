@@ -6,15 +6,24 @@ class GroupButton extends React.Component {
 		super(props);
 
 		this.state = {
-			value: !!this.props.value
+			value: this.props.value
 		};
 
-		this.clickHandler = this.clickHandler.bind(this);
+		this.clickHandlerOk = this.clickHandlerOk.bind(this);
+		this.clickHandlerNo = this.clickHandlerNo.bind(this);
 	}
 
-	clickHandler() {
-		this.props.handler(this.props.name, !this.state.value);
-		this.setState({value: !this.state.value});
+	//clickHandler() {
+	//	this.props.handler(this.props.name, !this.state.value);
+	//	this.setState({value: !this.state.value});
+	//}
+	clickHandlerOk() {
+		this.props.handler(this.props.name, true);
+		this.setState({value: true});
+	}
+	clickHandlerNo() {
+		this.props.handler(this.props.name, false);
+		this.setState({value: false});
 	}
 
 	render() {
@@ -22,22 +31,23 @@ class GroupButton extends React.Component {
 			{
 				'group-button__button': true,
 				'group-button__btn-yes': true,
-				active: this.state.value
+				active: this.state.value !== null && this.state.value
 			}
 		);
 		var dangerButton = classNames(
 			{
 				'group-button__button': true,
 				'group-button__btn-no': true,
-				active: !this.state.value
+				active: this.state.value !== null && !this.state.value
 			}
 		);
 
 		return (
 			<div className="group-button">
-				<button className={successButton} onClick={this.clickHandler} type="button">Да
+				<button className={successButton} onClick={this.clickHandlerOk} type="button">
+					Да
 				</button>
-				<button className={dangerButton} onClick={this.clickHandler} type="button">
+				<button className={dangerButton} onClick={this.clickHandlerNo} type="button">
 					Нет
 				</button>
 			</div>

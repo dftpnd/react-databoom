@@ -23,7 +23,7 @@ class AddCarService {
 				label: 'комплектация'
 			},
 			exterior: {
-				label: 'внешний фид'
+				label: 'внешний вид'
 			},
 			'exterior-functional': {
 				label: 'внешний функционал'
