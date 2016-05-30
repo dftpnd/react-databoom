@@ -1,11 +1,3 @@
-@import 'add-car-menu';
-@import 'appearance';
-@import 'appearance-form';
-@import 'exterior-functional';
-@import 'nav-buttons';
-@import 'equipment-form';
-@import 'group-button';
-
 * {
   margin: 0;
   padding: 0;
@@ -74,10 +66,6 @@ body {
   box-shadow: 0 1px 0 0 rgba(4, 26, 55, 0.06);
   border-radius: 5px;
   padding: 20px 30px;
-}
-
-.footer {
-  border: 1px solid black;
 }
 
 .app-title {

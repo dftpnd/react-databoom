@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 
 //assets
 require('normalize.css/normalize.css');
-require('styles/app.scss');
+require('styles/index.scss');
 
 class App extends React.Component {
 	render() {
@@ -12,9 +12,9 @@ class App extends React.Component {
 			<section className="app">
 				<header className="header">
 					<Link to='/' className="header__logo">
-            <p className="header__logo--grey">Auto</p>
-            <p>Gross</p>
-          </Link>
+						<p className="header__logo--grey">Auto</p>
+						<p>Gross</p>
+					</Link>
 					<nav className="menu">
 						<Link to='/auction' className="item" activeClassName="active">auction</Link>
 						<Link to='/add-car' className="item" activeClassName="active">add-car</Link>
