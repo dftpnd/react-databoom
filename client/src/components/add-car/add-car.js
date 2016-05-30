@@ -8,6 +8,7 @@ import Equipment from './equipment';
 import Exterior from './exterior';
 import ExteriorFunctional from './exterior-functional';
 import Interior from './interior';
+import InteriorFunctional from './interior-functional';
 import Suspension from './suspension';
 import TestDrive from './test-drive';
 import TiresAndBrakes from './tires-and-brakes';
@@ -42,7 +43,7 @@ class AddCar extends React.Component {
 			'exterior': <Exterior/>,
 			'exterior-functional': <ExteriorFunctional/>,
 			'interior': <Interior/>,
-			'interior-functional': <Interior/>,
+			'interior-functional': <InteriorFunctional/>,
 			'suspension': <Suspension/>,
 			'test-drive': <TestDrive/>,
 			'tires-and-brakes': <TiresAndBrakes/>
