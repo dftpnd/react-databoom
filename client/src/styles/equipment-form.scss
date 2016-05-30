@@ -1,7 +1,7 @@
 .equipment-form {
   display: flex;
   .equipment-form__tab {
-
+    flex: 1;
     .equipment-form__item {
       .equipment-form__item-title {
         font-size: 14px;
@@ -12,7 +12,6 @@
         font-size: 14px;
         font-weight: normal;
         padding-bottom: 15px;
-        //padding-top: 5px;
       }
       .equipment-form__label {
         display: block;

@@ -202,15 +202,69 @@ class Equipment extends React.Component {
               </label>
             </div>
           </div>
-          <div className="equipment-form__tab"></div>
-
-
+          <div className="equipment-form__tab">
+            <div className="equipment-form__item">
+              <h3 className="equipment-form__item-title">Регулировки</h3>
+              <label className="equipment-form__label">
+                <input type="checkbox" name="power_mirrors" defaultChecked/>Электропривод зеркал
+              </label>
+              <h3 className="equipment-form__item-child-title">Стеклоподъемники</h3>
+              <label className="equipment-form__label">
+                <input type="radio" name="power_windows" defaultChecked/>ручные
+              </label>
+              <label className="equipment-form__label">
+                <input type="radio" name="power_windows"/>электро передние
+              </label>
+              <label className="equipment-form__label">
+                <input type="radio" name="power_windows"/>электро все
+              </label>
+              <h3 className="equipment-form__item-child-title">Сиденье водителя</h3>
+              <label className="equipment-form__label">
+                <input type="radio" name="driver_seat" defaultChecked/>ручная регулировка
+              </label>
+              <label className="equipment-form__label">
+                <input type="radio" name="driver_seat"/>ручная регулировка по высоте
+              </label>
+              <label className="equipment-form__label">
+                <input type="radio" name="driver_seat"/>электро регулировка
+              </label>
+              <label className="equipment-form__label">
+                <input type="radio" name="driver_seat"/>с памятью положения
+              </label>
+              <h3 className="equipment-form__item-child-title">Сиденье пассажира</h3>
+              <label className="equipment-form__label">
+                <input type="radio" name="passenger_seat" defaultChecked/>ручная регулировка
+              </label>
+              <label className="equipment-form__label">
+                <input type="radio" name="passenger_seat"/>ручная регулировка по высоте
+              </label>
+              <label className="equipment-form__label">
+                <input type="radio" name="passenger_seat"/>электро регулировка
+              </label>
+              <label className="equipment-form__label">
+                <input type="radio" name="passenger_seat"/>с памятью положения
+              </label>
+              <h3 className="equipment-form__item-child-title">Регулировка руля</h3>
+              <label className="equipment-form__label">
+                <input type="radio" name="adjustment" defaultChecked/>отсутствует
+              </label>
+              <label className="equipment-form__label">
+                <input type="radio" name="adjustment"/>в одной плоскости
+              </label>
+              <label className="equipment-form__label">
+                <input type="radio" name="adjustment"/>в двух плоскостях
+              </label>
+              <label className="equipment-form__label">
+                <input type="radio" name="adjustment"/>электро регулировка
+              </label>
+            </div>
+          </div>
+          </div>
         </div>
 
 
-      </div>
-    );
-  }
-}
+          );
+          }
+          }
 
-export default Equipment;
+          export default Equipment;
