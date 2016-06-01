@@ -13,10 +13,6 @@ class GroupButton extends React.Component {
 		this.clickHandlerNo = this.clickHandlerNo.bind(this);
 	}
 
-	//clickHandler() {
-	//	this.props.handler(this.props.name, !this.state.value);
-	//	this.setState({value: !this.state.value});
-	//}
 	clickHandlerOk() {
 		this.props.handler(this.props.name, true);
 		this.setState({value: true});

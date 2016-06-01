@@ -17,7 +17,7 @@ class App extends React.Component {
 					</Link>
 					<nav className="menu">
 						<Link to='/auction' className="item" activeClassName="active">auction</Link>
-						<Link to='/add-car' className="item" activeClassName="active">add-car</Link>
+						<Link to='/add-car/car-form' className="item" activeClassName="active">add-car</Link>
 						<Link to='/login' className="item" activeClassName="active">login</Link>
 					</nav>
 				</header>

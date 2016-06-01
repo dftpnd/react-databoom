@@ -7,10 +7,10 @@ class TestDrive extends React.Component {
 			<div className="index">
 				<h1 class="app-title">TestDrive</h1>
 
-				<div className="nav-buttons">
+				<nav className="nav-buttons">
 					<Link to="/add-car/suspension" className="custom-btn">Назад</Link>
 					<Link to="/add-car/equipment" className="custom-btn">Далее</Link>
-				</div>
+				</nav>
 			</div>
 		);
 	}

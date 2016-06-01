@@ -1117,7 +1117,9 @@ function SetCarInvisFields(data)
     }
 }
 
-function SetCarFields(modif)
+
+
+    function SetCarFields(modif)
 {
     $('[data-field="main.Engine_volume"]').val(modif.engine_volume);
     $('[data-field="main.Engine_power_ps"]').val(modif.engine_hp);

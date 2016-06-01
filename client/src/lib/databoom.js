@@ -1,3 +1,7 @@
+/**
+ * TODO!! JQERY USE ONLY DB CONNECTION!?
+ */
+import $ from 'jquery';
 /*eslint-disable */
 function GuidPlaceholder() {
 	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -60,7 +64,7 @@ function loadjscssfile(filename, filetype) {
 		document.getElementsByTagName("head")[0].appendChild(fileref)
 }
 
-loadjscssfile("https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js", "js");
+//loadjscssfile("https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js", "js");
 
 function databoom_db(site, dbname) {
 	var db = this;
@@ -209,7 +213,7 @@ function databoom_db(site, dbname) {
 		return d.promise();
 	}
 
-	db.upload = function (file)
+	db.upload = function (file, file_id)
 	{
 		var d = $.Deferred();
 		var data;
@@ -221,7 +225,7 @@ function databoom_db(site, dbname) {
 					if (responseJson)
 					{
 						var response = JSON.parse(responseJson);
-						d.resolve(response.file_id);
+						d.resolve(response);
 					}
 
 				} else {
@@ -229,7 +233,19 @@ function databoom_db(site, dbname) {
 				}
 			}
 		};
-		xhr.open('POST', db.url + '/files', true);
+
+		if (file_id == undefined)
+		{
+			file_id = GuidPlaceholder();
+		}
+		var filename_parts = file.name.split('.');
+		var filename = file_id;
+		if (filename_parts.length >= 2)
+		{
+			filename = file_id + '.' + filename_parts[filename_parts.length-1];
+		}
+
+		xhr.open('POST', db.url + '/files?newfilename='+filename, true);
 		var data = new FormData();
 		data.append('file',file);
 		xhr.send(data);
@@ -253,6 +269,9 @@ function databoom(site, dbname) {
 	//insert search created
 	var db = new databoom_db(site, dbname);
 	return db;
-};
+}
 
+
+
+export default databoom;
 /*eslint-enable */

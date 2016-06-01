@@ -66,7 +66,7 @@ class CarForm extends React.Component {
 
 	handleChange(event) {
 		if (!event.target.name) {
-			throw new Error(`Input name required`);
+			throw new Error('Input name required');
 		}
 		const newState = {[event.target.name]: event.target.value};
 		this.setState(newState);
@@ -371,13 +371,13 @@ class CarForm extends React.Component {
 					</select>
 				</div>
 
-				<div className="nav-buttons">
+				<nav className="nav-buttons">
 					<div></div>
 					<button className="custom-btn" type="button" onClick={this.nextPage} value="exterior"
 							disabled={!this.validate()}>
 						Заполнить чеклист &#8594;
 					</button>
-				</div>
+				</nav>
 			</form>
 		);
 	}

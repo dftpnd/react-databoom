@@ -213,10 +213,10 @@ class InteriorFunctional extends React.Component {
 				</div>
 
 
-				<div className="nav-buttons">
+				<nav className="nav-buttons">
 					<Link to="/add-car/interior" className="custom-btn">Назад</Link>
 					<Link to="/add-car/tires-and-brakes" className="custom-btn">Далее</Link>
-				</div>
+				</nav>
 			</div>
 		);
 	}

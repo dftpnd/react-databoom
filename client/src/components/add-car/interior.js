@@ -115,10 +115,10 @@ class Interior extends React.Component {
 								 handler={this.fieldHandler}/>
 				</div>
 
-				<div className="nav-buttons">
+				<nav className="nav-buttons">
 					<Link to="/add-car/exterior-functional" className="custom-btn">Назад</Link>
 					<Link to="/add-car/interior-functional" className="custom-btn">Далее</Link>
-				</div>
+				</nav>
 			</div>
 		);
 	}

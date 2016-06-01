@@ -18,8 +18,8 @@ import addCarService from './add-car.service';
 class AddCar extends React.Component {
 	constructor(props) {
 		super(props);
-
 		this.updateStepState = this.updateStepState.bind(this);
+		this.checkValue = this.checkValue.bind(this);
 	}
 
 	componentWillMount() {
@@ -30,6 +30,10 @@ class AddCar extends React.Component {
 	updateStepState(newState) {
 		addCarService.setActiveStep(newState);
 		addCarService.updateRoute(newState);
+	}
+
+	checkValue(event) {
+		this.setState({isMan: event.target.value});
 	}
 
 	render() {
@@ -54,16 +58,16 @@ class AddCar extends React.Component {
 		return (
 			<div className="index">
 				<nav className="add-car-menu">
-					<AddCarStepLink step="car-form" />
-					<AddCarStepLink step="exterior" />
-					<AddCarStepLink step="exterior-functional" />
-					<AddCarStepLink step="interior" />
-					<AddCarStepLink step="interior-functional" />
-					<AddCarStepLink step="tires-and-brakes" />
-					<AddCarStepLink step="engine" />
-					<AddCarStepLink step="suspension" />
-					<AddCarStepLink step="test-drive" />
-					<AddCarStepLink step="equipment" />
+					<AddCarStepLink step="car-form"/>
+					<AddCarStepLink step="exterior"/>
+					<AddCarStepLink step="exterior-functional"/>
+					<AddCarStepLink step="interior"/>
+					<AddCarStepLink step="interior-functional"/>
+					<AddCarStepLink step="tires-and-brakes"/>
+					<AddCarStepLink step="engine"/>
+					<AddCarStepLink step="suspension"/>
+					<AddCarStepLink step="test-drive"/>
+					<AddCarStepLink step="equipment"/>
 				</nav>
 				{view}
 			</div>

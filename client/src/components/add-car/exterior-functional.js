@@ -16,7 +16,7 @@ class ExteriorFunctional extends React.Component {
 			efReversingLight: null,
 			efEmergencySignal: null,
 			efBacklightIcon: null,
-			efOpeningCover: null,
+			efOpeningCover: null
 		};
 
 		this.state = JSON.parse(localStorage.getItem('exteriorFunctionalState')) || defaultState;
@@ -103,10 +103,10 @@ class ExteriorFunctional extends React.Component {
 				</div>
 
 
-				<div className="nav-buttons">
+				<nav className="nav-buttons">
 					<Link to="/add-car/exterior" className="custom-btn">Назад</Link>
 					<Link to="/add-car/interior" className="custom-btn">Далее</Link>
-				</div>
+				</nav>
 			</div>
 		);
 	}

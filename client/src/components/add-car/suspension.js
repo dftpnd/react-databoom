@@ -7,10 +7,10 @@ class Suspension extends React.Component {
 			<div className="index">
 				<h1 class="app-title">Suspension</h1>
 
-				<div className="nav-buttons">
+				<nav className="nav-buttons">
 					<Link to="/add-car/engine" className="custom-btn">Назад</Link>
 					<Link to="/add-car/test-drive" className="custom-btn">Далее</Link>
-				</div>
+				</nav>
 			</div>
 		);
 	}

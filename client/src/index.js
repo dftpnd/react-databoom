@@ -3,9 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 //lib
 
-import './lib/jquery-builder-ajax-2.1.1';
-import './lib/databoom';
-//var asd = require('./lib/databoom');
+import 'components/services/db.service';
 
 
 import App from 'components/app/app';

@@ -1,111 +1,178 @@
 import React from 'react';
 import { Link } from 'react-router'
+import db from '../services/db.service';
+import ExteriorElement from './exterior-element';
 
 class Exterior extends React.Component {
+	constructor(props) {
+		super(props);
+
+		const defaultState = {
+			exteriorElements: {},
+			activeElement: null,
+			element1: [],
+			element2: [],
+			element3: [],
+			element4: [],
+			element5: [],
+			element6: [],
+			element7: [],
+			element8: [],
+			element9: [],
+			element10: [],
+			element11: [],
+			element12: [],
+			element13: [],
+			element14: [],
+			element15: [],
+			element16: [],
+			element17: [],
+			element18: [],
+			element19: [],
+			element20: [],
+			element21: [],
+			element22: [],
+			element23: []
+		};
+
+		this.state = JSON.parse(localStorage.getItem('exteriorState')) || defaultState;
+
+		this.elementLabels = {
+			1: 'переднего бампера',
+			2: 'левой фары',
+			3: 'правой фары',
+			4: 'переднего капота',
+			5: 'лобового стекла',
+			6: 'крыши',
+			7: 'заднего стекла',
+			8: 'заднего номера',
+			9: 'заднего бампера',
+			10: 'левой задней фары',
+			11: 'правой задней фары',
+			12: 'todo',
+			13: 'todo',
+			14: 'todo',
+			15: 'todo',
+			16: 'todo',
+			17: 'todo',
+			18: 'todo',
+			19: 'todo',
+			20: 'todo',
+			21: 'todo',
+			22: 'todo',
+			23: 'todo'
+		};
+		this.fileUpload = this.fileUpload.bind(this);
+		this.elementHandler = this.elementHandler.bind(this);
+		this.getElementLabel = this.getElementLabel.bind(this);
+		this.getActiveElementName = this.getActiveElementName.bind(this);
+		this.addPhoto = this.addPhoto.bind(this);
+		this.createImgUrl = this.createImgUrl.bind(this);
+	}
+
+	componentWillUpdate(_, nextProps) {
+		localStorage.setItem('exteriorState', JSON.stringify(nextProps));
+	}
+
+	elementHandler(value) {
+		this.setState({activeElement: value});
+	}
+
+	fileUpload(event) {
+		const file = event.target.files[0];
+
+		db.store.upload(file)
+			.done((data)=> {
+				this.addPhoto(data.filename)
+			})
+			.fail(function () {
+			})
+			.always(function () {
+
+			});
+	}
+
+	createImgUrl(filename) {
+		/**
+		 * TODO replace url
+		 */
+		return `https://t276.databoom.space/uploads/t276/b276/${filename}`;
+	}
+
+	addPhoto(filename) {
+		const elementName = this.getActiveElementName();
+		const url = this.createImgUrl(filename);
+		this.setState({[elementName]: this.state[elementName].concat([url])})
+	}
+
+	getElementLabel(elementId) {
+		return this.elementLabels[elementId];
+	}
+
+	getActiveElementName() {
+		return `element${this.state.activeElement}`;
+	}
+
 	render() {
+		var buttons = [
+			{value: 1, left: 33, top: 265},
+			{value: 2, left: 85, top: 174},
+			{value: 3, left: 85, top: 357},
+			{value: 4, left: 168, top: 265},
+			{value: 5, left: 302, top: 265},
+			{value: 6, left: 408, top: 265},
+			{value: 7, left: 575, top: 265},
+			{value: 8, left: 779, top: 265},
+			{value: 9, left: 843, top: 265},
+			{value: 10, left: 776, top: 357},
+			{value: 11, left: 776, top: 174},
+			{value: 12, left: 132, top: 519},
+			{value: 13, left: 215, top: 513},
+			{value: 14, left: 376, top: 473},
+			{value: 15, left: 514, top: 473},
+			{value: 16, left: 619, top: 512},
+			{value: 17, left: 715, top: 492},
+			{value: 18, left: 132, top: 17},
+			{value: 19, left: 215, top: 18},
+			{value: 20, left: 377, top: 58},
+			{value: 21, left: 514, top: 59},
+			{value: 22, left: 619, top: 19},
+			{value: 23, left: 715, top: 39}
+		];
 		return (
 			<div className="exterior">
 				<div className="exterior__damage-visual">
 					<div className="exterior__box">
-						<button className="exterior__damage-item" style={{'left':'33px', top:'265px'}} type="button"
-								value="1" tabindex="0">
-							1
-						</button>
-						<button className="exterior__damage-item" style={{'left':'85px', top:'174px'}} type="button"
-								value="2" tabindex="0">
-							2
-						</button>
-						<button className="exterior__damage-item" style={{'left':'85px', top:'357px'}} type="button"
-								value="3" tabindex="0">
-							3
-						</button>
-						<button className="exterior__damage-item" style={{'left':'168px', top:'265px'}} type="button"
-								value="4" tabindex="0">
-							4
-						</button>
-						<button className="exterior__damage-item" style={{'left':'302px', top:'265px'}} type="button"
-								value="5" tabindex="0">
-							5
-						</button>
-						<button className="exterior__damage-item" style={{'left':'480px', top:'265px'}} type="button"
-								value="6" tabindex="0">
-							6
-						</button>
-						<button className="exterior__damage-item" style={{'left':'675px', top:'265px'}} type="button"
-								value="7" tabindex="0">
-							7
-						</button>
-						<button className="exterior__damage-item" style={{'left':'779px', top:'265px'}} type="button"
-								value="8" tabindex="0">
-							8
-						</button>
-						<button className="exterior__damage-item" style={{'left':'843px', top:'265px'}} type="button"
-								value="9" tabindex="0">
-							9
-						</button>
-						<button className="exterior__damage-item" style={{'left':'776px', top:'357px'}} type="button"
-								value="10" tabindex="0">
-							10
-						</button>
-						<button className="exterior__damage-item" style={{'left':'776px', top:'174px'}} type="button"
-								value="11" tabindex="0">
-							11
-						</button>
-						<button className="exterior__damage-item" style={{'left':'132px', top:'519px'}} type="button"
-								value="12" tabindex="0">
-							12
-						</button>
-						<button className="exterior__damage-item" style={{'left':'215px', top:'513px'}} type="button"
-								value="13" tabindex="0">
-							13
-						</button>
-						<button className="exterior__damage-item" style={{'left':'376px', top:'473px'}} type="button"
-								value="14" tabindex="0">
-							14
-						</button>
-						<button className="exterior__damage-item" style={{'left':'514px', top:'473px'}} type="button"
-								value="15" tabindex="0">
-							15
-						</button>
-						<button className="exterior__damage-item" style={{'left':'619px', top:'512px'}} type="button"
-								value="16" tabindex="0">
-							16
-						</button>
-						<button className="exterior__damage-item" style={{'left':'715px', top:'492px'}} type="button"
-								value="17" tabindex="0">
-							17
-						</button>
-						<button className="exterior__damage-item" style={{'left':'132px', top:'17px'}} type="button"
-								value="18" tabindex="0">
-							18
-						</button>
-						<button className="exterior__damage-item" style={{'left':'215px', top:'18px'}} type="button"
-								value="19" tabindex="0">
-							19
-						</button>
-						<button className="exterior__damage-item" style={{'left':'377px', top:'58px'}} type="button"
-								value="20" tabindex="0">
-							20
-						</button>
-						<button className="exterior__damage-item" style={{'left':'514px', top:'59px'}} type="button"
-								value="21" tabindex="0">
-							21
-						</button>
-						<button className="exterior__damage-item" style={{'left':'619px', top:'19px'}} type="button"
-								value="22" tabindex="0">
-							22
-						</button>
-						<button className="exterior__damage-item" style={{'left':'715px', top:'39px'}} type="button"
-								value="23" tabindex="0">
-							23
-						</button>
+						{buttons.map((btn, i)=> {
+							return <ExteriorElement
+								left={btn.left} top={btn.top}
+								value={btn.value}
+								handler={this.elementHandler}
+								active={this.state.activeElement} key={i}/>
+						})}
 					</div>
 				</div>
 
-				<div className="nav-buttons">
+				{(()=> {
+					if (this.state.activeElement !== null) {
+						return <div>
+							<hr/>
+							<h5>{this.state.activeElement} - добавить
+								фото {this.getElementLabel(this.state.activeElement)}</h5>
+
+							{this.state[this.getActiveElementName()].map((bgUrl, i)=> {
+								return <div key={i}>
+									<img src={bgUrl} width="100"/>
+								</div>
+							})}
+							<input type="file" multiple="multiple" onChange={this.fileUpload}/>
+						</div>
+					}
+				})()}
+				<nav className="nav-buttons">
 					<Link to="/add-car/car-form" className="custom-btn">Назад</Link>
 					<Link to="/add-car/exterior-functional" className="custom-btn">Далее</Link>
-				</div>
+				</nav>
 			</div>
 		);
 	}

@@ -7,10 +7,10 @@ class TiresAndBrakes extends React.Component {
 			<div className="index">
 				<h1 className="app-title">Шины и тормоза</h1>
 
-				<div className="nav-buttons">
+				<nav className="nav-buttons">
 					<Link to="/add-car/interior-functional" className="custom-btn">Назад</Link>
 					<Link to="/add-car/engine" className="custom-btn">Далее</Link>
-				</div>
+				</nav>
 			</div>
 		);
 	}

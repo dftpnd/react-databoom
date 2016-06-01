@@ -7,10 +7,10 @@ class Engine extends React.Component {
 			<div className="engine">
 				<h1 class="app-title">Engine</h1>
 
-				<div className="nav-buttons">
+				<nav className="nav-buttons">
 					<Link to="/add-car/tires-and-brakes" className="custom-btn">Назад</Link>
 					<Link to="/add-car/suspension" className="custom-btn">Далее</Link>
-				</div>
+				</nav>
 			</div>
 		);
 	}
