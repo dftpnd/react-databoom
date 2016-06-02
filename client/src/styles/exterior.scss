@@ -1,60 +1,64 @@
 .exterior {
-	&__damage-visual {
-		padding: 0 20px;
-	}
-	&__box {
-		position: relative;
-		width: 931px;
-		height: 592px;
-		margin: 42px auto 46px;
-		background: blue;
-		background: url('../images/car-model.png') no-repeat center center;
-		transform-origin: left top;
-	}
-	&__damage-item {
-		position: absolute;
-		z-index: 2;
-		cursor: pointer;
-		display: block;
-		width: 50px;
-		height: 50px;
-		color: #ffffff;
-		font-size: 18px;
-		line-height: 22px;
-		text-align: center;
-		padding: 15px 14px 13px;
-		margin: 5px 0 0 5px;
-		background: rgb(23, 49, 76);
-		background: rgba(23, 49, 76, 0.9);
-		border: none;
-		outline: none;
-		-webkit-border-radius: 50%;
-		border-radius: 50%;
-		box-sizing: border-box;
+  &__damage-visual {
+    padding: 0 20px;
+  }
+  &__box {
+    position: relative;
+    width: 931px;
+    height: 592px;
+    margin: 42px auto 46px;
+    background: blue;
+    background: url('../images/car-model.png') no-repeat center center;
+    transform-origin: left top;
+  }
+  &__damage-item {
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    display: block;
+    width: 50px;
+    height: 50px;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    padding: 15px 14px 13px;
+    margin: 5px 0 0 5px;
+    background: rgb(23, 49, 76);
+    background: rgba(23, 49, 76, 0.9);
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    box-sizing: border-box;
 
-		&:before {
-			content: '';
-			position: absolute;
-			left: -5px;
-			top: -5px;
-			width: 50px;
-			height: 50px;
-			border: 5px solid rgba(23, 49, 76, 0.3);
-			-webkit-border-radius: 50%;
-			border-radius: 50%;
-		}
+    &:before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: -5px;
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(23, 49, 76, 0.3);
+      border-radius: 50%;
+    }
 
-		&:focus:before {
-			border: 5px solid rgba(21, 121, 237, .3);
-		}
+    &:focus:before {
+      border: 5px solid rgba(21, 121, 237, .3);
+    }
 
-		&.active:before {
-			border: 5px solid;
-		}
+    &.active:before {
+      border: 5px solid;
+    }
 
-		&.active {
-			background: #40cb7b;
-		}
-	}
+    &.active {
+      background: #40cb7b;
+    }
+  }
 
+  &-photo-upload__title {
+    color: #000;
+    font-size: 18px;
+    margin: 25px 0 40px;
+    font-weight: normal;
+  }
 }

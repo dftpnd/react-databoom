@@ -148,7 +148,7 @@ class Exterior extends React.Component {
 					if (this.state.activeElement !== null) {
 						return <div>
 							<hr/>
-							<h5>{this.state.activeElement} - добавить
+							<h5 className="exterior-photo-upload__title">{this.state.activeElement} - добавить
 								фото {this.getElementLabel(this.state.activeElement)}</h5>
 
 							<PhotoUpload photos={this.state[this.getActiveElementName()]}
