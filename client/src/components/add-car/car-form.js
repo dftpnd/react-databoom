@@ -5,11 +5,11 @@ import PhotoUpload from '../photo-upload/photo-upload'
 class CarForm extends React.Component {
 	constructor() {
 		super();
-
+		//localStorage.clear();
 		/**
 		 * TODO нужно реализовать проверку объекта из локал сторадж по ключам,
 		 * если он не будет совпадать то очистка сессии
-		 * localStorage.clear();
+		 *
 		 */
 		this.requiredFields = ['carMake', 'carModel'];
 
