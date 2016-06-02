@@ -1,11 +1,13 @@
 import React from 'react';
 import db from '../services/db.service';
+var classNames = require('classnames');
 
 class PhotoUpload extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
+			loading: false,
 			active: this.props.active,
 			photos: this.props.photos
 		};
@@ -33,9 +35,11 @@ class PhotoUpload extends React.Component {
 		const file = event.target.files[0];
 		const promise = db.store.upload(file);
 
-		//promise.done((data)=> {
-		//	this.setState({photos: this.state.photos.concat([data.filename])})
-		//});
+		this.setState({loading: true});
+
+		promise.done((data)=> {
+			this.setState({loading: false});
+		});
 
 		this.props.uploadHandler(this.props.propName, promise);
 	}
@@ -45,18 +49,25 @@ class PhotoUpload extends React.Component {
 	}
 
 	render() {
+		var btnState = classNames({
+			active: this.state.loading,
+			'photo-upload__btn': true
+		});
 		return (
 			<div className="photo-upload">
 
 				{this.state.photos.map((filename, i)=> {
 					return <div className="photo-upload__item" key={i}>
-						<button className="photo-upload__remove" value={filename} onClick={this.removePhoto}
-								type="button" class=""> </button>
+						<button className="photo-upload__remove"
+								value={filename} onClick={this.removePhoto}
+								type="button" class=""></button>
 						<img src={this.createUrl(filename)} className="photo-upload__picture"/>
 					</div>
 				})}
-				<div className="photo-upload__btn">
-					<label className="photo-upload__link" htmlFor="file-upload-field">+</label>
+				<div className={btnState}>
+					<label className="photo-upload__link" htmlFor="file-upload-field">
+						<span className="photo-upload__status active">+</span>
+					</label>
 					<div className="photo-upload__hidden-field">
 						<input id="file-upload-field" type="file" onChange={this.fileHandler}/>
 					</div>
