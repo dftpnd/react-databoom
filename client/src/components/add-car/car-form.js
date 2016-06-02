@@ -371,6 +371,9 @@ class CarForm extends React.Component {
 					</select>
 				</div>
 
+				<hr/>
+				<input type="file" multiple="multiple" onChange={this.fileUpload}/>
+
 				<nav className="nav-buttons">
 					<div></div>
 					<button className="custom-btn" type="button" onClick={this.nextPage} value="exterior"

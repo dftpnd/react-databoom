@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router'
-import db from '../services/db.service';
+
 import ExteriorElement from './exterior-element';
+import PhotoUpload from '../photo-upload/photo-upload'
 
 class Exterior extends React.Component {
 	constructor(props) {
@@ -62,12 +63,12 @@ class Exterior extends React.Component {
 			22: 'todo',
 			23: 'todo'
 		};
-		this.fileUpload = this.fileUpload.bind(this);
 		this.elementHandler = this.elementHandler.bind(this);
 		this.getElementLabel = this.getElementLabel.bind(this);
 		this.getActiveElementName = this.getActiveElementName.bind(this);
 		this.addPhoto = this.addPhoto.bind(this);
-		this.createImgUrl = this.createImgUrl.bind(this);
+		this.updateElementPhoto = this.updateElementPhoto.bind(this);
+		this.deletePhoto = this.deletePhoto.bind(this);
 	}
 
 	componentWillUpdate(_, nextProps) {
@@ -78,31 +79,9 @@ class Exterior extends React.Component {
 		this.setState({activeElement: value});
 	}
 
-	fileUpload(event) {
-		const file = event.target.files[0];
-
-		db.store.upload(file)
-			.done((data)=> {
-				this.addPhoto(data.filename)
-			})
-			.fail(function () {
-			})
-			.always(function () {
-
-			});
-	}
-
-	createImgUrl(filename) {
-		/**
-		 * TODO replace url
-		 */
-		return `https://t276.databoom.space/uploads/t276/b276/${filename}`;
-	}
-
 	addPhoto(filename) {
 		const elementName = this.getActiveElementName();
-		const url = this.createImgUrl(filename);
-		this.setState({[elementName]: this.state[elementName].concat([url])})
+		this.setState({[elementName]: this.state[elementName].concat([filename])})
 	}
 
 	getElementLabel(elementId) {
@@ -111,6 +90,16 @@ class Exterior extends React.Component {
 
 	getActiveElementName() {
 		return `element${this.state.activeElement}`;
+	}
+
+	updateElementPhoto(elementName, promise) {
+		promise.done((data)=> {
+			this.addPhoto(data.filename)
+		});
+	}
+
+	deletePhoto(filename) {
+		alert(filename);
 	}
 
 	render() {
@@ -160,12 +149,10 @@ class Exterior extends React.Component {
 							<h5>{this.state.activeElement} - добавить
 								фото {this.getElementLabel(this.state.activeElement)}</h5>
 
-							{this.state[this.getActiveElementName()].map((bgUrl, i)=> {
-								return <div key={i}>
-									<img src={bgUrl} width="100"/>
-								</div>
-							})}
-							<input type="file" multiple="multiple" onChange={this.fileUpload}/>
+							<PhotoUpload photos={this.state[this.getActiveElementName()]}
+										 uploadHandler={this.updateElementPhoto}
+										 removePhoto={this.deletePhoto}
+										 active={this.state.activeElement}/>
 						</div>
 					}
 				})()}
