@@ -19,7 +19,7 @@ class App extends React.Component {
                 <p>Gross</p>
               </Link>
               <Link to='/auction' className="item" activeClassName="active">auction</Link>
-              <Link to='/add-car/car-form' className="item" activeClassName="active">add-car</Link>
+              <Link to='/add-car' className="item" activeClassName="active">add-car</Link>
             </nav>
 
             <div className="header-auth">

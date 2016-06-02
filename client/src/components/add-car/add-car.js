@@ -23,7 +23,7 @@ class AddCar extends React.Component {
 	}
 
 	componentWillMount() {
-		const currentStep = this.props.params.stepName || 'appearance';
+		const currentStep = this.props.params.stepName || 'car-form';
 		this.updateStepState(currentStep);
 	}
 

@@ -8,7 +8,7 @@ class AddCarService {
 			instance = this;
 		}
 
-		const defaultStep = 'appearance';
+		const defaultStep = 'car-form';
 
 		this.activeStep = defaultStep;
 
