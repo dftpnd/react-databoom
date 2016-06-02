@@ -51,13 +51,12 @@ class PhotoUpload extends React.Component {
 				{this.state.photos.map((filename, i)=> {
 					return <div className="photo-upload__item" key={i}>
 						<button className="photo-upload__remove" value={filename} onClick={this.removePhoto}
-								type="button" class="">x
-						</button>
-						<img src={this.createUrl(filename)} className="photo-upload__picture" width="100"/>
+								type="button" class=""> </button>
+						<img src={this.createUrl(filename)} className="photo-upload__picture"/>
 					</div>
 				})}
 				<div className="photo-upload__btn">
-					<label className="photo-upload__link" htmlFor="file-upload-field">upload image</label>
+					<label className="photo-upload__link" htmlFor="file-upload-field">+</label>
 					<div className="photo-upload__hidden-field">
 						<input id="file-upload-field" type="file" onChange={this.fileHandler}/>
 					</div>
