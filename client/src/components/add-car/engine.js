@@ -5,7 +5,10 @@ class Engine extends React.Component {
 	render() {
 		return (
 			<div className="engine">
-				<h1 class="app-title">Engine</h1>
+				<h1 className="app-title">Engine</h1>
+
+
+
 
 				<nav className="nav-buttons">
 					<Link to="/add-car/tires-and-brakes" className="custom-btn">Назад</Link>

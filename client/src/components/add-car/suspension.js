@@ -5,7 +5,7 @@ class Suspension extends React.Component {
 	render() {
 		return (
 			<div className="index">
-				<h1 class="app-title">Suspension</h1>
+				<h1 className="app-title">Suspension</h1>
 
 				<nav className="nav-buttons">
 					<Link to="/add-car/engine" className="custom-btn">Назад</Link>

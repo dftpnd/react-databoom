@@ -38,7 +38,7 @@ class Interior extends React.Component {
 	render() {
 		return (
 			<div className="interior">
-				<h1 class="app-title">Салон</h1>
+				<h1 className="app-title">Салон</h1>
 
 				<div className="exterior-functional__item">
 					<label className="exterior-functional__label">

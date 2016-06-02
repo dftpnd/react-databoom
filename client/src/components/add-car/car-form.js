@@ -103,7 +103,7 @@ class CarForm extends React.Component {
 	render() {
 		return (
 			<form className="index" onChange={this.formChange}>
-				<h1 className="app-title">Шины и тормоза</h1>
+				<h1 className="app-title">Ввод данных автомобиля</h1>
 
 				<div className="appearance-form__item">
 					<label htmlFor="car-description-field">Описание автомобиля</label>

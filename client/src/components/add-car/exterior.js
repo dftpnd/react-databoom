@@ -130,6 +130,8 @@ class Exterior extends React.Component {
 		];
 		return (
 			<div className="exterior">
+				<h1 className="app-title">Ввод данных автомобиля</h1>
+
 				<div className="exterior__damage-visual">
 					<div className="exterior__box">
 						{buttons.map((btn, i)=> {
