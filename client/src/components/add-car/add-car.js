@@ -56,7 +56,7 @@ class AddCar extends React.Component {
 		var view = viewMap[state];
 
 		return (
-			<div className="index">
+			<div className="add-car">
 				<nav className="add-car-menu">
 					<AddCarStepLink step="car-form"/>
 					<AddCarStepLink step="exterior"/>

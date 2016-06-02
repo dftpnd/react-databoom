@@ -1,5 +1,6 @@
 import React from 'react';
 import addCarService from './add-car.service';
+import PhotoUpload from '../photo-upload/photo-upload'
 
 class CarForm extends React.Component {
 	constructor() {
@@ -15,6 +16,7 @@ class CarForm extends React.Component {
 		const defaultState = {
 			carModelOptions: [{name: 'corsa', value: 123}, {name: 'astra', value: 777}],
 			disableCarModel: true,
+			carMainPhoto: [],
 			carDescription: '1',
 			carMake: '',
 			carModel: '1',
@@ -52,8 +54,19 @@ class CarForm extends React.Component {
 		this.handleCarMake = this.handleCarMake.bind(this);
 		this.validateField = this.validateField.bind(this);
 		this.validate = this.validate.bind(this);
+		this.addPhoto = this.addPhoto.bind(this);
+		this.deletePhoto = this.deletePhoto.bind(this);
 	}
 
+	addPhoto(elementName, promise) {
+		promise.done((data)=> {
+			this.setState({carMainPhoto: this.state.carMainPhoto.concat([data.filename])});
+		});
+	}
+
+	deletePhoto(filename) {
+		alert(filename);
+	}
 
 	nextPage(event) {
 		const step = event.target.value;
@@ -372,7 +385,10 @@ class CarForm extends React.Component {
 				</div>
 
 				<hr/>
-				<input type="file" multiple="multiple" onChange={this.fileUpload}/>
+				<h5 className="add-car__sub-title">Основные фотографии</h5>
+				<PhotoUpload photos={this.state.carMainPhoto}
+							 uploadHandler={this.addPhoto}
+							 removePhoto={this.deletePhoto}/>
 
 				<nav className="nav-buttons">
 					<div></div>
