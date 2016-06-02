@@ -19,7 +19,7 @@ class Engine extends React.Component {
 			engOilLevel: null,
 			engEngineMounts: null,
 			engBoltsFactory: null,
-			engSmellEngine: null,
+			engSmellEngine: null
 		};
 
 		this.state = JSON.parse(localStorage.getItem('engineState')) || defaultState;

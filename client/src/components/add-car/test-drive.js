@@ -25,7 +25,7 @@ class Tesrive extends React.Component {
 			tdGearChangesWork: null,
 			tdMotorEnergized: null,
 			tdShockAbsorbers: null,
-			tdLackSkid: null,
+			tdLackSkid: null
 		};
 
 		this.state = JSON.parse(localStorage.getItem('tesriveState')) || defaultState;

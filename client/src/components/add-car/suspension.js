@@ -18,7 +18,7 @@ class Suspension extends React.Component {
 			susFrontSuspension: null,
 			susRearSuspension: null,
 			susShockAbsorberWithoutLeaks: null,
-			susExhaustSystem: null,
+			susExhaustSystem: null
 		};
 
 		this.state = JSON.parse(localStorage.getItem('suspensionState')) || defaultState;

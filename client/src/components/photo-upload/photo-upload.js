@@ -34,13 +34,8 @@ class PhotoUpload extends React.Component {
 	fileHandler(event) {
 		const file = event.target.files[0];
 		const promise = db.store.upload(file);
-
 		this.setState({loading: true});
-
-		promise.done((data)=> {
-			this.setState({loading: false});
-		});
-
+		promise.always(()=>this.setState({loading: false}));
 		this.props.uploadHandler(this.props.propName, promise);
 	}
 
