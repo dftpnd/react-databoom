@@ -68,7 +68,7 @@ class Equipment extends React.Component {
 							<div className="equipment-form__item-child">
 								<h3 className="equipment-form__item-child-title">Обивка салона</h3>
 								<label className="equipment-form__label">
-									<input type="radio" name="upholstery" value="cloth" defaultChecked={false}
+									<input type="radio" name="upholstery" value="cloth"
 										   checked={this.state.upholstery === 'cloth'}
 										   onChange={this.fieldHandler}/>ткань
 								</label>
@@ -91,7 +91,7 @@ class Equipment extends React.Component {
 							<div className="equipment-form__item-child">
 								<h3 className="equipment-form__item-child-title">Цвет салона</h3>
 								<label className="equipment-form__label">
-									<input type="radio" name="interiorColor" value="dark" defaultChecked={false}
+									<input type="radio" name="interiorColor" value="dark"
 										   checked={this.state.interiorColor === 'dark'}
 										   onChange={this.fieldHandler}/>темный
 								</label>
@@ -105,7 +105,7 @@ class Equipment extends React.Component {
 							<div className="equipment-form__item">
 								<h3 className="equipment-form__item-title">Экстерьер</h3>
 								<label className="equipment-form__label">
-									<input type="checkbox" name="exterior" value="sunroof" defaultChecked={false}
+									<input type="checkbox" name="exterior" value="sunroof"
 										   checked={this.state.exterior.indexOf('sunroof') !== -1}
 										   onChange={this.checkHandler}/>
 									Люк на крыше
@@ -145,7 +145,7 @@ class Equipment extends React.Component {
 							<div className="equipment-form__item">
 								<h3 className="equipment-form__item-title">Сигнализация</h3>
 								<label className="equipment-form__label">
-									<input type="checkbox" name="signaling" value="immobiliser" defaultChecked={false}
+									<input type="checkbox" name="signaling" value="immobiliser"
 										   checked={this.state.signaling.indexOf('immobiliser') !== -1}
 										   onChange={this.checkHandler}/>
 									Иммобиллайзер
@@ -173,7 +173,7 @@ class Equipment extends React.Component {
 							<div className="equipment-form__item">
 								<h3 className="equipment-form__item-title">Безопасность</h3>
 								<label className="equipment-form__label">
-									<input type="checkbox" name="security" value="ABS" defaultChecked={false}
+									<input type="checkbox" name="security" value="ABS"
 										   checked={this.state.security.indexOf('ABS') !== -1}
 										   onChange={this.checkHandler}/>
 									Антиблокировочная система (ABS)
@@ -195,7 +195,7 @@ class Equipment extends React.Component {
 								<h3 className="equipment-form__item-child-title">Подушки безопасности</h3>
 								<form>
 									<label className="equipment-form__label">
-										<input type="radio" name="airbags" defaultChecked={false}
+										<input type="radio" name="airbags"
 											   value="missing"
 											   checked={this.state.airbags === 'missing'}
 											   onChange={this.fieldHandler}/>
@@ -223,7 +223,7 @@ class Equipment extends React.Component {
 						<div className="equipment-form__item">
 							<h3 className="equipment-form__item-title">Функционально оборудование</h3>
 							<label className="equipment-form__label">
-								<input type="checkbox" name="equipment" value="onBoardComputer" defaultChecked
+								<input type="checkbox" name="equipment" value="onBoardComputer"
 									   checked={this.state.equipment.indexOf('onBoardComputer') !== -1}
 									   onChange={this.checkHandler}/>
 								Бортовой компьютер
@@ -293,7 +293,7 @@ class Equipment extends React.Component {
 						<div className="equipment-form__item">
 							<h3 className="equipment-form__item-title">Комфорт</h3>
 							<label className="equipment-form__label">
-								<input type="checkbox" name="comfort" value="heatedSteering" defaultChecked
+								<input type="checkbox" name="comfort" value="heatedSteering"
 									   checked={this.state.comfort.indexOf('heatedSteering') !== -1}
 									   onChange={this.checkHandler}/>
 								Подогрев руля
@@ -307,7 +307,7 @@ class Equipment extends React.Component {
 
 							<h3 className="equipment-form__item-child-title">Климат</h3>
 							<label className="equipment-form__label">
-								<input type="radio" name="climate" value="absent" defaultChecked
+								<input type="radio" name="climate" value="absent"
 									   checked={this.state.climate === 'absent'}
 									   onChange={this.fieldHandler}/>
 								отсутствует
@@ -341,7 +341,7 @@ class Equipment extends React.Component {
 						<div className="equipment-form__item">
 							<h3 className="equipment-form__item-title">Мультимедиа</h3>
 							<label className="equipment-form__label">
-								<input type="checkbox" name="multimedia" value="cassette" defaultChecked
+								<input type="checkbox" name="multimedia" value="cassette"
 									   checked={this.state.multimedia.indexOf('cassette') !== -1}
 									   onChange={this.checkHandler}/>
 								Кассетник
@@ -364,7 +364,7 @@ class Equipment extends React.Component {
 						<div className="equipment-form__item">
 							<h3 className="equipment-form__item-title">Регулировки</h3>
 							<label className="equipment-form__label">
-								<input type="checkbox" name="powerMirrors" defaultChecked
+								<input type="checkbox" name="powerMirrors"
 									   onChange={this.fieldHandler}/>Электропривод зеркал
 							</label>
 							<h3 className="equipment-form__item-child-title">Стеклоподъемники</h3>
@@ -389,7 +389,7 @@ class Equipment extends React.Component {
 
 							<h3 className="equipment-form__item-child-title">Сиденье водителя</h3>
 							<label className="equipment-form__label">
-								<input type="radio" name="driverSeat" value="manualAdjustment" defaultChecked
+								<input type="radio" name="driverSeat" value="manualAdjustment"
 									   checked={this.state.driverSeat === 'manualAdjustment'}
 									   onChange={this.fieldHandler}/>
 								ручная регулировка
@@ -415,9 +415,9 @@ class Equipment extends React.Component {
 
 							<h3 className="equipment-form__item-child-title">Сиденье пассажира</h3>
 							<label className="equipment-form__label">
-								<input type="radio" name="passengerSeat" value="manualAdjustment" defaultChecked
+								<input type="radio" name="passengerSeat" value="manualAdjustment"
 									   checked={this.state.passengerSeat === 'manualAdjustment'}
-									   onChange={this.fieldHandler} defaultChecked/>
+									   onChange={this.fieldHandler}/>
 								ручная регулировка
 							</label>
 							<label className="equipment-form__label">
@@ -441,7 +441,7 @@ class Equipment extends React.Component {
 
 							<h3 className="equipment-form__item-child-title">Регулировка руля</h3>
 							<label className="equipment-form__label">
-								<input type="radio" name="adjustment" value="absent" defaultChecked
+								<input type="radio" name="adjustment" value="absent"
 									   checked={this.state.adjustment === 'absent'}
 									   onChange={this.fieldHandler}/>
 								отсутствует
