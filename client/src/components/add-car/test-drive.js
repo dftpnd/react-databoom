@@ -28,13 +28,13 @@ class Tesrive extends React.Component {
 			tdLackSkid: null
 		};
 
-		this.state = JSON.parse(localStorage.getItem('tesriveState')) || defaultState;
+		this.state = JSON.parse(localStorage.getItem('testDriveState')) || defaultState;
 
 		this.fieldHandler = this.fieldHandler.bind(this);
 	}
 
 	componentWillUpdate(_, nextProps) {
-		localStorage.setItem('tesriveState', JSON.stringify(nextProps));
+		localStorage.setItem('testDriveState', JSON.stringify(nextProps));
 	}
 
 	fieldHandler(name, value) {

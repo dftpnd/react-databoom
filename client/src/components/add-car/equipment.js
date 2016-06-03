@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 class Equipment extends React.Component {
 	constructor(props) {
@@ -55,6 +56,28 @@ class Equipment extends React.Component {
 			checkList.push(event.target.value);
 		}
 		this.setState({[event.target.name]: checkList})
+	}
+
+	publishCar() {
+		var formData = {
+			equipment: JSON.parse(localStorage.getItem('equipmentState')),
+			testDrive: JSON.parse(localStorage.getItem('testDriveState')),
+			suspension: JSON.parse(localStorage.getItem('suspensionState')),
+			engine: JSON.parse(localStorage.getItem('engineState')),
+			tiresAndBrakes: JSON.parse(localStorage.getItem('tiresAndBrakesState')),
+			interiorFunctional: JSON.parse(localStorage.getItem('interiorFunctionalState')),
+			interior: JSON.parse(localStorage.getItem('interiorState')),
+			exteriorFunctional: JSON.parse(localStorage.getItem('exteriorFunctionalState')),
+			exterior: JSON.parse(localStorage.getItem('exteriorState')),
+			carForm: JSON.parse(localStorage.getItem('carFormState'))
+		};
+
+		console.info('Данные формы', formData);
+
+		alert('Данные формы скоро будут записываться в базу, а пока можно посмотреть консоль с данными.');
+		localStorage.clear();
+		alert('Данные типо отправлениы');
+		browserHistory.push('/add-car/car-form');
 	}
 
 	render() {
@@ -467,6 +490,13 @@ class Equipment extends React.Component {
 						</div>
 					</div>
 				</div>
+
+				<nav className="nav-buttons">
+					<div></div>
+					<button className="custom-btn" type="button" onClick={this.publishCar}>
+						Опубликовать
+					</button>
+				</nav>
 			</div>
 		);
 	}
