@@ -1,0 +1,31 @@
+.group-button {
+	width: 180px;
+	&__button {
+		background: #fff;
+		color: #757575;
+		border: 1px solid #ccc;
+		width: 80px;
+		height: 40px;
+		text-align: center;
+		&.active {
+			color: #fff;
+		}
+	}
+	&__btn-yes {
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+		&.active {
+			background: #24b031;
+			border-color: #1b8e26;
+		}
+	}
+	&__btn-no {
+		margin-left: -1px;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		&.active {
+			background: #ed392c;
+			border-color: #b8291e;
+		}
+	}
+}
