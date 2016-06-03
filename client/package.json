@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf dist/*",
     "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist",
-    "dist": "npm run copy & webpack --env=dist && surge -p build --domain autogross.surge.sh",
+    "dist": "npm run copy & webpack --env=dist",
     "lint": "eslint ./src",
     "posttest": "npm run lint",
     "release:major": "npm version major && npm publish && git push --follow-tags",
@@ -71,6 +71,7 @@
     "normalize.css": "^4.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
+    "react-native": "^0.26.3",
     "react-router": "^2.4.1"
   }
 }
