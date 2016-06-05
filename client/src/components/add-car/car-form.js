@@ -60,7 +60,7 @@ class CarForm extends React.Component {
 
 	addPhoto(elementName, promise) {
 		promise.done((data)=> {
-			this.setState({carMainPhoto: this.state.carMainPhoto.concat([data.filename])});
+			this.setState({carMainPhoto: this.state.carMainPhoto.concat({filename: data.filename})});
 		});
 	}
 

@@ -79,9 +79,10 @@ class Exterior extends React.Component {
 		this.setState({activeElement: value});
 	}
 
-	addPhoto(filename) {
+	addPhoto(data) {
 		const elementName = this.getActiveElementName();
-		this.setState({[elementName]: this.state[elementName].concat([filename])})
+
+		this.setState({[elementName]: this.state[elementName].concat({filename: data.filename})})
 	}
 
 	getElementLabel(elementId) {
@@ -94,7 +95,7 @@ class Exterior extends React.Component {
 
 	updateElementPhoto(elementName, promise) {
 		promise.done((data)=> {
-			this.addPhoto(data.filename)
+			this.addPhoto(data)
 		});
 	}
 

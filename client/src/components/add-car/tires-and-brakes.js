@@ -7,24 +7,24 @@ class TiresAndBrakes extends React.Component {
 		super(props);
 
 		const defaultState = {
-			tbParametersRubber: null,
-			tbPressureLeftFrontTire: null,
-			tbThicknessTreadLeftFrontTire: null,
-			tbBrakePadLeftFrontWheel: null,
-			tbPressureTheRightFrontTire: null,
-			tbThicknessTreadRightFrontTire: null,
-			tbBrakePadRightFrontWheel: null,
-			tbPressureRightRearTire: null,
-			tbThicknessTreadRightRearTire: null,
-			tbBrakePadRightRearWheel: null,
-			tbPressureLeftRearTire: null,
-			tbThicknessTreadLeftRearTire: null,
-			tbBrakePadLeftRearWheel: null,
-			tbTyresWithoutDefects: null,
-			tbDiscsWithoutDefects: null,
-			tbAllNutsBoltsAvailable: null,
-			tbThereAreAllSecretsKeys: null,
-			tbTheSpareWheelAvailable: null
+			tbParametersRubber: true,
+			tbPressureLeftFrontTire: true,
+			tbThicknessTreadLeftFrontTire: true,
+			tbBrakePadLeftFrontWheel: true,
+			tbPressureTheRightFrontTire: true,
+			tbThicknessTreadRightFrontTire: true,
+			tbBrakePadRightFrontWheel: true,
+			tbPressureRightRearTire: true,
+			tbThicknessTreadRightRearTire: true,
+			tbBrakePadRightRearWheel: true,
+			tbPressureLeftRearTire: true,
+			tbThicknessTreadLeftRearTire: true,
+			tbBrakePadLeftRearWheel: true,
+			tbTyresWithoutDefects: true,
+			tbDiscsWithoutDefects: true,
+			tbAllNutsBoltsAvailable: true,
+			tbThereAreAllSecretsKeys: true,
+			tbTheSpareWheelAvailable: true
 		};
 
 		this.state = JSON.parse(localStorage.getItem('tiresAndBrakesState')) || defaultState;

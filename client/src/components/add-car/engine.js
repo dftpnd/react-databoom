@@ -7,19 +7,19 @@ class Engine extends React.Component {
 		super(props);
 
 		const defaultState = {
-			engEngineWithoutLeaks: null,
-			engElectronicDiagnostics: null,
-			engCoolantHoses: null,
-			engBeltsAndPulleys: null,
-			engBatteryWillNotLeak: null,
-			engWiresWithoutDamage: null,
-			engCoolantLevel: null,
-			engLevelBrake: null,
-			engLevelPS: null,
-			engOilLevel: null,
-			engEngineMounts: null,
-			engBoltsFactory: null,
-			engSmellEngine: null
+			engEngineWithoutLeaks: true,
+			engElectronicDiagnostics: true,
+			engCoolantHoses: true,
+			engBeltsAndPulleys: true,
+			engBatteryWillNotLeak: true,
+			engWiresWithoutDamage: true,
+			engCoolantLevel: true,
+			engLevelBrake: true,
+			engLevelPS: true,
+			engOilLevel: true,
+			engEngineMounts: true,
+			engBoltsFactory: true,
+			engSmellEngine: true
 		};
 
 		this.state = JSON.parse(localStorage.getItem('engineState')) || defaultState;

@@ -7,16 +7,16 @@ class ExteriorFunctional extends React.Component {
 		super(props);
 
 		const defaultState = {
-			efMirrorMech: null,
-			efWindscreenWiper: null,
-			efDipped: null,
-			efDimensions: null,
-			efDistantLight: null,
-			efStopSignal: null,
-			efReversingLight: null,
-			efEmergencySignal: null,
-			efBacklightIcon: null,
-			efOpeningCover: null
+			efMirrorMech: true,
+			efWindscreenWiper: true,
+			efDipped: true,
+			efDimensions: true,
+			efDistantLight: true,
+			efStopSignal: true,
+			efReversingLight: true,
+			efEmergencySignal: true,
+			efBacklightIcon: true,
+			efOpeningCover: true
 		};
 
 		this.state = JSON.parse(localStorage.getItem('exteriorFunctionalState')) || defaultState;

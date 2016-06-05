@@ -7,25 +7,25 @@ class Tesrive extends React.Component {
 		super(props);
 
 		const defaultState = {
-			tdSteering: null,
-			tdStraightLineMotion: null,
-			tdPositionSteeringWheel: null,
-			tdNoisy: null,
-			tdNoiseFromWheels: null,
-			tdAbnormalCreaking: null,
-			tdColdEngine: null,
-			tdButterfly: null,
-			tdEngineTemperature: null,
-			tdCoolingFans: null,
-			tdNoNoiseEngine: null,
-			tdWheelDriveSteadily: null,
-			tdGearShiftingWithoutJerks: null,
-			tdGearchangeCold: null,
-			tdGearshiftWarmedUp: null,
-			tdGearChangesWork: null,
-			tdMotorEnergized: null,
-			tdShockAbsorbers: null,
-			tdLackSkid: null
+			tdSteering: true,
+			tdStraightLineMotion: true,
+			tdPositionSteeringWheel: true,
+			tdNoisy: true,
+			tdNoiseFromWheels: true,
+			tdAbnormalCreaking: true,
+			tdColdEngine: true,
+			tdButterfly: true,
+			tdEngineTemperature: true,
+			tdCoolingFans: true,
+			tdNoNoiseEngine: true,
+			tdWheelDriveSteadily: true,
+			tdGearShiftingWithoutJerks: true,
+			tdGearchangeCold: true,
+			tdGearshiftWarmedUp: true,
+			tdGearChangesWork: true,
+			tdMotorEnergized: true,
+			tdShockAbsorbers: true,
+			tdLackSkid: true
 		};
 
 		this.state = JSON.parse(localStorage.getItem('testDriveState')) || defaultState;

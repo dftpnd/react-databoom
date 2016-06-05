@@ -8,18 +8,18 @@ class Interior extends React.Component {
 		super(props);
 
 		const defaultState = {
-			inUpholsteryDoors: null,
-			inInteriorFloor: null,
-			inDriverSeat: null,
-			inPassengerSeat: null,
-			inRearSeats: null,
-			inVents: null,
-			inDashboard: null,
-			inSteeringWheel: null,
-			inFloorCoatings: null,
-			inSeatBelts: null,
-			inCabinRoof: null,
-			inLuggageCompartment: null
+			inUpholsteryDoors: true,
+			inInteriorFloor: true,
+			inDriverSeat: true,
+			inPassengerSeat: true,
+			inRearSeats: true,
+			inVents: true,
+			inDashboard: true,
+			inSteeringWheel: true,
+			inFloorCoatings: true,
+			inSeatBelts: true,
+			inCabinRoof: true,
+			inLuggageCompartment: true
 		};
 
 		this.state = JSON.parse(localStorage.getItem('interiorState')) || defaultState;

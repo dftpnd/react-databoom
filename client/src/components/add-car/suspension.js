@@ -7,18 +7,18 @@ class Suspension extends React.Component {
 		super(props);
 
 		const defaultState = {
-			susChassis: null,
-			susEngineWithoutCorrosion: null,
-			susCrankcaseProtection: null,
-			susTransmissionWithoutCorrosion: null,
-			susLeverageWithoutCorrosion: null,
-			susThresholdsCorrosive: null,
-			susArchWithoutCorrosion: null,
-			susBottomCorrosive: null,
-			susFrontSuspension: null,
-			susRearSuspension: null,
-			susShockAbsorberWithoutLeaks: null,
-			susExhaustSystem: null
+			susChassis: true,
+			susEngineWithoutCorrosion: true,
+			susCrankcaseProtection: true,
+			susTransmissionWithoutCorrosion: true,
+			susLeverageWithoutCorrosion: true,
+			susThresholdsCorrosive: true,
+			susArchWithoutCorrosion: true,
+			susBottomCorrosive: true,
+			susFrontSuspension: true,
+			susRearSuspension: true,
+			susShockAbsorberWithoutLeaks: true,
+			susExhaustSystem: true
 		};
 
 		this.state = JSON.parse(localStorage.getItem('suspensionState')) || defaultState;
