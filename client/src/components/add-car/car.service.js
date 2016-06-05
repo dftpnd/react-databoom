@@ -1186,125 +1186,51 @@ class Car {
         /* Car Mark */
         name: 'Volvo', models: [
         {
-          name: 'todo'
+          name: 'V40 Cross Country'
         }, {
-          name: ''
+          name: 'S60'
         }, {
-          name: ''
+          name: 'S60 Cross Country'
         }, {
-          name: ''
+          name: 'V60 Cross Country'
         }, {
-          name: ''
+          name: 'S90'
         }, {
-          name: ''
+          name: 'XC60'
         }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
+          name: 'XC90'
         }]
       },
       {
         /* Car Mark */
         name: 'Zotye', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'Z300'
+        }, {
+          name: 'T600'
         }]
       },
       {
         /* Car Mark */
         name: 'УАЗ', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'Hunter'
+        }, {
+          name: 'Patriot'
+        }, {
+          name: '3303'
+        }, {
+          name: '39625'
+        }, {
+          name: '3909'
+        }, {
+          name: '2206'
+        }, {
+          name: '39094'
+        }, {
+          name: 'Cargo'
+        }, {
+          name: 'Pickup'
         }]
       }
     ];
