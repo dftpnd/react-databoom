@@ -7,6 +7,7 @@ class CarForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.car = new Car();
+
 		//localStorage.clear();
 		/**
 		 * TODO нужно реализовать проверку объекта из локал сторадж по ключам,
@@ -30,32 +31,33 @@ class CarForm extends React.Component {
 			carModelOptions: [{name: 'corsa', value: 123}, {name: 'astra', value: 777}],
 			disableCarModel: true,
 			carMainPhoto: [],
-			carDescription: '1',
+			carDescription: '',
 			carMake: '',
-			carModel: '1',
-			carModification: '1',
-			carRelease: '1',
-			carEngineVolume: '1',
-			carEngineForce: '1',
+			carModel: '',
+			carModification: '',
+			carRelease: '',
+			carEngineVolume: '',
+			carEngineForce: '',
 			carEngineType: '1',
 			carDrive: '1',
 			carTransmission: '1',
-			carWheel: '1',
+			carWheel: '',
 			carCondition: '1',
 			carBroken: '1',
 			carColor: '1',
-			carMileage: '1',
+			carMileage: '',
 			carPts: '1',
 			carCause: '1',
-			carFreePlaces: '1',
+			carFreePlaces: '',
 			carIssueDate: '1',
-			carMasterCount: '1',
+			carMasterCount: '',
 			carServiceBook: '1',
-			carGuarantee: '1',
-			carBuyRussia: '1',
+			carGuarantee: '',
+			carBuyRussia: '',
 			carKey: '1',
 			carBus: '1',
 			carSpeedometer: '1',
+			carBodyType: '',
 			carTyre: '1'
 		};
 
@@ -174,7 +176,6 @@ class CarForm extends React.Component {
 							onChange={this.handleChange}
 							value={this.state.carModel}>
 						<option value="">Выберите модель</option>
-
 						{this.car.get().map((car)=> {
 							if (car.name === this.state.carMake) {
 								return car.models.map((model, i)=> {
@@ -182,9 +183,26 @@ class CarForm extends React.Component {
 								})
 							}
 						})}
+					</select>
+					{(() => {
+						if (!this.validateField('carModel')) {
+							return <div className="field-error"></div>;
+						}
+					})()}
+				</div>
 
+				<div className="appearance-form__item">
+					<label htmlFor="car-body-type">Тип кузова</label>
+					<select id="car-body-type" name="carBodyType" className="custom-field custom-field__select"
+							onChange={this.handleChange}
+							value={this.state.carBodyType}>
+						<option value="">Выберите тип</option>
+						{this.car.bodyType.map((bt, i)=> {
+							return <option value={bt.value} key={i}>{bt.label}</option>;
+						})}
 					</select>
 				</div>
+
 				<div className="appearance-form__item">
 					<label htmlFor="car-modification-field">Модификация</label>
 					<select id="car-modification-field" name="carModification"
@@ -226,8 +244,9 @@ class CarForm extends React.Component {
 							onChange={this.handleChange}
 							value={this.state.carEngineType}>
 						<option value="">-</option>
-						<option value="1">дизельный</option>
-						<option value="2">безиновый</option>
+						{this.car.engins.map((engine, i)=> {
+							return <option value={engine.type} key={i}>{engine.label}</option>
+						})}
 					</select>
 				</div>
 				<div className="appearance-form__item">
@@ -236,9 +255,9 @@ class CarForm extends React.Component {
 							onChange={this.handleChange}
 							value={this.state.carDrive}>
 						<option value="">-</option>
-						<option value="1">передний</option>
-						<option value="2">задний</option>
-						<option value="3">полный</option>
+						{this.car.du.map((item, i)=> {
+							return <option value={item.type} key={i}>{item.label}</option>
+						})}
 					</select>
 				</div>
 				<div className="appearance-form__item">
@@ -248,8 +267,9 @@ class CarForm extends React.Component {
 							onChange={this.handleChange}
 							value={this.state.carTransmission}>
 						<option value="">-</option>
-						<option value="1">МТ</option>
-						<option value="1">АТ</option>
+						{this.car.transmission.map((item, i)=> {
+							return <option value={item.type} key={i}>{item.label}</option>
+						})}
 					</select>
 				</div>
 				<div className="appearance-form__item">
@@ -258,7 +278,8 @@ class CarForm extends React.Component {
 							onChange={this.handleChange}
 							value={this.state.carWheel}>
 						<option value="">-</option>
-						<option value="1">type1</option>
+						<option value="1">левый</option>
+						<option value="2">правый</option>
 					</select>
 				</div>
 				<div className="appearance-form__item">
@@ -275,8 +296,9 @@ class CarForm extends React.Component {
 					<select id="car-broken-field" name="carBroken" className="custom-field custom-field__select"
 							onChange={this.handleChange}
 							value={this.state.carBroken}>
-						<option value="0">нет</option>
+						<option value="0">-</option>
 						<option value="1">да</option>
+						<option value="2">нет</option>
 					</select>
 				</div>
 				<div className="appearance-form__item">
@@ -285,21 +307,22 @@ class CarForm extends React.Component {
 							onChange={this.handleChange}
 							value={this.state.carColor}>
 						<option value="">-</option>
-						<option value="white">белый</option>
-						<option value="1">желтый</option>
-						<option value="2">зеленый</option>
-						<option value="3">синий</option>
-						<option value="4">красный</option>
-						<option value="5">коричневый</option>
-						<option value="6">черный</option>
+						{this.car.colors.map((color, i)=> {
+							return <option value={color.value} key={i}>{color.label}</option>
+						})}
 					</select>
 				</div>
 				<div className="appearance-form__item">
 					<label htmlFor="car-mileage-field">Пробег</label>
-					<input type="text" id="car-engine-force-field" name="carMileage"
-						   className="custom-field custom-field__input"
-						   onChange={this.handleChange}
-						   value={this.state.carMileage}/>
+					<select id="car-engine-force-field" name="carMileage"
+							className="custom-field custom-field__select"
+							onChange={this.handleChange}
+							value={this.state.carMileage}>
+						<option value="">-</option>
+						{this.car.mileage.map((item, i)=> {
+							return <option value={item.value} key={i}>{item.label}</option>
+						})}
+					</select>
 				</div>
 				<div className="appearance-form__item">
 					<label htmlFor="car-pts-field">ПТС</label>
@@ -373,8 +396,9 @@ class CarForm extends React.Component {
 					<select id="car-guarantee-field" name="carGuarantee" className="custom-field custom-field__select"
 							onChange={this.handleChange}
 							value={this.state.carGuarantee}>
-						<option value="">нет</option>
-						<option value="1">да</option>
+						<option value="">-</option>
+						<option value="1">нет</option>
+						<option value="2">да</option>
 					</select>
 				</div>
 				<div className="appearance-form__item">
@@ -382,8 +406,9 @@ class CarForm extends React.Component {
 					<select id="car-buy-russia-field" name="carBuyRussia" className="custom-field custom-field__select"
 							onChange={this.handleChange}
 							value={this.state.carBuyRussia}>
+						<option value="">-</option>
 						<option value="1">да</option>
-						<option value="0">нет</option>
+						<option value="2">нет</option>
 					</select>
 				</div>
 				<div className="appearance-form__item">

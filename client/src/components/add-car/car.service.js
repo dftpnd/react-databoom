@@ -48,7 +48,7 @@ class Car {
 			{value: 'silver', label: 'серебряный'}
 		];
 
-		this.mileageDif = [
+		this.mileage = [
 			{value: 1, label: '0 - 4 999'},
 			{value: 2, label: '5 000 - 9 999'},
 			{value: 3, label: '10 000 - 14 999'},
@@ -120,17 +120,17 @@ class Car {
 		];
 
 		this.engins = [
-			{name: 'бензиновый', type: engins.gasoline},
-			{name: 'дизельный', type: engins.diesel},
-			{name: 'гибрид', type: engins.hybrid},
-			{name: 'электро', type: engins.electro},
-			{name: 'газ', type: engins.gas}
+			{label: 'бензиновый', type: engins.gasoline},
+			{label: 'дизельный', type: engins.diesel},
+			{label: 'гибрид', type: engins.hybrid},
+			{label: 'электро', type: engins.electro},
+			{label: 'газ', type: engins.gas}
 		];
 
 		this.du = [
-			{name: 'передний', type: du.front},
-			{name: 'задний', type: du.rear},
-			{name: 'полный', type: du.all}
+			{label: 'передний', type: du.front},
+			{label: 'задний', type: du.rear},
+			{label: 'полный', type: du.all}
 		];
 
 		const tr = {
