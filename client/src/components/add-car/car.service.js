@@ -338,11 +338,11 @@ class Car {
         name: 'FIAT', models: [
         {
           name: '500'
-        },{
+        }, {
           name: 'Punto'
-        },{
+        }, {
           name: 'Scudo'
-        },{
+        }, {
           name: 'Ducato'
         }]
       },
@@ -384,51 +384,35 @@ class Car {
         {
           name: 'Hover H3'
         }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
+          name: 'Hover H5'
         }]
       },
       {
         /* Car Mark */
         name: 'Haima', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'M3'
         }]
       },
       {
         /* Car Mark */
         name: 'Haval', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'todo'
+        }, {
+          name: '7'
+        }, {
+          name: ''
+        }, {
+          name: ''
+        }, {
+          name: ''
+        }, {
+          name: ''
+        }, {
+          name: ''
+        }, {
+          name: ''
         }]
       },
       {
