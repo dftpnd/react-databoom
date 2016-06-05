@@ -133,15 +133,6 @@ class Car {
 			{label: 'полный', type: du.all}
 		];
 
-		const tr = {
-			mt: 'mt',
-			at: 'at',
-			ps: 'Powershift',
-			dsg: 'DSG',
-			dct: 'DCT',
-			ttct: 'T TCT',
-			tfsi: 'TFSI',
-		};
 
 		this.makes = [
 			{

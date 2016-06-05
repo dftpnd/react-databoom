@@ -16,17 +16,6 @@ class CarForm extends React.Component {
 		 */
 		this.requiredFields = ['carMake', 'carModel'];
 
-		this.yearIssue = (()=> {
-			var list = [];
-			const currentYear = parseInt(new Date().getFullYear(), 10);
-
-			//const startYear = currentYear-50
-
-			return list;
-		})();
-
-		console.log(this.yearIssue);
-
 		const defaultState = {
 			carModelOptions: [{name: 'corsa', value: 123}, {name: 'astra', value: 777}],
 			disableCarModel: true,
@@ -129,10 +118,7 @@ class CarForm extends React.Component {
 
 	handleCarMake(event) {
 		this.handleChange(event);
-
-		/**
-		 * todo
-		 */
+		this.setState({carModel: ''});
 	}
 
 	componentWillUpdate(_, nextProps) {

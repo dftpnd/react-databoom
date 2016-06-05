@@ -1,5 +1,4 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 import addCarService from './add-car.service';
 
 class Equipment extends React.Component {

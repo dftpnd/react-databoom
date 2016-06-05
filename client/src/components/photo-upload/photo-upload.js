@@ -32,26 +32,26 @@ class PhotoUpload extends React.Component {
 
 		this.setState({
 			currentImage: index,
-			lightboxIsOpen: true,
+			lightboxIsOpen: true
 		});
 	}
 
 	closeLightbox() {
 		this.setState({
 			currentImage: 0,
-			lightboxIsOpen: false,
+			lightboxIsOpen: false
 		});
 	}
 
 	gotoPrevious() {
 		this.setState({
-			currentImage: this.state.currentImage - 1,
+			currentImage: this.state.currentImage - 1
 		});
 	}
 
 	gotoNext() {
 		this.setState({
-			currentImage: this.state.currentImage + 1,
+			currentImage: this.state.currentImage + 1
 		});
 	}
 
@@ -95,26 +95,6 @@ class PhotoUpload extends React.Component {
 			active: this.state.loading,
 			'photo-upload__btn': true
 		});
-		const LIGHTBOX_IMAGE_SET = [
-			{
-				src: 'http://example.com/example/img1.jpg',
-				srcset: [
-					'http://example.com/example/img1_1024.jpg 1024w',
-					'http://example.com/example/img1_800.jpg 800w',
-					'http://example.com/example/img1_500.jpg 500w',
-					'http://example.com/example/img1_320.jpg 320w',
-				],
-			},
-			{
-				src: 'http://example.com/example/img2.jpg',
-				srcset: [
-					'http://example.com/example/img2_1024.jpg 1024w',
-					'http://example.com/example/img2_800.jpg 800w',
-					'http://example.com/example/img2_500.jpg 500w',
-					'http://example.com/example/img2_320.jpg 320w',
-				],
-			}
-		];
 
 		return (
 			<div className="photo-upload">
