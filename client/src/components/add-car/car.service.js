@@ -2,7 +2,10 @@ class Car {
 	constructor() {
 		const engins = {
 			gasoline: 'gasoline',
-			diesel: 'diesel'
+			diesel: 'diesel',
+			hybrid: 'hybrid',
+			electro: 'electro',
+			gas: 'gas'
 		};
 
 		const du = {
@@ -10,6 +13,40 @@ class Car {
 			front: 'front',
 			rear: 'rear'
 		};
+
+		this.bodyType = [
+			{value: 'sedan', label: 'седан'},
+			{value: 'hatchback', label: 'хетчбэк'},
+			{value: 'estate', label: 'универсал'},
+			{value: 'suv', label: 'внедорожник '},
+			{value: 'cabriolet', label: 'кабриолет'},
+			{value: 'crossover', label: 'кроссовер'},
+			{value: 'coupe', label: 'купе'},
+			{value: 'limousine', label: 'лимузин'},
+			{value: 'minivan', label: 'минивэн'},
+			{value: 'pickup', label: 'пикап'},
+			{value: 'van', label: 'фургон'},
+			{value: 'minibus', label: 'микроавтобус'}
+		];
+
+		this.colors = [
+			{value: 'red', label: 'красный'},
+			{value: 'brown', label: 'коричневый'},
+			{value: 'orange', label: 'оранжевый'},
+			{value: 'beige', label: 'бежевый'},
+			{value: 'yellow', label: 'желтый'},
+			{value: 'green', label: 'зеленый'},
+			{value: 'blue', label: 'голубой'},
+			{value: 'dark-blue', label: 'синий'},
+			{value: 'purple', label: 'фиолетовый'},
+			{value: 'purple', label: 'пурпурный'},
+			{value: 'pink', label: 'розовый'},
+			{value: 'white', label: 'белый'},
+			{value: 'gray', label: 'серый'},
+			{value: 'black', label: 'черный'},
+			{value: 'gold', label: 'золотой'},
+			{value: 'silver', label: 'серебряный'}
+		];
 
 		this.mileageDif = [
 			{value: 1, label: '0 - 4 999'},
@@ -75,7 +112,20 @@ class Car {
 			{value: 61, label: '500 000'}
 		];
 
-		this.engins = [{name: 'бензиновый', type: engins.gasoline}, {name: 'дизельный', type: engins.diesel}];
+		this.transmission = [
+			{value: 'mt', label: 'механика'},
+			{value: 'at', label: 'автомат'},
+			{value: 'robot', label: 'робот'},
+			{value: 'variable', label: 'вариатор'}
+		];
+
+		this.engins = [
+			{name: 'бензиновый', type: engins.gasoline},
+			{name: 'дизельный', type: engins.diesel},
+			{name: 'гибрид', type: engins.hybrid},
+			{name: 'электро', type: engins.electro},
+			{name: 'газ', type: engins.gas}
+		];
 
 		this.du = [
 			{name: 'передний', type: du.front},
