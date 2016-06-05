@@ -72,6 +72,7 @@
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-native": "^0.26.3",
+    "react-photoswipe": "^1.0.0",
     "react-router": "^2.4.1"
   }
 }

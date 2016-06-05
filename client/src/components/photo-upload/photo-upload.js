@@ -1,5 +1,6 @@
 import React from 'react';
 import db from '../services/db.service';
+import {PhotoSwipe} from 'react-photoswipe';
 var classNames = require('classnames');
 
 class PhotoUpload extends React.Component {
