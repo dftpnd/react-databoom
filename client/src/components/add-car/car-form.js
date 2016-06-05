@@ -24,7 +24,6 @@ class CarForm extends React.Component {
 			return list;
 		})();
 
-
 		console.log(this.yearIssue);
 
 		const defaultState = {
@@ -62,7 +61,6 @@ class CarForm extends React.Component {
 
 		this.state = JSON.parse(localStorage.getItem('carFormState')) || defaultState;
 
-
 		this.nextPage = this.nextPage.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleCarMake = this.handleCarMake.bind(this);
@@ -79,7 +77,19 @@ class CarForm extends React.Component {
 	}
 
 	deletePhoto(filename) {
-		alert(filename);
+		var index = null;
+		this.state.carMainPhoto.map((file, i)=> {
+			if (file.filename === filename)
+				return index = i;
+		});
+
+		if (index === null) {
+			alert('Фотография не найдена!');
+			return;
+		}
+		this.state.carMainPhoto.splice(index, 1);
+
+		this.setState({carMainPhoto: this.state.carMainPhoto});
 	}
 
 	nextPage(event) {
@@ -122,7 +132,6 @@ class CarForm extends React.Component {
 		 * todo
 		 */
 	}
-
 
 	componentWillUpdate(_, nextProps) {
 		localStorage.setItem('carFormState', JSON.stringify(nextProps));
@@ -439,6 +448,5 @@ class CarForm extends React.Component {
 		);
 	}
 }
-
 
 export default CarForm;

@@ -71,8 +71,8 @@
     "normalize.css": "^4.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
+    "react-images": "^0.4.6",
     "react-native": "^0.26.3",
-    "react-photoswipe": "^1.0.0",
     "react-router": "^2.4.1"
   }
 }

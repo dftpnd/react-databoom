@@ -100,7 +100,21 @@ class Exterior extends React.Component {
 	}
 
 	deletePhoto(filename) {
-		alert(filename);
+		var index = null;
+		const files = this.state[`element${this.state.activeElement}`];
+
+		files.map((file, i)=> {
+			if (file.filename === filename)
+				return index = i;
+		});
+
+		if (index === null) {
+			alert('Фотография не найдена!');
+			return;
+		}
+		files.splice(index, 1);
+
+		this.setState({[this.state.activeElement]: files});
 	}
 
 	render() {
