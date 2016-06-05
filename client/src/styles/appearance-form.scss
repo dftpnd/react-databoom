@@ -5,7 +5,7 @@
 	position: relative;
 
 	.custom-field {
-		text-indent: 6px;
+    border-radius: 5px;
 		border: 1px solid #ccc;
 		color: #757575;
 		background: #fff;
@@ -19,8 +19,13 @@
 	}
 
 	.custom-field__textarea {
-		border-radius: 5px;
 		padding: 5px 0;
+    text-indent: 6px;
+	}
+
+	.custom-field__input {
+    height: 40px;
+    text-indent: 6px;
 	}
 
 	label {
@@ -31,10 +36,7 @@
 	.field-error{
 		width: 20px;
 		height: 20px;
-		border-radius: 10px;
-		background: #ed7576;
-		content: '!';
-		text-align: center;
+		background: url("../images/error.png");
 		position: absolute;
 		right: 0;
 		top: 50%;
