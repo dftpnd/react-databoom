@@ -894,13 +894,12 @@ class Car {
 		];
 
 		this.models = {};
-
-		this.save = this.save.bind(this);
-
-		return instance;
+		this.get = this.get.bind(this);
 	}
 
-
+	get() {
+		return this.makes;
+	}
 }
 
 export default Car;
