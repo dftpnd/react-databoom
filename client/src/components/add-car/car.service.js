@@ -867,14 +867,13 @@ class Car {
       }
     ];
 
-    this.models = {};
+		this.models = {};
+		this.get = this.get.bind(this);
+	}
 
-    this.save = this.save.bind(this);
-
-    return instance;
-  }
-
-
+	get() {
+		return this.makes;
+	}
 }
 
 export default Car;
