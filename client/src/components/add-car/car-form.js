@@ -198,7 +198,7 @@ class CarForm extends React.Component {
 				<div className="appearance-form__item">
 					<label htmlFor="car-release-field">Год выпуска</label>
 					<input type="text" id="car-release-field" name="carRelease"
-						   className="custom-field custom-field__select"
+						   className="custom-field custom-field__input"
 						   onChange={this.handleChange}
 						   value={this.state.carRelease}/>
 				</div>
@@ -215,7 +215,7 @@ class CarForm extends React.Component {
 				<div className="appearance-form__item">
 					<label htmlFor="car-engine-force-field">Двигатель, л.с.</label>
 					<input type="text" id="car-engine-force-field" name="carEngineForce"
-						   className="custom-field custom-field__select"
+						   className="custom-field custom-field__input"
 						   onChange={this.handleChange}
 						   value={this.state.carEngineForce}/>
 				</div>
@@ -297,7 +297,7 @@ class CarForm extends React.Component {
 				<div className="appearance-form__item">
 					<label htmlFor="car-mileage-field">Пробег</label>
 					<input type="text" id="car-engine-force-field" name="carMileage"
-						   className="custom-field custom-field__select"
+						   className="custom-field custom-field__input"
 						   onChange={this.handleChange}
 						   value={this.state.carMileage}/>
 				</div>
