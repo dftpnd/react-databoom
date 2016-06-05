@@ -1,26 +1,97 @@
 class Car {
   constructor() {
-    const engins = {
-      gasoline: 'gasoline',
-      diesel: 'diesel'
-    };
+	  const engins = {
+		  gasoline: 'gasoline',
+		  diesel: 'diesel'
+	  };
 
-    const du = {
-      all: 'all',
-      front: 'front',
-      rear: 'rear',
-      awd: 'awd',
-      awd4: 'awd4'
-    };
-    const tr = {
-      mt: 'mt',
-      at: 'at',
-      ps: 'Powershift',
-      dsg: 'DSG',
-      dct: 'DCT',
-      ttct: 'T TCT',
-      tfsi: 'TFSI',
-    };
+	  const du = {
+		  all: 'all',
+		  front: 'front',
+		  rear: 'rear'
+	  };
+
+	  this.mileageDif = [
+		  {value: 1, label: '0 - 4 999'},
+		  {value: 2, label: '5 000 - 9 999'},
+		  {value: 3, label: '10 000 - 14 999'},
+		  {value: 4, label: '15 000 - 19 999'},
+		  {value: 5, label: '20 000 - 24 999'},
+		  {value: 6, label: '25 000 - 29 999'},
+		  {value: 7, label: '30 000 - 34 999'},
+		  {value: 8, label: '35 000 - 39 999'},
+		  {value: 9, label: '40 000 - 44 999'},
+		  {value: 10, label: '45 000 - 49 999'},
+		  {value: 11, label: '50 000 - 54 999'},
+		  {value: 12, label: '55 000 - 59 999'},
+		  {value: 13, label: '60 000 - 64 999'},
+		  {value: 14, label: '65 000 - 69 999'},
+		  {value: 15, label: '70 000 - 74 999'},
+		  {value: 16, label: '75 000 - 79 999'},
+		  {value: 17, label: '80 000 - 84 999'},
+		  {value: 18, label: '85 000 - 89 999'},
+		  {value: 19, label: '90 000 - 94 999'},
+		  {value: 20, label: '95 000 - 99 999'},
+		  {value: 21, label: '100 000 - 109 999'},
+		  {value: 22, label: '110 000 - 119 999'},
+		  {value: 23, label: '120 000 - 129 999'},
+		  {value: 24, label: '130 000 - 139 999'},
+		  {value: 25, label: '140 000 - 149 999'},
+		  {value: 26, label: '150 000 - 159 999'},
+		  {value: 27, label: '160 000 - 169 999'},
+		  {value: 28, label: '170 000 - 179 999'},
+		  {value: 29, label: '180 000 - 189 999'},
+		  {value: 30, label: '190 000 - 199 999'},
+		  {value: 31, label: '200 000 - 209 999'},
+		  {value: 32, label: '210 000 - 219 999'},
+		  {value: 33, label: '220 000 - 229 999'},
+		  {value: 34, label: '230 000 - 239 999'},
+		  {value: 35, label: '240 000 - 249 999'},
+		  {value: 36, label: '250 000 - 259 999'},
+		  {value: 37, label: '260 000 - 269 999'},
+		  {value: 38, label: '270 000 - 279 999'},
+		  {value: 39, label: '280 000 - 289 999'},
+		  {value: 40, label: '290 000 - 299 999'},
+		  {value: 41, label: '300 000 - 309 999'},
+		  {value: 42, label: '310 000 - 319 999'},
+		  {value: 43, label: '320 000 - 329 999'},
+		  {value: 44, label: '330 000 - 339 999'},
+		  {value: 45, label: '340 000 - 349 999'},
+		  {value: 46, label: '350 000 - 359 999'},
+		  {value: 47, label: '360 000 - 369 999'},
+		  {value: 48, label: '370 000 - 379 999'},
+		  {value: 49, label: '380 000 - 389 999'},
+		  {value: 50, label: '390 000 - 399 999'},
+		  {value: 51, label: '400 000 - 409 999'},
+		  {value: 52, label: '410 000 - 419 999'},
+		  {value: 53, label: '420 000 - 429 999'},
+		  {value: 54, label: '430 000 - 439 999'},
+		  {value: 55, label: '440 000 - 449 999'},
+		  {value: 56, label: '450 000 - 459 999'},
+		  {value: 57, label: '460 000 - 469 999'},
+		  {value: 58, label: '470 000 - 479 999'},
+		  {value: 59, label: '480 000 - 489 999'},
+		  {value: 60, label: '490 000 - 499 999'},
+		  {value: 61, label: '500 000'}
+	  ];
+
+	  this.engins = [{name: 'бензиновый', type: engins.gasoline}, {name: 'дизельный', type: engins.diesel}];
+
+	  this.du = [
+		  {name: 'передний', type: du.front},
+		  {name: 'задний', type: du.rear},
+		  {name: 'полный', type: du.all}
+	  ];
+
+	  const tr = {
+		  mt: 'mt',
+		  at: 'at',
+		  ps: 'Powershift',
+		  dsg: 'DSG',
+		  dct: 'DCT',
+		  ttct: 'T TCT',
+		  tfsi: 'TFSI',
+	  };
 
     this.makes = [
       {
