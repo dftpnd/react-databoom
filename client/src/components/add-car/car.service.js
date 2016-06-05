@@ -409,11 +409,11 @@ class Car {
         name: 'FIAT', models: [
         {
           name: '500'
-        },{
+        }, {
           name: 'Punto'
-        },{
+        }, {
           name: 'Scudo'
-        },{
+        }, {
           name: 'Ducato'
         }]
       },
@@ -455,261 +455,386 @@ class Car {
         {
           name: 'Hover H3'
         }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
-        }, {
-          name: ''
+          name: 'Hover H5'
         }]
       },
       {
         /* Car Mark */
         name: 'Haima', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'M3'
         }]
       },
       {
         /* Car Mark */
         name: 'Haval', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'H2'
+        }, {
+          name: 'H6'
+        }, {
+          name: 'H8'
+        }, {
+          name: 'H9'
         }]
       },
       {
         /* Car Mark */
         name: 'Honda', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'CR-V'
+        }, {
+          name: 'Pilot'
         }]
       },
       {
         /* Car Mark */
         name: 'Hyundai', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'Solaris'
+        }, {
+          name: 'i30'
+        }, {
+          name: 'Elantra'
+        }, {
+          name: 'Veloster'
+        }, {
+          name: 'i40'
+        }, {
+          name: 'Genesis'
+        }, {
+          name: 'EQUUS'
+        }, {
+          name: 'Creta'
+        }, {
+          name: 'Tucson'
+        }, {
+          name: 'Santa Fe'
+        }, {
+          name: 'Grand Santa Fe'
+        }, {
+          name: 'HD'
+        }, {
+          name: 'H-1'
         }]
       },
       {
         /* Car Mark */
         name: 'Infiniti', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'Q50'
+        }, {
+          name: 'Q70'
+        }, {
+          name: 'QX50'
+        }, {
+          name: 'QX60'
+        }, {
+          name: 'QX70'
+        }, {
+          name: 'QX80'
         }]
       },
       {
         /* Car Mark */
         name: 'Jaguar', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'XE'
+        }, {
+          name: 'XF'
+        }, {
+          name: 'XJ'
+        }, {
+          name: 'F-Pace'
+        }, {
+          name: 'F-Type'
         }]
       },
       {
         /* Car Mark */
         name: 'Jeep', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'Renegade'
+        }, {
+          name: 'Compass'
+        }, {
+          name: 'Cherokee'
+        }, {
+          name: 'Grand Cherokee'
+        }, {
+          name: 'Grand Cherokee SRT8'
+        }, {
+          name: 'Wrangler'
         }]
       },
       {
         /* Car Mark */
         name: 'KIA', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'Picanto'
+        }, {
+          name: 'Rio'
+        }, {
+          name: `pro_cee'd`
+        }, {
+          name: `cee'd`
+        }, {
+          name: `cee'd_sw`
+        }, {
+          name: `pro_cee'd GT`
+        }, {
+          name: `cee'd GT`
+        }, {
+          name: 'Cerato'
+        }, {
+          name: 'Soul'
+        }, {
+          name: 'Optima'
+        }, {
+          name: 'Optima GT'
+        }, {
+          name: 'Quoris'
+        }, {
+          name: 'Sportage'
+        }, {
+          name: 'Sorento'
+        }, {
+          name: 'Mohave'
+        }, {
+          name: 'Venga'
         }]
       },
       {
         /* Car Mark */
         name: 'Lada', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'XRAY'
+        }, {
+          name: 'Granta'
+        }, {
+          name: 'Granta Sport'
+        }, {
+          name: 'Kalina'
+        }, {
+          name: 'Kalina Cross'
+        }, {
+          name: 'Kalina Sport'
+        }, {
+          name: 'Kalina NFR'
+        }, {
+          name: 'Vesta'
+        }, {
+          name: 'Priora'
+        }, {
+          name: 'Largus'
+        }, {
+          name: 'Largus Cross'
+        }, {
+          name: '4x4'
+        }, {
+          name: '4x4 Urban'
         }]
       },
       {
         /* Car Mark */
         name: 'Lamborghini', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'Huracan LP610-4'
+        }, {
+          name: 'Aventador LP700-4'
         }]
       },
       {
         /* Car Mark */
         name: 'Land Rover', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'Discovery Sport'
+        }, {
+          name: 'Range Rover Evoque'
+        }, {
+          name: 'Discovery IV'
+        }, {
+          name: 'Range Rover Sport'
+        }, {
+          name: 'Range Rover'
         }]
       },
       {
         /* Car Mark */
         name: 'Lexus', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'IS'
+        }, {
+          name: 'ES'
+        }, {
+          name: 'GS'
+        }, {
+          name: 'GS F'
+        }, {
+          name: 'LS'
+        }, {
+          name: 'NX'
+        }, {
+          name: 'RX'
+        }, {
+          name: 'GX'
+        }, {
+          name: 'LX'
+        }, {
+          name: 'RC F'
+        }, {
+          name: 'RC'
         }]
       },
       {
         /* Car Mark */
         name: 'LIFAN', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'X50'
+        }, {
+          name: 'Smily'
+        }, {
+          name: 'Celliya'
+        }, {
+          name: 'Solano'
+        }, {
+          name: 'Cebrium'
+        }, {
+          name: 'X60'
         }]
       },
       {
         /* Car Mark */
         name: 'Maserati', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'Ghibli Diesel'
+        }, {
+          name: 'Ghibli'
+        }, {
+          name: 'Ghibli S Q4'
+        }, {
+          name: 'Quattroporte S Q4'
+        }, {
+          name: 'Quattroporte GTS'
+        }, {
+          name: 'Levante'
+        }, {
+          name: 'Levante S'
+        }, {
+          name: 'Levante Diesel'
+        }]
+      },
+      {
+        /* Car Mark */
+        name: 'Mazda', models: [
+        {
+          name: '3'
+        }, {
+          name: '6'
+        }, {
+          name: 'CX-5'
         }]
       },
       {
         /* Car Mark */
         name: 'Mercedes-Benz', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'A'
+        }, {
+          name: 'A AMG'
+        }, {
+          name: 'CLA'
+        }, {
+          name: 'CLA AMG'
+        }, {
+          name: 'C'
+        }, {
+          name: 'C AMG'
+        }, {
+          name: 'E'
+        }, {
+          name: 'E AMG'
+        }, {
+          name: 'CLS'
+        }, {
+          name: 'CLS AMG'
+        }, {
+          name: 'S'
+        }, {
+          name: 'S AMG'
+        }, {
+          name: 'Maybach S'
+        }, {
+          name: 'GLA'
+        }, {
+          name: 'GLA AMG'
+        }, {
+          name: 'GLC'
+        }, {
+          name: 'GLE'
+        }, {
+          name: 'GLE AMG'
+        }, {
+          name: 'GLS'
+        }, {
+          name: 'GLS AMG'
+        }, {
+          name: 'G'
+        }, {
+          name: 'G AMG'
+        }, {
+          name: 'G 4x4²'
+        }, {
+          name: 'C'
+        }, {
+          name: 'C AMG'
+        }, {
+          name: 'E'
+        }, {
+          name: 'AMG GT'
+        }, {
+          name: 'S'
+        }, {
+          name: 'S AMG'
+        }, {
+          name: 'B'
+        }, {
+          name: 'Sprinter'
+        }, {
+          name: 'Citan'
+        }, {
+          name: 'Vito'
+        }, {
+          name: 'V'
         }]
       },
       {
         /* Car Mark */
         name: 'MINI', models: [
         {
-          name: 'todo',
-          modification: [
-            {
-              name: 'todo',
-              driveUnit: du.front,
-              transmission: tr.dct,
-              engin: {horsepower: 208, volume: '2.4', type: engins.gasoline}
-            }
-          ]
+          name: 'Cooper'
+        }, {
+          name: 'Cooper S'
+        }, {
+          name: 'John Cooper Works'
+        }, {
+          name: 'Cooper Clubman'
+        }, {
+          name: 'Cooper S Clubman'
+        }, {
+          name: 'Cooper Paceman'
+        }, {
+          name: 'Cooper S Paceman'
+        }, {
+          name: 'John Cooper Works Paceman'
+        }, {
+          name: 'Cooper Countryman'
+        }, {
+          name: 'Cooper S Countryman'
+        }, {
+          name: 'Cooper SD Countryman'
+        }, {
+          name: 'John Cooper Works Countryman'
         }]
       },
       {
