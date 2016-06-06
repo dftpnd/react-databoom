@@ -16,6 +16,10 @@ class db {
 
 		return instance;
 	}
+
+  getFilesCatalog(){
+    return 'https://t276.databoom.space/uploads/t276/b276/';
+  }
 }
 
 export default new db();

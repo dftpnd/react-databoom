@@ -15,13 +15,22 @@ class CarList extends React.Component {
       var cars = [];
       for(var i=0; i<data.length; i++)
       {
-        var car = data[i];
-        cars.push(<CarRow name={car['main.Model']} />);//
+        cars.push(<CarRow carData={data[i]} />);//
+      }
+
+      if(cars.length == 0)
+      {
+        cars = (
+          <div className="title">
+            <h1>На данный момент на аукцион не выставлено ни одного автомобиля.</h1>
+          </div>
+          );
       }
 
       this.setState({carList:cars});
-    }).fail(function (){
 
+    }).fail(function (){
+      //TODO
     })
   }
 

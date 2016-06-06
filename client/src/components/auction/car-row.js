@@ -11,11 +11,11 @@ class CarRow extends React.Component {
       <div className="car-row">
 
         <div className="car-row__pic">
-          <img src="../images/test-car-image-1.jpg" width="220" height="160" alt=""/>
+          <img src={this.props.carData.carlistImage} width="220" height="160" alt=""/>
         </div>
         <div className="car-row__desc">
-          <h2>{this.props.name}</h2>
-          <p>1,6 AT (136 л.с.) бензин, задний привод, хэтчбек 5 дв., черный</p>
+          <h2>{this.props.carData.carlistTitle}</h2>
+          <p>{this.props.carData.carlistSubtitle}</p>
         </div>
         <ul className="car-row__data">
           <li>

@@ -9,6 +9,15 @@
     border-radius:5px;
   }
 
+  h1 {
+    font-size:18px;
+    line-height:22px;
+    font-weight:300;
+    padding:0 0 24px;
+    margin:0 0 29px;
+    border-bottom:1px solid #e1e1e1;
+  }
+
   ul {
     margin:0 0 10px 16px;
     padding:0;
@@ -269,5 +278,11 @@
 
   }
 
+  .title {
+    position:relative;
+    min-height:53px;
+    padding-right:210px;
+    margin:22px 10px 17px;
+  }
 }
 
