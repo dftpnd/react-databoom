@@ -68,6 +68,7 @@
     "classnames": "^2.2.5",
     "core-js": "^2.0.0",
     "jquery": "^2.2.4",
+    "moment": "^2.13.0",
     "normalize.css": "^4.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",

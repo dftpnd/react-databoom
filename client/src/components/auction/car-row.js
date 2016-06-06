@@ -1,6 +1,11 @@
 import React from 'react';
 
 class CarRow extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="car-row">
@@ -9,13 +14,13 @@ class CarRow extends React.Component {
           <img src="../images/test-car-image-1.jpg" width="220" height="160" alt=""/>
         </div>
         <div className="car-row__desc">
-          <h2>BMW 1er II (F20-F21) 116i</h2>
+          <h2>{this.props.name}</h2>
           <p>1,6 AT (136 л.с.) бензин, задний привод, хэтчбек 5 дв., черный</p>
         </div>
         <ul className="car-row__data">
           <li>
             <i className="rouble-icon"></i>
-            <p>Текущая ставка</p> 
+            <p>Текущая ставка</p>
             <h3>680 000 <em className="rouble">Р</em></h3>
           </li>
           <li>
