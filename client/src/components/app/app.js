@@ -31,9 +31,7 @@ class App extends React.Component {
           </div>
         </header>
         <div className="limiter wrapper">
-          <div className="content-wrapper">
             {this.props.children }
-          </div>
         </div>
       </section>
     );
