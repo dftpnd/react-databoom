@@ -103,3 +103,17 @@ body {
 	padding-bottom: 25px;
 	margin-bottom: 30px;
 }
+
+
+button.common-button {
+  min-width:140px;
+  color:#ffffff;
+  font-size:12px;
+  line-height:16px;
+  font-weight:bold;
+  text-transform:uppercase;
+  cursor:pointer;
+  padding:19px 24px 15px;
+  background:#17314c;
+  border-radius:4px;
+}
