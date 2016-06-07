@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from 'react-modal';
 import numeral from 'numeral'
 
 import ru from 'numeral/languages/ru';
@@ -9,8 +10,19 @@ class CarRow extends React.Component {
 
   constructor(props) {
     super(props);
+	  this.state = {
+		  modalIsOpen: false
+	  };
+	  this.openModal = this.openModal.bind(this);
+	  this.closeModal = this.closeModal.bind(this);
   }
+	openModal() {
+		this.setState({modalIsOpen: true});
+	}
 
+	closeModal() {
+		this.setState({modalIsOpen: false});
+	}
   render() {
     var msg_part;
     var car = this.props.carData;
@@ -52,7 +64,15 @@ class CarRow extends React.Component {
         <p className="car-row__your-status">
           {msg_part}
         </p>
-        <button className="car-row__make-bid common-button" data-open="put-on">Сделать ставку</button>
+        <button className="car-row__make-bid common-button" onClick={this.openModal}>Сделать ставку</button>
+		  <Modal
+			  isOpen={this.state.modalIsOpen}
+			  onRequestClose={this.closeModal}
+			  >
+
+			  <h2>Hello</h2>
+
+		  </Modal>
       </div>
   );
   }
