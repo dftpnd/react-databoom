@@ -11,11 +11,18 @@ class CarRow extends React.Component {
   constructor(props) {
     super(props);
 	  this.state = {
-		  modalIsOpen: false
+		  modalIsOpen: false,
+		  counter:1
 	  };
+	  this.exampleInModal = 'hello world';
+
 	  this.openModal = this.openModal.bind(this);
 	  this.closeModal = this.closeModal.bind(this);
+	  this.incriment = this.incriment.bind(this);
   }
+	incriment(){
+		this.setState({counter: ++this.state.counter});
+	}
 	openModal() {
 		this.setState({modalIsOpen: true});
 	}
@@ -69,9 +76,10 @@ class CarRow extends React.Component {
 			  isOpen={this.state.modalIsOpen}
 			  onRequestClose={this.closeModal}
 			  >
-
-			  <h2>Hello</h2>
-
+			  <button type="button" onClick={this.incriment} >incriment!</button>
+			  <h2>{this.exampleInModal}</h2>
+			  <h2>{this.state.counter}</h2>
+			  <button onClick={this.closeModal}>close</button>
 		  </Modal>
       </div>
   );
