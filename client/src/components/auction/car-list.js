@@ -14,7 +14,7 @@ class CarList extends React.Component {
       var cars = [];
       for(var i=0; i<data.length; i++)
       {
-        cars.push(<CarRow carData={data[i]} />);//
+        cars.push(<CarRow carData={data[i]} key={i} />);//
       }
 
       if(cars.length == 0)
