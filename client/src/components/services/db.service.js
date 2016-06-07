@@ -10,9 +10,9 @@ class db {
 		var db_name = 'b276';
 		var db_url = 'https://t276.databoom.space';
 
-		this.login = this.store  = databoom(db_url, db_name);
+		this.store  = databoom(db_url, db_name);
 
-		this.store.adminlogin('t276', '123');
+    this.login = this.store.adminlogin('t276', '123');
 
 		return instance;
 	}
