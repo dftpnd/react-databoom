@@ -1,10 +1,14 @@
 import React from 'react';
 import moment from 'moment';
+import 'moment/locale/ru';
 
 let instance = null;
 
 var auction_default_mins = 24;
 var auction_bid_addition_secs = 60;
+var minimum_bid = 1;
+
+//moment.locale('ru');
 
 class auction {
   constructor() {
@@ -15,16 +19,15 @@ class auction {
     return instance;
   }
 
+
   processCarList(carlist, buyer_id){
     var res = [];
     var last_loaded_cars = {}; //TODO: remove, it is global variable from old code
     for (var i in carlist) {
       var car = carlist[i];
       this.processCar(car, buyer_id);
-      var time_left_sec = this.calculateTimeLeft(car);
-      if (time_left_sec >= 0) {
+      if (car.time_left_sec >= 0) {
         last_loaded_cars[car.id] = car;
-        car.time_left_sec = time_left_sec;
         res.push(car);
       }
     }
@@ -61,10 +64,22 @@ class auction {
 
     } else {
       max_bid = { value: 1 };
+
     }
 
     car.max_bid = max_bid;
-    car.has_my_bids = has_my_bids
+    car.has_my_bids = has_my_bids;
+    car.my_bid_wins = false;
+
+    /* Set Win/Lose bid of current user */
+    if(car.has_my_bids == true)
+    {
+      var winning_buyer_id = car.max_bid.buyers[0].id;
+      car.my_bid_wins = winning_buyer_id == buyer_id;
+    }
+
+    car.time_left_sec = this.calculateTimeLeft(car);
+    car.timeLeftStr = this.formatTimeLeft(car.time_left_sec);
   }
 
   calculateTimeLeft(car)
@@ -127,12 +142,13 @@ class auction {
   {
     //var time_left_str = moment.utc(time_left_sec * 1000).format("mm:ss");
     //return time_left_str;
+
     if (time_left_sec < 3600)
     {
       return moment.utc(time_left_sec * 1000).format("mm:ss");
     } else
     {
-      return 'Завершение ' + moment().add(time_left_sec, 'seconds').fromNow();
+      return moment().add(time_left_sec, 'seconds').fromNow();
     }
   }
 }
