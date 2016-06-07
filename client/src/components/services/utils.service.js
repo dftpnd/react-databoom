@@ -8,7 +8,7 @@ class utils {
     return instance;
   }
 
-  checkUndefined(value){
+  checkValue(value){
     if(value == undefined || value == null)
     {
       return '';
@@ -17,6 +17,7 @@ class utils {
       return value;
     }
   }
+
 }
 
 export default new utils();

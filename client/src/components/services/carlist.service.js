@@ -21,12 +21,12 @@ class carlist {
   }
 
   processCar(car){
-    car.carlistTitle = utils.checkUndefined(car['main.Model_mark'])
-      + ' ' + utils.checkUndefined(car['main.Model'])
-      + ' ' + utils.checkUndefined(car['main.Year']);
-    car.carlistSubtitle = utils.checkUndefined(car['main.Modification'])
-      + ' ' + utils.checkUndefined(car['main.Drivetrain'])
-      + ' ' + utils.checkUndefined(car['main.Engine_type']);
+    car.carlistTitle = utils.checkValue(car['main.Model_mark'])
+      + ' ' + utils.checkValue(car['main.Model'])
+      + ' ' + utils.checkValue(car['main.Year']);
+    car.carlistSubtitle = utils.checkValue(car['main.Modification'])
+      + ' ' + utils.checkValue(car['main.Drivetrain'])
+      + ' ' + utils.checkValue(car['main.Engine_type']);
 
     car.carlistImage = null;
     if (car.images_main && car.images_main.length > 0)

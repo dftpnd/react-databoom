@@ -7,11 +7,10 @@ class CarList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { cars :[]};
+    this.state = { carList :[]};
 
     store.getAuctionCars().done((data) => {
-
-      console.log('store.getAuctionCars().done');
+      
       var cars = [];
       for(var i=0; i<data.length; i++)
       {
