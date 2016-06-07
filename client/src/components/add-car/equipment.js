@@ -1,11 +1,14 @@
 import React from 'react';
+import Modal from 'react-modal';
 import addCarService from './add-car.service';
 
 class Equipment extends React.Component {
 	constructor(props) {
 		super(props);
 		//localStorage.clear();
+
 		const defaultState = {
+			publicateModalIsOpen: false,
 			upholstery: 'cloth',
 			interiorColor: 'dark',
 			airbags: 'missing',
@@ -26,6 +29,8 @@ class Equipment extends React.Component {
 
 		this.fieldHandler = this.fieldHandler.bind(this);
 		this.checkHandler = this.checkHandler.bind(this);
+		this.publishCar = this.publishCar.bind(this);
+		this.publicateModalСlose = this.publicateModalСlose.bind(this);
 	}
 
 	componentWillUpdate(_, nextProps) {
@@ -57,9 +62,12 @@ class Equipment extends React.Component {
 		}
 		this.setState({[event.target.name]: checkList})
 	}
-
+	publicateModalСlose() {
+		this.setState({publicateModalIsOpen: false});
+	}
 	publishCar() {
-		addCarService.save();
+		this.setState({publicateModalIsOpen: true});
+		//addCarService.save();
 
 		//alert('Данные формы скоро будут записываться в базу, а пока можно посмотреть консоль с данными.');
 		//localStorage.clear();
@@ -506,6 +514,16 @@ class Equipment extends React.Component {
 					<div></div>
 					<button className="custom-btn" type="button" onClick={this.publishCar}>
 						Опубликовать
+						<Modal
+							isOpen={this.state.publicateModalIsOpen}
+							onRequestClose={this.publicateModalСlose}
+							shouldCloseOnOverlayClick={false}
+							className="modal"
+						>
+							<h2 className="modal__title">hello world</h2>
+							<button onClick={this.publicateModalСlose} className="modal__close"></button>
+
+						</Modal>
 					</button>
 				</nav>
 			</div>
