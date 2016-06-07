@@ -6,6 +6,17 @@ import ru from 'numeral/languages/ru';
 numeral.language('ru', ru);
 numeral.language('ru');
 
+const customStyles = {
+	content : {
+		top                   : '50%',
+		left                  : '50%',
+		right                 : 'auto',
+		bottom                : 'auto',
+		marginRight           : '-50%',
+		transform             : 'translate(-50%, -50%)'
+	}
+};
+
 class CarRow extends React.Component {
 
   constructor(props) {
@@ -75,6 +86,7 @@ class CarRow extends React.Component {
 		  <Modal
 			  isOpen={this.state.modalIsOpen}
 			  onRequestClose={this.closeModal}
+			  style={customStyles}
 			  >
 			  <button type="button" onClick={this.incriment} >incriment!</button>
 			  <h2>{this.exampleInModal}</h2>
