@@ -12,7 +12,7 @@ class db {
 
 		this.login = this.store  = databoom(db_url, db_name);
 
-		this.store.login('default', '123');
+		this.store.adminlogin('t276', '123');
 
 		return instance;
 	}

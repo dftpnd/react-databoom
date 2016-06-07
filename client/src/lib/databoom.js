@@ -156,44 +156,66 @@ function databoom_db(site, dbname) {
 		return d.promise();
 	}
 
-	db.login = function (username, password) {
-		var d = $.Deferred();
-		if (username) {
-			$.ajax({
-				type: "POST",
-				xhrFields: { withCredentials: true },
-				url: db.url + '/sesslogin',
-				dataType: 'json',
-				data: { username: username, password: password },
-				success: function (data) {
-					$.ajaxSetup({
-						headers: { Authorization: "NBBasic " + data.token }
-					});
-					d.resolve(true);
-				},
-				error: function (error) {
-					d.reject(error);
-				}
-			});
-		} else {
-			$.ajax({
-				type: "POST",
-				xhrFields: { withCredentials: true },
-				url: db.url + '/sesslogin',
-				dataType: 'json',
-				success: function (data) {
-					$.ajaxSetup({
-						headers: { Authorization: "NBBasic " + data.token }
-					});
-					d.resolve(true);
-				},
-				error: function (error) {
-					d.reject(error);
-				}
-			});
-		}
-		return d.promise();
-	}
+  db.login = function (username, password) {
+    var d = $.Deferred();
+    if (username) {
+      $.ajax({
+        type: "POST",
+        xhrFields: { withCredentials: true },
+        url: db.url + '/sesslogin?silent=true',
+        dataType: 'json',
+        data: { username: username, password: password },
+        success: function (data) {
+          $.ajaxSetup({
+            headers: { Authorization: "NBBasic " + data.token }
+          });
+          d.resolve(true);
+        },
+        error: function (error) {
+          d.reject(error);
+        }
+      });
+    } else {
+      $.ajax({
+        type: "POST",
+        xhrFields: { withCredentials: true },
+        url: db.url + '/sesslogin?silent=true',
+        dataType: 'json',
+        success: function (data) {
+          $.ajaxSetup({
+            headers: { Authorization: "NBBasic " + data.token }
+          });
+          d.resolve(true);
+        },
+        error: function (error) {
+          d.reject(error);
+        }
+      });
+    }
+    return d.promise();
+  }
+
+  db.adminlogin = function (username, password) {
+    var d = $.Deferred();
+    $.ajax({
+      type: "POST",
+      xhrFields: { withCredentials: true },
+      url: db.site + '/rootapi2/login?silent=true',
+      data: { username: username, password: password },
+      success: function (data) {
+        var data = JSON.parse(data);
+        $.ajaxSetup({
+          headers: { Authorization: "NBBasic " + data.token }
+        });
+        d.resolve(true);
+      },
+      contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+      error: function (error) {
+        d.reject(error);
+      }
+    });
+    return d;
+  }
 
 	db.loadObj = function (id)
 	{
