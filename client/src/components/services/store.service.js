@@ -11,9 +11,7 @@ class store {
     return instance;
   }
 
-  getAuctionCars(){
-    var buyer_id = 'sdsdsd';
-
+  getAuctionCars(buyer_id){
     return db.login.then(() => {
       return db.store.load('car', { filter: 'auction_step eq 1', expand: 'bids,images_main,schemeparts' })
         .then((carlist) => {
@@ -23,7 +21,13 @@ class store {
         })
     })
 
+  }
 
+  save(collection, data)
+  {
+    return db.login.then(() => {
+      return db.store.save(collection, data);
+    })
   }
 }
 

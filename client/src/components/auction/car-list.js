@@ -8,13 +8,15 @@ class CarList extends React.Component {
     super(props);
 
     this.state = { carList :[]};
+    var buyerId="test_buyer";
+    
+    
+    store.getAuctionCars(buyerId).done((data) => {
 
-    store.getAuctionCars().done((data) => {
-      
       var cars = [];
       for(var i=0; i<data.length; i++)
       {
-        cars.push(<CarRow carData={data[i]} key={i} />);//
+        cars.push(<CarRow carData={data[i]} key={i} buyerId={buyerId}/>);//
       }
 
       if(cars.length == 0)

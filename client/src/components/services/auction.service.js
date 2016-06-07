@@ -80,6 +80,8 @@ class auction {
 
     car.time_left_sec = this.calculateTimeLeft(car);
     car.timeLeftStr = this.formatTimeLeft(car.time_left_sec);
+
+    car.minBidValue = this.calculateMinimumBid(car.max_bid.value);
   }
 
   calculateTimeLeft(car)
@@ -150,6 +152,14 @@ class auction {
     {
       return moment().add(time_left_sec, 'seconds').fromNow();
     }
+  }
+
+  calculateMinimumBid(maxBidValue)
+  {
+    var min_bid = 0;
+    min_bid = Math.max(maxBidValue*1.05, 1000);
+    min_bid = min_bid % 1000 == 0 ? min_bid : min_bid + (1000 - min_bid % 1000);
+    return min_bid;
   }
 }
 
