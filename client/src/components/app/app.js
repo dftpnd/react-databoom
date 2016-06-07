@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router'
 
-
 //assets
 require('normalize.css/normalize.css');
 require('styles/index.scss');
@@ -20,6 +19,7 @@ class App extends React.Component {
               </Link>
               <Link to='/auction' className="item" activeClassName="active">auction</Link>
               <Link to='/add-car' className="item" activeClassName="active">add-car</Link>
+              <Link to='/manager' className="item" activeClassName="active">manager</Link>
             </nav>
 
             <div className="header-auth">

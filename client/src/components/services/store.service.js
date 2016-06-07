@@ -23,6 +23,18 @@ class store {
 
   }
 
+  getFinishedCars(){
+    return db.login.then(() => {
+      return db.store.load('car', { filter: 'auction_step eq 1', expand: 'bids,images_main' })
+        .then((carlist) => {
+          return auction.processFinishedCarList(carlist);
+        }).then((carlist) => {
+          return carlistService.processCarList(carlist);
+        })
+    })
+
+  }
+
   save(collection, data)
   {
     return db.login.then(() => {

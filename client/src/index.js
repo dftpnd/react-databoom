@@ -5,11 +5,11 @@ import ReactDOM from 'react-dom'
 
 import 'components/services/db.service';
 
-
 import App from 'components/app/app';
 import AddCar from 'components/add-car/add-car';
 import addCarService from 'components/add-car/add-car.service';
 import Auction from 'components/auction/auction';
+import Manager from 'components/manager/manager';
 import Login from './components/login/login';
 //import Auth from './components/auth/auth';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
@@ -41,6 +41,7 @@ ReactDOM.render((
 		<Route path="/" component={App}>
 			<IndexRoute component={Auction} onEnter={requireAuth}/>
 			<Route path="auction" component={Auction} onEnter={requireAuth}/>
+      <Route path="manager" component={Manager} onEnter={requireAuth}/>
 			<Route path="add-car" component={AddCar}>
 				<Route path=":stepName" component={AddCar} onEnter={handlerRouter}/>
 			</Route>

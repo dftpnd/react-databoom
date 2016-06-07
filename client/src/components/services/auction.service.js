@@ -20,14 +20,14 @@ class auction {
   }
 
 
+
+
   processCarList(carlist, buyer_id){
     var res = [];
-    var last_loaded_cars = {}; //TODO: remove, it is global variable from old code
     for (var i in carlist) {
       var car = carlist[i];
       this.processCar(car, buyer_id);
       if (car.time_left_sec >= 0) {
-        last_loaded_cars[car.id] = car;
         res.push(car);
       }
     }
@@ -82,7 +82,34 @@ class auction {
     car.timeLeftStr = this.formatTimeLeft(car.time_left_sec);
 
     car.minBidValue = this.calculateMinimumBid(car.max_bid.value);
+
   }
+
+  processFinishedCarList(carlist)
+  {
+    var res = [];
+    for (var i in carlist) {
+      var car = carlist[i];
+      this.processCar(car, 'no buyer id'); //TODO: make buyer_id optional
+      if (car.time_left_sec < 0) {
+        res.push(car);
+      }
+    }
+
+    //order by date of maxbid
+    res.sort(function (a, b) {
+      if (a.max_bid && b.max_bid) //quick fix (этой провеки делать не надо, т.к. таких данных не может быть, но они есть из-за ошибки в БД)
+      {
+        return (a.max_bid.dt > b.max_bid.dt) ? 1 : (a.max_bid.dt < b.max_bid.dt) ? -1 : 0;
+      } else {
+        return 1;
+      }
+
+    });
+
+    return res;
+  }
+
 
   calculateTimeLeft(car)
   {
