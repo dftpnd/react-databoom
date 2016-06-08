@@ -32,6 +32,9 @@ class CarRow extends React.Component {
 	  this.openModal = this.openModal.bind(this);
 	  this.closeModal = this.closeModal.bind(this);
 	  this.makeBid = this.makeBid.bind(this);
+    
+    this.handleBidChange = this.handleBidChange.bind(this);
+
   }
 
   makeBid(){
@@ -83,6 +86,10 @@ class CarRow extends React.Component {
     this.setState({modalIsOpen: false});
 
 	}
+
+  handleBidChange (event) {
+    this.setState({newBidValue: event.target.value});
+  }
 
   render() {
     this.car = this.props.carData;
@@ -137,7 +144,7 @@ class CarRow extends React.Component {
         <h2>Новая ставка</h2>
         <p>Текущая ставка: {car.max_bid.value} Р</p>
         <p>Минимальная ставка: {car.minBidValue} Р</p>
-        <p><span>Ваша ставка</span><input type="text" value={this.state.newBidValue} /></p>
+        <p><span>Ваша ставка</span><input type="text" value={this.state.newBidValue} onChange={this.handleBidChange} /></p>
 			  <button type="button" className="common-button" onClick={this.makeBid} >Сделать ставку на аукционе</button>
 			  <button onClick={this.closeModal} className="common-button" type="button">Закрыть</button>
 
