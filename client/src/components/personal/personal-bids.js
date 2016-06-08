@@ -6,7 +6,6 @@ class PersonalBids extends React.Component {
   render() {
     return (
       <div className="limiter wrapper">
-        1
         <CarList/>
       </div>
     );

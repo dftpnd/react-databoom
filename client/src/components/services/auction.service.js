@@ -1,4 +1,3 @@
-import React from 'react';
 import moment from 'moment';
 import 'moment/locale/ru';
 
@@ -6,7 +5,6 @@ let instance = null;
 
 var auction_default_mins = 24;
 var auction_bid_addition_secs = 60;
-var minimum_bid = 1;
 
 //moment.locale('ru');
 

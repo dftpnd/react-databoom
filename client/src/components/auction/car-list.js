@@ -37,20 +37,6 @@ class CarList extends React.Component {
   }
 
   render() {
-
-    //var elem = (<div>123</div>);
-
-    //store.getAuctionCars().
-
-    /*
-    var cars = [];
-
-    for(var i=0; i<10; i++)
-    {
-      cars.push(<CarRow/>);
-    }
-  */
-
     return (
       <div className="car-list">
         {this.state.carList}

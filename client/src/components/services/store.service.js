@@ -14,7 +14,7 @@ class store {
 
   getAuctionCars(buyer_id){
     return db.login.then(() => {
-      return db.store.load('car', { filter: 'auction_step eq 1', expand: 'bids,images_main,schemeparts' })
+      return db.store.load('car', { filter: 'auction_step eq 1', expand: 'bids,images_main' })
         .then((carlist) => {
           return auction.processCarList(carlist, buyer_id);
         }).then((carlist) => {
@@ -111,7 +111,7 @@ class store {
   getCarsOwnedByBuyer(buyer_id)
   {
     return db.login.then(() => {
-      return db.store.load('car', { filter: '(bids/buyers eq \'' + buyer_id + '\')', expand: 'bids,images_main,schemeparts' })
+      return db.store.load('car', { filter: 'trades/buyer eq \'' + buyer_id + '\'', expand: 'trades,images_main' })
         .then((carlist) => {
           return auction.processSoldCarList(carlist);
         }).then((carlist) => {
@@ -120,6 +120,17 @@ class store {
     })
   }
 
+  getCarsPlayedByBuyer(buyer_id)
+  {
+    return db.login.then(() => {
+      return db.store.load('car', { filter: '(bids/buyers eq \'' + buyer_id + '\')', expand: 'bids,images_main' })
+        .then((carlist) => {
+          return auction.processCarList(carlist, buyer_id); 
+        }).then((carlist) => {
+          return carlistService.processCarList(carlist);
+        })
+    })
+  }
 
   save(collection, data)
   {

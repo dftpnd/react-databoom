@@ -122,7 +122,7 @@ button.common-button {
 
 .sub-nav {
   position:relative;
-  z-index:210;
+  /*z-index:210;*/
   margin:-1px 0 0;
   background:#ffffff;
   border-bottom:1px solid #dde2e9;
@@ -168,13 +168,4 @@ a:hover {
   text-decoration:none;
 }
 
-button {
-  font-family:'Proxima Nova', sans-serif;
-  margin:0;
-  border:0;
-  box-sizing:border-box;
-}
-button::-moz-focus-inner {
-  padding:0;
-  border:0;
-}
+

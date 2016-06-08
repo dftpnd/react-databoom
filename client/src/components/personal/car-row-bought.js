@@ -1,6 +1,5 @@
 import React from 'react';
 import numeral from 'numeral'
-import store from '../services/store.service';
 
 import ru from 'numeral/languages/ru';
 numeral.language('ru', ru);
