@@ -45,7 +45,9 @@ ReactDOM.render((
 			<Route path="auction" component={Auction} onEnter={requireAuth}/>
       <Route path="manager" component={Manager} onEnter={requireAuth}/>
       <Route path="manager-sold" component={ManagerSold} onEnter={requireAuth}/>
-      <Route path="personal" component={Personal} onEnter={requireAuth}/>
+      <Route path="personal" component={Personal} onEnter={requireAuth}>
+        <Route path=":stepName" component={Personal} onEnter={requireAuth}/>
+      </Route>
 			<Route path="add-car" component={AddCar}>
 				<Route path=":stepName" component={AddCar} onEnter={handlerRouter}/>
 			</Route>
