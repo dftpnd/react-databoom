@@ -108,6 +108,18 @@ class store {
     });
   }
 
+  getCarsOwnedByBuyer(buyer_id)
+  {
+    return db.login.then(() => {
+      return db.store.load('car', { filter: '(bids/buyers eq \'' + buyer_id + '\')', expand: 'bids,images_main,schemeparts' })
+        .then((carlist) => {
+          return auction.processSoldCarList(carlist);
+        }).then((carlist) => {
+          return carlistService.processCarList(carlist);
+        })
+    })
+  }
+
 
   save(collection, data)
   {

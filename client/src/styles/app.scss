@@ -167,3 +167,14 @@ a {
 a:hover {
   text-decoration:none;
 }
+
+button {
+  font-family:'Proxima Nova', sans-serif;
+  margin:0;
+  border:0;
+  box-sizing:border-box;
+}
+button::-moz-focus-inner {
+  padding:0;
+  border:0;
+}

@@ -32,9 +32,8 @@ class CarRow extends React.Component {
 	  this.openModal = this.openModal.bind(this);
 	  this.closeModal = this.closeModal.bind(this);
 	  this.makeBid = this.makeBid.bind(this);
-    
-    this.handleBidChange = this.handleBidChange.bind(this);
 
+    this.handleBidChange = this.handleBidChange.bind(this);
   }
 
   makeBid(){
@@ -132,7 +131,7 @@ class CarRow extends React.Component {
             <h5>{car.timeLeftStr}</h5>
           </li>
         </ul>
-        <p className="car-row__your-status">
+        <p className="car-row__your-status auction">
           {msg_part}
         </p>
         <button className="car-row__make-bid common-button" onClick={this.openModal} type="button">Сделать ставку</button>
