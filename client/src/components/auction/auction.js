@@ -5,7 +5,9 @@ import CarList from './car-list';
 class Auction extends React.Component {
 	render() {
 		return (
+      <div className="limiter wrapper">
       		<CarList/>
+      </div>
 		);
 	}
 }

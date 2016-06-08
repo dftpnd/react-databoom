@@ -14,13 +14,11 @@ class CarRow extends React.Component {
     this.car = {};
     this.state = {
       buttonsDisabled: false
-    }
+    };
 
     this.confirm = this.confirm.bind(this);
     this.refuse = this.refuse.bind(this);
   }
-
-
 
   confirm(){
     var save_data = {
@@ -32,7 +30,7 @@ class CarRow extends React.Component {
         car: [{ id: this.car.id }],
         buyer: [{ id: this.car.buyerId }],
         price: this.car.max_bid.value,
-        dt: new Date(),
+        dt: new Date()
       }]
     };
 

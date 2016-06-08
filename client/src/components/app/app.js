@@ -21,6 +21,7 @@ class App extends React.Component {
               <Link to='/add-car' className="item" activeClassName="active">add-car</Link>
               <Link to='/manager' className="item" activeClassName="active">manager</Link>
               <Link to='/manager-sold' className="item" activeClassName="active">manager-sold</Link>
+              <Link to='/personal' className="item" activeClassName="active">personal</Link>
             </nav>
 
             <div className="header-auth">
@@ -31,9 +32,9 @@ class App extends React.Component {
             </div>
           </div>
         </header>
-        <div className="limiter wrapper">
-            {this.props.children }
-        </div>
+
+        {this.props.children }
+
       </section>
     );
   }
