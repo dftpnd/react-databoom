@@ -49,7 +49,21 @@ class CarRow extends React.Component {
   }
 
   refuse() {
+    var save_data = {
+      id: this.car.id,
+      auction_step: 2,
+      trade_accepted: false
 
+    };
+    this.setState({buttonsDisabled: true});
+    store.save('car', save_data).done(() => {
+      alert('Результаты торгов отменены.');
+      this.setState({buttonsDisabled: false});
+      location.reload();
+    }).fail(() => {
+      alert('Ошибка при сохранении данных.');
+      this.setState({buttonsDisabled: false});
+    });
   }
 
   render() {
