@@ -10,6 +10,7 @@ import AddCar from 'components/add-car/add-car';
 import addCarService from 'components/add-car/add-car.service';
 import Auction from 'components/auction/auction';
 import Manager from 'components/manager/manager';
+import ManagerSold from 'components/manager-sold/manager-sold';
 import Login from './components/login/login';
 //import Auth from './components/auth/auth';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
@@ -42,6 +43,7 @@ ReactDOM.render((
 			<IndexRoute component={Auction} onEnter={requireAuth}/>
 			<Route path="auction" component={Auction} onEnter={requireAuth}/>
       <Route path="manager" component={Manager} onEnter={requireAuth}/>
+      <Route path="manager-sold" component={ManagerSold} onEnter={requireAuth}/>
 			<Route path="add-car" component={AddCar}>
 				<Route path=":stepName" component={AddCar} onEnter={handlerRouter}/>
 			</Route>

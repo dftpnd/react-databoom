@@ -1,7 +1,7 @@
 import React from 'react';
 import CarRow from './car-row';
 import store from '../services/store.service';
-import ManagerService from './manager.service'
+import ManagerService from '../services/manager.service'
 
 class CarList extends React.Component {
 
@@ -12,8 +12,8 @@ class CarList extends React.Component {
 
     store.getFinishedCarsWithBuyers().then((data) => {
       var carlist = ManagerService.processFinishedCarlist(data);
-      console.log(JSON.stringify(carlist, null, '\t'));
-      
+      //console.log(JSON.stringify(carlist, null, '\t'));
+
       var carRows = [];
       for(var i=0; i<carlist.length; i++)
       {

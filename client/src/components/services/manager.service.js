@@ -21,7 +21,7 @@ class ManagerService {
     }
     return carlist;
   }
-  
+
 }
 
 export default new ManagerService();

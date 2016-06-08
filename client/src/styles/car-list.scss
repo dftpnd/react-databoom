@@ -165,14 +165,14 @@
     }
 
     .car-row__data {
-      position:absolute;
-      right:270px;
-      top:28px;
-      width:180px;
-      font-family:'Arial', sans-serif;
-      margin:0;
+      position: absolute;
+      right: 270px;
+      top: 28px;
+      width: 180px;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
 
-      .sold{
+      &.sold{
         right:30px;
       }
 

@@ -35,6 +35,17 @@ class store {
     })
   }
 
+  getSoldCars(){
+    return db.login.then(() => {
+      return db.store.load('car', { filter: 'auction_step eq 2', expand: 'bids,images_main,trades' })
+        .then((carlist) => {
+          return auction.processSoldCarList(carlist);
+        }).then((carlist) => {
+          return carlistService.processCarList(carlist);
+        })
+    })
+  }
+
   getCarBuyers()
   {
     return db.login.then(() => {
@@ -74,6 +85,29 @@ class store {
       return cars;
     });
   }
+
+  getSoldCarsWithBuyers()
+  {
+    var cars = [];
+    var carBuyers = {};
+    var promises = [
+      this.getSoldCars().done((data) => {
+        cars = data;
+      }),
+      this.getCarBuyers().done((data) => {
+        carBuyers = data.dict;
+      })
+    ];
+
+    return Promise.all(promises).then(() => {
+      for(var i=0; i<cars.length; i++)
+      {
+        cars[i].buyer = carBuyers[cars[i].buyerId];
+      }
+      return cars;
+    });
+  }
+
 
   save(collection, data)
   {

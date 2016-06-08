@@ -20,6 +20,7 @@ class App extends React.Component {
               <Link to='/auction' className="item" activeClassName="active">auction</Link>
               <Link to='/add-car' className="item" activeClassName="active">add-car</Link>
               <Link to='/manager' className="item" activeClassName="active">manager</Link>
+              <Link to='/manager-sold' className="item" activeClassName="active">manager-sold</Link>
             </nav>
 
             <div className="header-auth">

@@ -115,6 +115,40 @@ class auction {
     return res;
   }
 
+  processSoldCarList(carlist)
+  {
+    var res = [];
+    for (var i=0; i<carlist.length; i++) {
+      var car = carlist[i];
+      this.processCar(car);
+
+      car.buyerId = null;
+      if(car.max_bid && car.max_bid.buyers && car.max_bid.buyers.length)
+      {
+        car.buyerId = car.max_bid.buyers[0].id;
+      }
+
+      car.trade = null;
+      if(car.trades && car.trades.length)
+      {
+        car.trade = car.trades[0];
+      }
+
+      if (car.trade_accepted && car.trade) {
+        car.tradeEndMoment = moment(car.trades[0].dt);
+        car.tradeEndMomentStr = car.tradeEndMoment.format('lll');
+        res.push(car);
+      }
+    }
+
+    //order by date of maxbid
+    res.sort(function (a, b) {
+      return (a.tradeEndMoment < b.tradeEndMoment) ? 1 : (a.tradeEndMoment > b.tradeEndMoment) ? -1 : 0;
+    });
+
+    return res;
+  }
+
   calculateTimeLeft(car)
   {
     var start_time = moment().subtract(7, 'days'); //defult valuse in case auction_start not filled
