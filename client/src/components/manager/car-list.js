@@ -1,6 +1,7 @@
 import React from 'react';
 import CarRow from './car-row';
 import store from '../services/store.service';
+import ManagerService from './manager.service'
 
 class CarList extends React.Component {
 
@@ -8,33 +9,33 @@ class CarList extends React.Component {
     super(props);
 
     this.state = { carList :[]};
-    
-    store.getFinishedCars().done((data) => {
 
-      var cars = [];
-      for(var i=0; i<data.length; i++)
+    store.getFinishedCarsWithBuyers().then((data) => {
+      var carlist = ManagerService.processFinishedCarlist(data);
+      console.log(JSON.stringify(carlist, null, '\t'));
+      
+      var carRows = [];
+      for(var i=0; i<carlist.length; i++)
       {
-        cars.push(<CarRow carData={data[i]} key={i} />);//
+        carRows.push(<CarRow carData={carlist[i]} key={i} />);//
       }
 
-      if(cars.length == 0)
+      if(carRows.length == 0)
       {
-        cars = (
+        carRows = (
           <div className="title">
             <h1>На данный момент нет автомобилей с завершившимся аукционном.</h1>
           </div>
         );
       }
-
-      this.setState({carList:cars});
-
-    }).fail(function (){
-      alert('Произошла ошибка при загрузке списка автомобилей.');
+      this.setState({carList:carRows});
+    },
+    (error) => {
+      alert('Произошла ошибка при загрузке списка автомобилей. Текст ошибки: ' + JSON.stringify(error));
     })
   }
 
   render() {
-    
     return (
       <div className="car-list">
         {this.state.carList}

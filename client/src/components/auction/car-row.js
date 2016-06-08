@@ -29,15 +29,12 @@ class CarRow extends React.Component {
 
 	  };
 	  this.car = {};
-
 	  this.openModal = this.openModal.bind(this);
 	  this.closeModal = this.closeModal.bind(this);
 	  this.makeBid = this.makeBid.bind(this);
-
   }
 
   makeBid(){
-
     var bidValue = this.state.newBidValue;
 
     if (isNaN(bidValue)) {

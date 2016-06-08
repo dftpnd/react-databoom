@@ -4,6 +4,7 @@ import carlistService from '../services/carlist.service';
 let instance = null;
 
 class store {
+
   constructor() {
     if (!instance) {
       instance = this;
@@ -32,7 +33,46 @@ class store {
           return carlistService.processCarList(carlist);
         })
     })
+  }
 
+  getCarBuyers()
+  {
+    return db.login.then(() => {
+      return db.store.load('user')
+        .then((users) => {
+          var res = {
+            dict: {},
+            data: users
+          };
+          for (var i = 0; i < users.length; i++)
+          {
+            res.dict[users[i].id] = users[i];
+          }
+          return res;
+        })
+    })
+  }
+
+  getFinishedCarsWithBuyers()
+  {
+    var cars = [];
+    var carBuyers = {};
+    var promises = [
+      this.getFinishedCars().done((data) => {
+        cars = data;
+      }),
+      this.getCarBuyers().done((data) => {
+        carBuyers = data.dict;
+      })
+    ];
+
+    return Promise.all(promises).then(() => {
+      for(var i=0; i<cars.length; i++)
+      {
+        cars[i].buyer = carBuyers[cars[i].buyerId];
+      }
+      return cars;
+    });
   }
 
   save(collection, data)

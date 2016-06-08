@@ -34,16 +34,16 @@ class auction {
     return res;
   }
 
-  processCar(car, buyer_id){
+  processCar(car, buyerId){
     var has_my_bids = false;
     var max_bid = null;
     var buyers2bids = {}; //max bids of buyers
-    if (car.bids && car.bids.length > 0) {
+    if (car.bids && car.bids.length) {
       var max_bid = car.bids[0];
       if (max_bid.value == undefined) max_bid.value = 0; //quick patch (occured empty bids)
       for (var b in car.bids) {
         var bid = car.bids[b];
-        if (bid.buyers && bid.buyers.length > 0) {
+        if (bid.buyers && bid.buyers.length) {
           var buyer_id = bid.buyers[0].id;
           if (buyers2bids[buyer_id] == undefined || buyers2bids[buyer_id].value < bid.value)
           {
@@ -56,7 +56,7 @@ class auction {
         if (bid.value && bid.value > max_bid.value) {
           max_bid = bid;
         }
-        if (bid.buyers && bid.buyers.length > 0 && bid.buyers[0].id == buyer_id) {
+        if (buyerId && bid.buyers && bid.buyers.length  && bid.buyers[0].id == buyerId) {
           has_my_bids = true;
         }
       }
@@ -72,10 +72,10 @@ class auction {
     car.my_bid_wins = false;
 
     /* Set Win/Lose bid of current user */
-    if(car.has_my_bids == true)
+    if(buyerId && car.has_my_bids == true)
     {
       var winning_buyer_id = car.max_bid.buyers[0].id;
-      car.my_bid_wins = winning_buyer_id == buyer_id;
+      car.my_bid_wins = winning_buyer_id == buyerId;
     }
 
     car.time_left_sec = this.calculateTimeLeft(car);
@@ -83,14 +83,25 @@ class auction {
 
     car.minBidValue = this.calculateMinimumBid(car.max_bid.value);
 
+    car.endMoment = moment(car.logical_end_moment);
+    car.endMomentStr = car.endMoment.format('lll');
+    car.tradesDurationHours = car.endMoment.diff(moment(car.auction_start), 'hours') + ' часов';
+    car.bidsCount = car.bids && car.bids.length ? car.bids.length : 0;
   }
 
   processFinishedCarList(carlist)
   {
     var res = [];
-    for (var i in carlist) {
+    for (var i=0; i<carlist.length; i++) {
       var car = carlist[i];
-      this.processCar(car, 'no buyer id'); //TODO: make buyer_id optional
+      this.processCar(car);
+
+      car.buyerId = null;
+      if(car.max_bid && car.max_bid.buyers && car.max_bid.buyers.length)
+      {
+        car.buyerId = car.max_bid.buyers[0].id;
+      }
+
       if (car.time_left_sec < 0) {
         res.push(car);
       }
@@ -98,18 +109,11 @@ class auction {
 
     //order by date of maxbid
     res.sort(function (a, b) {
-      if (a.max_bid && b.max_bid) //quick fix (этой провеки делать не надо, т.к. таких данных не может быть, но они есть из-за ошибки в БД)
-      {
-        return (a.max_bid.dt > b.max_bid.dt) ? 1 : (a.max_bid.dt < b.max_bid.dt) ? -1 : 0;
-      } else {
-        return 1;
-      }
-
+      return (a.endMoment < b.endMoment) ? 1 : (a.endMoment > b.endMoment) ? -1 : 0;
     });
 
     return res;
   }
-
 
   calculateTimeLeft(car)
   {

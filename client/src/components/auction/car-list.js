@@ -8,11 +8,12 @@ class CarList extends React.Component {
     super(props);
 
     this.state = { carList :[]};
-    var buyerId="test_buyer";
-    
-    
+    var buyerId="2601ac6f-fa0b-40c4-92bb-f48950ca6f9c";
+
+
     store.getAuctionCars(buyerId).done((data) => {
 
+      console.log(JSON.stringify(data, null, '\t'));
       var cars = [];
       for(var i=0; i<data.length; i++)
       {
