@@ -18,20 +18,20 @@ class carlist {
     }
 
     return carlist;
-  }
+  } 
 
   processCar(car){
-    car.carlistTitle = utils.checkValue(car['main.Model_mark'])
-      + ' ' + utils.checkValue(car['main.Model'])
-      + ' ' + utils.checkValue(car['main.Year']);
-    car.carlistSubtitle = utils.checkValue(car['main.Modification'])
-      + ' ' + utils.checkValue(car['main.Drivetrain'])
-      + ' ' + utils.checkValue(car['main.Engine_type']);
+    car.carlistTitle = utils.checkValue(car['carMake'])
+      + ' ' + utils.checkValue(car['carModel'])
+      + ' ' + utils.checkValue(car['carRelease']);
+    car.carlistSubtitle = utils.checkValue(car['carModification'])
+      + ' ' + utils.checkValue(car['carDrive'])
+      + ' ' + utils.checkValue(car['carEngineType']);
 
     car.carlistImage = null;
-    if (car.images_main && car.images_main.length > 0)
+    if (car.carMainPhoto && car.carMainPhoto.length > 0)
     {
-      car.carlistImage = this.carImageUrl(car.images_main[0].filename);
+      car.carlistImage = this.carImageUrl(car.carMainPhoto[0].filename);
     }
   }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router'
 import Login from '../login/login'
+import auth from '../login/auth.service'
 
 //assets
 require('normalize.css/normalize.css');
@@ -50,6 +51,7 @@ class App extends React.Component {
               <div className="header-auth__logo">
                 <img src={imgPath} className="header-auth__logo"/>
               </div>
+              {auth.getUserTitle()}
             </div>
           </div>
         </header>

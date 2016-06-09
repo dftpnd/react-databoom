@@ -1,6 +1,19 @@
+import { browserHistory } from 'react-router';
 import React from 'react';
 import Modal from 'react-modal';
 import addCarService from './add-car.service';
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+    overflow              : 'visible'
+}
+};
 
 class Equipment extends React.Component {
 	constructor(props) {
@@ -22,15 +35,20 @@ class Equipment extends React.Component {
 			comfort: [],
 			exterior: [],
 			multimedia: [],
-			signaling: []
+			signaling: [],
+      auction_time_mins: 24
 		};
 
 		this.state = JSON.parse(localStorage.getItem('equipmentState')) || defaultState;
+    this.state.publicateModalIsOpen = false;
 
 		this.fieldHandler = this.fieldHandler.bind(this);
 		this.checkHandler = this.checkHandler.bind(this);
 		this.publishCar = this.publishCar.bind(this);
-		this.publicateModalСlose = this.publicateModalСlose.bind(this);
+		this.publicateModalClose = this.publicateModalClose.bind(this);
+    this.openPublishModal  = this.openPublishModal.bind(this);
+
+    this.handleChangeForAuctionMins = this.handleChangeForAuctionMins.bind(this);
 	}
 
 	componentWillUpdate(_, nextProps) {
@@ -62,17 +80,31 @@ class Equipment extends React.Component {
 		}
 		this.setState({[event.target.name]: checkList})
 	}
-	publicateModalСlose() {
+
+  openPublishModal() {
+    this.setState({publicateModalIsOpen: true});
+  }
+
+  publicateModalClose() {
 		this.setState({publicateModalIsOpen: false});
 	}
+
 	publishCar() {
-		this.setState({publicateModalIsOpen: true});
-		//addCarService.save();
+		addCarService.save().then((data) => {
+        alert('Автомобиль выставлен на аукцион.');
+        this.setState({publicateModalIsOpen: false});
+        console.log('Данные автомобиля:');
+        console.log(JSON.stringify(data,null,'\t'));
+        browserHistory.push('/add-car/car-form');
+      },
+      () =>{
+        alert('Произошла ошибка при добавлении автомобиля на аукцион');
+      });
 
 		//alert('Данные формы скоро будут записываться в базу, а пока можно посмотреть консоль с данными.');
 		//localStorage.clear();
 		//alert('Данные типо отправлениы');
-		//browserHistory.push('/add-car/car-form');
+
 	}
 
 	securityIsActive(value) {
@@ -98,6 +130,21 @@ class Equipment extends React.Component {
 	signalingIsActive(value) {
 		return this.state.signaling.map(e=>e.value).indexOf(value) !== -1;
 	}
+
+  handleChangeForAuctionMins (event) {
+    var value = event.target.value;
+    if (isNaN(value)) {
+      alert('Введеное значение "' + value + '" не является числом.');
+      return;
+    }
+
+    if (value < 1) {
+      alert('Введеное значение "' + value + '" меньше 1. Значение должно быть большим или равным 1.');
+      return;
+    }
+
+    this.setState({auction_time_mins: value});
+  }
 
 	render() {
 		return (
@@ -512,19 +559,22 @@ class Equipment extends React.Component {
 
 				<nav className="nav-buttons">
 					<div></div>
-					<button className="custom-btn" type="button" onClick={this.publishCar}>
-						Опубликовать
-						<Modal
-							isOpen={this.state.publicateModalIsOpen}
-							onRequestClose={this.publicateModalСlose}
-							shouldCloseOnOverlayClick={false}
-							className="modal"
-						>
-							<h2 className="modal__title">hello world</h2>
-							<button onClick={this.publicateModalСlose} className="modal__close"></button>
+					<button className="common-button put-on" type="button" onClick={this.openPublishModal}>Выставить на аукцион</button>
 
-						</Modal>
-					</button>
+          <Modal
+            isOpen={this.state.publicateModalIsOpen}
+            onRequestClose={this.publicateModalClose}
+            shouldCloseOnOverlayClick={false}
+            style={customStyles}
+          >
+            <h2 className="modal__title">Выставление автомобиля на аукцион</h2>
+            Длительность аукциона:
+            <input type="number" value={this.state.auction_time_mins} onChange={this.handleChangeForAuctionMins}/>
+            <br/>
+            <button className="common-button put-on" onClick={this.publishCar}>Выставить на аукцион</button>
+            <button className="modal__close" onClick={this.publicateModalClose}></button>
+          </Modal>
+
 				</nav>
 			</div>
 		);

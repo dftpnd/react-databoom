@@ -1,7 +1,7 @@
 import React from 'react';
 import CarRow from './car-row-bought';
 import store from '../services/store.service';
-
+import auth from '../login/auth.service';
 
 class CarList extends React.Component {
 
@@ -10,7 +10,7 @@ class CarList extends React.Component {
 
     this.state = { carList :[]};
 
-    var buyerId="2601ac6f-fa0b-40c4-92bb-f48950ca6f9c";
+    var buyerId = auth.getUserId();
 
     store.getCarsOwnedByBuyer(buyerId).then((carlist) => {
 

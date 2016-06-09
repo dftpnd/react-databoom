@@ -167,6 +167,11 @@ class AddCarService {
 			}
 		});
 
+    data['auction_step'] = 1;
+    data['auction_start'] = new Date();
+
+    
+
 		return db.store.save('car', data);
 	}
 }

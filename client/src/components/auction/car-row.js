@@ -61,7 +61,7 @@ class CarRow extends React.Component {
         dt: new Date(),
         buyers: [{
           id: this.props.buyerId,
-          collections: [{ "id": "car_buyer" }] }],
+          collections: [{ "id": "user" }] }],
         collections: [{ "id": "car_bid" }]
       }]
     };

@@ -17,9 +17,6 @@ class auction {
     return instance;
   }
 
-
-
-
   processCarList(carlist, buyer_id){
     var res = [];
     for (var i in carlist) {
@@ -36,10 +33,12 @@ class auction {
     var has_my_bids = false;
     var max_bid = null;
     var buyers2bids = {}; //max bids of buyers
+    console.log(buyerId);
+
     if (car.bids && car.bids.length) {
       var max_bid = car.bids[0];
       if (max_bid.value == undefined) max_bid.value = 0; //quick patch (occured empty bids)
-      for (var b in car.bids) {
+      for(var b=0; b<car.bids.length; b++) {
         var bid = car.bids[b];
         if (bid.buyers && bid.buyers.length) {
           var buyer_id = bid.buyers[0].id;
@@ -51,7 +50,7 @@ class auction {
         if (isNaN(bid.value)) {
           continue;//skip wrong values (на всякий случай)
         }
-        if (bid.value && bid.value > max_bid.value) {
+        if (bid.value && (bid.value > max_bid.value)) {
           max_bid = bid;
         }
         if (buyerId && bid.buyers && bid.buyers.length  && bid.buyers[0].id == buyerId) {
@@ -62,7 +61,6 @@ class auction {
 
     } else {
       max_bid = { value: 1 };
-
     }
 
     car.max_bid = max_bid;
