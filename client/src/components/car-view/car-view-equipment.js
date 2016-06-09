@@ -1,15 +1,19 @@
 import React from 'react';
+import EquipmentView from '../add-car/equipment-view';
 
-class Equipment extends React.Component {
-  render() {
-    return (
-      <div>
-        E
-      </div>
-    );
-  }
+class CarViewEquipment extends React.Component {
+	constructor(props){
+		super(props);
+
+		this.state = this.props.carData;
+	}
+	render() {
+		return (
+			<div class="equipment-view">
+				<EquipmentView data={this.state} onlyView={true}/>
+			</div>
+		);
+	}
 }
 
-Equipment.defaultProps = {};
-
-export default Equipment;
+export default CarViewEquipment;

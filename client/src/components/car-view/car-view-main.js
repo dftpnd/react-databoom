@@ -50,6 +50,7 @@ class Main extends React.Component {
 	}
 
 	preparePhoto(files) {
+		var files = files || [];
 		var list = [];
 		files.map((file)=> {
 			list.push({src: carlist.carImageUrl(file.filename)});

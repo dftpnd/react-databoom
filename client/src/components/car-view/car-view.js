@@ -1,7 +1,7 @@
 import React from 'react';
 import store from '../services/store.service'
 import Main from './car-view-main';
-import Equipment from './car-view-equipment';
+import CarViewEquipment from './car-view-equipment';
 import Damage from './car-view-damage';
 
 class CarView extends React.Component {
@@ -25,7 +25,7 @@ class CarView extends React.Component {
         var car = data[0];
         this.viewMap = {
           'main': <Main carData={car}/>,
-          'equipment': <Equipment carData={car}/>,
+          'equipment': <CarViewEquipment carData={car}/>,
           'damage': <Damage carData={car}/>
         };
         this.setState({
