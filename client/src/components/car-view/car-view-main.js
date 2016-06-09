@@ -12,7 +12,6 @@ class Main extends React.Component {
 			currentImage: 0,
 			mainImages: this.preparePhoto(this.props.carData.carMainPhoto)
 		};
-
 		this.closeLightbox = this.closeLightbox.bind(this);
 		this.openLightbox = this.openLightbox.bind(this);
 		this.gotoPrevious = this.gotoPrevious.bind(this);
@@ -60,9 +59,8 @@ class Main extends React.Component {
 
 	render() {
 		var car = this.props.carData;
-
 		return (
-			<div className="car-view">
+			<div className="car-view car-info tab">
 				<div className="car-view__gallery">
 					{this.state.mainImages.map((photo, i)=> {
 						return (
@@ -83,10 +81,10 @@ class Main extends React.Component {
 						onClose={this.closeLightbox}
 					/>
 				</div>
-				<div class="description">
+				<div className="description">
 					<h3>Описание автомобиля</h3>
 					<p>{car.carDescription}</p>
-					<ul class="more">
+					<ul className="more">
 						<li>Марка <span>{car.carMake}</span></li>
 						<li>Модель <span>{car.carModel}</span></li>
 						<li>Модификация <span>{car.carModification}</span></li>
@@ -100,6 +98,7 @@ class Main extends React.Component {
 		);
 	}
 }
+
 
 Main.defaultProps = {};
 
