@@ -1189,6 +1189,8 @@ class Car {
 				}, {
 					name: 'XC60'
 				}, {
+					name: 'XC70'
+				}, {
 					name: 'XC90'
 				}]
 			},
