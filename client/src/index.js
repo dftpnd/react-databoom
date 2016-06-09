@@ -15,7 +15,7 @@ import Personal from 'components/personal/personal';
 import Login from './components/login/login';
 //import Auth from './components/auth/auth';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
-
+import CarView from './components/car-view/car-view'
 
 function requireAuth() {
 	//nextState, replaceState
@@ -52,6 +52,9 @@ ReactDOM.render((
 				<Route path=":stepName" component={AddCar} onEnter={handlerRouter}/>
 			</Route>
 			<Route path="login" component={Login} onEnter={requireAuth}/>
+      <Route path="car-view" component={CarView} onEnter={requireAuth}>
+        <Route path=":carId" component={CarView} onEnter={requireAuth}/>
+      </Route>
 		</Route>
 	</Router>
 ), document.getElementById('app'));

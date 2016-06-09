@@ -6,7 +6,7 @@ import auth from '../login/auth.service'
 //assets
 require('normalize.css/normalize.css');
 require('styles/index.scss');
-const imgPath = require('../../images/logotype.png');
+const imgPath = require('../../images/user.png');
 
 class App extends React.Component {
 
@@ -45,7 +45,7 @@ class App extends React.Component {
 
             <div className="header-auth">
               <div className="header-auth__profile">
-                <a href="javascript:void(0)" onClick={this.logout}>Выход</a>
+                <a href="javascript:void(0)" onClick={this.logout}> Выход</a>
               </div>
 
               <div className="header-auth__logo">

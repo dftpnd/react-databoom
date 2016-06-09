@@ -148,6 +148,16 @@ class store {
       })
     })
   }
+
+  getCar(carId)
+  {
+    return db.login.then(() => {
+      return db.store.load('car(' + carId + ')', { expand: "images_main" })
+        .then((data) => {
+          return data;
+        })
+    })
+  }
 }
 
 export default new store();
