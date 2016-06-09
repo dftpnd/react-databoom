@@ -1,47 +1,53 @@
 .equipment-form {
-  display: flex;
-  .equipment-form__tab {
-    flex: 1;
-    .equipment-form__item {
-      .equipment-form__item-title {
-        font-size: 14px;
-        padding-bottom: 15px;
-        padding-top: 5px;
-      }
-      .equipment-form__item-child-title {
-        font-size: 14px;
-        font-weight: normal;
-        padding-bottom: 15px;
-      }
-      .equipment-form__label {
-        display: block;
-        padding-bottom: 15px;
-        font-size: 13px;
-        input {
-          margin-right: 10px;
-        }
-        input[type="radio"] {
-          margin-left: 8px;
-        }
-      }
+	display: flex;
+	label {
+		display: table;
+		//float: left;
+		width: auto;
+		margin-bottom: 15px;
+		font-size: 13px;
+	}
+	label.active {
+		//background: yellow;
+	}
+	.equipment-form__item-title {
+		font-size: 14px;
+		padding-bottom: 15px;
+		padding-top: 5px;
+	}
+	.equipment-form__item-child-title {
+		font-size: 14px;
+		font-weight: normal;
+		padding-bottom: 15px;
+	}
+	.equipment-form__label {
+		input {
+			margin-right: 10px;
+		}
+		input[type="radio"] {
+			margin-left: 8px;
+		}
+	}
 
-      .equipment-form__label-select {
-        display: flex;
-        align-items: baseline;
+	.equipment-form__label-select {
+		display: flex;
+		align-items: baseline;
 
-        .equipment-form__label {
-          margin-right: 5px;
-        }
-      }
-    }
-  }
+		.equipment-form__label {
+			margin-right: 5px;
+		}
+	}
+	.equipment-form__tab {
+		flex: 1;
+
+	}
 }
 
 button.put-on:after {
-  content:url('../images/put-on-icon.png');
-  display:inline-block;
-  vertical-align:top;
-  margin:-1px -14px -3px 28px;
+	content: url('../images/put-on-icon.png');
+	display: inline-block;
+	vertical-align: top;
+	margin: -1px -14px -3px 28px;
 }
 
 

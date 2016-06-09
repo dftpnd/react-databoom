@@ -35,10 +35,18 @@ class EquipmentView extends React.Component {
 	}
 
 	fieldHandler(event) {
+		if (this.state.onlyView) {
+			return;
+		}
 		this.setState({[event.target.name]: event.target.value})
 	}
 
 	checkHandler(event) {
+		if (this.state.onlyView) {
+			alert('1');
+			return;
+		}
+
 		const checkList = this.state[event.target.name];
 		var removeItem = null;
 
@@ -105,7 +113,7 @@ class EquipmentView extends React.Component {
 
 	render() {
 		return (
-			<div >
+			<div readOnly={this.state.onlyView} disabled={this.state.onlyView}>
 
 
 				<div className="equipment-form">
@@ -118,7 +126,7 @@ class EquipmentView extends React.Component {
 									return (
 										<div className="equipment-form__item-child">
 											<h3 className="equipment-form__item-child-title">Обивка салона</h3>
-											<label className={this.state.upholstery === 'cloth'?'active':''}>
+											<label className="equipment-form__label">
 												<input type="radio" name="upholstery" value="cloth"
 													   checked={this.state.upholstery === 'cloth'}
 													   onChange={this.fieldHandler}/>
@@ -306,12 +314,13 @@ class EquipmentView extends React.Component {
 						</div>
 					</div>
 					<div className="equipment-form__tab">
+						<h3 className="equipment-form__item-title">Функционально оборудование</h3>
 						{(()=> {
 							if (this.checkValue('equipment')) {
 								return (
 									<div className="equipment-form__item">
 
-										<h3 className="equipment-form__item-title">Функционально оборудование</h3>
+
 										<label className="equipment-form__label">
 											<input type="checkbox" name="equipment" value="onBoardComputer"
 												   checked={this.equipmentIsActive('onBoardComputer')}
@@ -477,11 +486,12 @@ class EquipmentView extends React.Component {
 					</div>
 					<div className="equipment-form__tab">
 						<div className="equipment-form__item">
+							<h3 className="equipment-form__item-title">Регулировки</h3>
 							{(()=> {
 								if (this.checkValue('powerMirrors')) {
 									return (
 										<div>
-											<h3 className="equipment-form__item-title">Регулировки</h3>
+
 											<label className="equipment-form__label">
 												<input type="checkbox" name="powerMirrors"
 													   onChange={this.fieldHandler}/>Электропривод зеркал
