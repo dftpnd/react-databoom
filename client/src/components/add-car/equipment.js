@@ -94,9 +94,10 @@ class Equipment extends React.Component {
 		addCarService.save().then((data) => {
 				alert('Автомобиль выставлен на аукцион.');
 				this.setState({publicateModalIsOpen: false});
+				localStorage.clear();
 				console.log('Данные автомобиля:');
 				console.log(JSON.stringify(data, null, '\t'));
-				browserHistory.push('/add-car/car-form');
+				browserHistory.push('/auction');
 			},
 			() => {
 				alert('Произошла ошибка при добавлении автомобиля на аукцион');
