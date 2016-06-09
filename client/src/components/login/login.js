@@ -1,11 +1,12 @@
 import React from 'react';
+import store from '../services/store.service';
 
 
 class Login extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
-			email: '',
+			login: '',
 			password: ''
 		};
 
@@ -20,14 +21,54 @@ class Login extends React.Component {
 		const newState = {[event.target.name]: event.target.value};
 		this.setState(newState);
 	}
+
 	handleSubmit(event) {
-		event.preventDefault();
-		//this.state;
+
+    var username = this.state.login;
+    var password = this.state.password;
+    store.getUser(username, password).then((users) => {
+      if(users.length > 0)
+      {
+        var userinfo = {
+          username: username,
+          id: users[0].id,
+          name: users[0].name
+        };
+        localStorage['userinfo'] = JSON.stringify(userinfo);
+        location.reload();
+      }else
+      {
+        alert('Не удалось войти. Возможно было указано неверное имя пользователя или пароль.');
+      }
+    })
+
 	}
 
 	render() {
 		return (
-			<div className="index">
+      <div className="login-form">
+
+        <div className="pen-title">
+
+        </div>
+
+        <div className="module form-module">
+          <div className="toggle">
+        </div>
+        <div className="form">
+          <h2>Вход в AutoGross</h2>
+        <form>
+          <input type="text" placeholder="Имя пользователя" value={this.state.login} onChange={this.handleChange} name="login"/>
+          <input type="password" placeholder="Пароль" value={this.state.password} onChange={this.handleChange} name="password"/>
+          <button onClick={this.handleSubmit} type="button">Вход</button>
+          </form>
+          </div>
+          <div className="cta"><a href="http://andytran.me">Forgot your password?</a></div>
+        </div>
+
+      </div>
+
+/*			<div className="index">
 				<form onSubmit={this.handleSubmit}>
 					<label for="">login</label>
 					<input type="text" onChange={this.handleChange} value={this.state.carMake} name="email"/> <br/>
@@ -35,7 +76,9 @@ class Login extends React.Component {
 					<input type="password" onChange={this.handleChange} value={this.state.carMake} name="password"/> <br/>
 					<button type="submit" >enter</button>
 				</form>
-			</div>
+			</div>*/
+
+
 		);
 	}
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router'
+import Login from '../login/login'
 
 //assets
 require('normalize.css/normalize.css');
@@ -7,9 +8,26 @@ require('styles/index.scss');
 const imgPath = require('../../images/logotype.png');
 
 class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.logout = this.logout.bind(this);
+  }
+
+  logout()
+  {
+    localStorage.clear();
+    location.reload();
+  }
+
   render() {
-    return (
-      <section className="app">
+
+    var res;
+    var userinfo = localStorage['userinfo'];
+    if(userinfo)
+    {
+      res = (<section className="app">
         <header className="header">
           <div className="limiter">
             <nav className="header-menu">
@@ -25,7 +43,10 @@ class App extends React.Component {
             </nav>
 
             <div className="header-auth">
-              <div className="header-auth__profile">login</div>
+              <div className="header-auth__profile">
+                <a href="javascript:void(0)" onClick={this.logout}>Выход</a>
+              </div>
+
               <div className="header-auth__logo">
                 <img src={imgPath} className="header-auth__logo"/>
               </div>
@@ -35,8 +56,15 @@ class App extends React.Component {
 
         {this.props.children }
 
-      </section>
-    );
+      </section>      )
+    }else
+    {
+      res = (<section className="app">
+        <Login/>
+      </section>      )
+    }
+
+    return res;
   }
 }
 
