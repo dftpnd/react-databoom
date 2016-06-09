@@ -9,8 +9,8 @@ class CarViewEquipment extends React.Component {
 	}
 	render() {
 		return (
-			<div class="equipment-view">
-				<EquipmentView data={this.state} onlyView={true}/>
+			<div className="equipment-view">
+				<EquipmentView data={this.state} onlyView={true} />
 			</div>
 		);
 	}
