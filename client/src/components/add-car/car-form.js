@@ -133,6 +133,7 @@ class CarForm extends React.Component {
 				<div className="appearance-form__item">
 					<label htmlFor="car-description-field">Описание автомобиля</label>
 					  <textarea id="car-description-field" placeholder="Текст описания"
+								name="carDescription"
 								value={this.state.carDescription}
 								onChange={this.handleCarMake}
 								className="custom-field custom-field__textarea"/>
