@@ -4,29 +4,35 @@ import Main from './car-view-main';
 import Equipment from './car-view-equipment';
 import Damage from './car-view-damage';
 
-var viewMap = {
-  'main': <Main/>,
-  'equipment': <Equipment/>,
-  'damage': <Damage/>
-};
-
 class CarView extends React.Component {
-
   constructor(props) {
     super(props);
     this.tabClick = this.tabClick.bind(this);
     this.state = {
-      carData: {},
-      tab: viewMap['main'],
+      carData: {
+        carlistTitle: '',
+        carlistSubtitle: ''
+      },
+      tab: (<span></span>),
       tabName: 'main'
     };
 
+    this.viewMap = null;
     var carId = this.props.params.carId;
-    store.getCar(carId).done((data) => {
-
+    this.loading = store.getCar(carId).done((data) => {
       if(data.length)
       {
-        this.setState({carData:data[0]});
+        var car = data[0];
+        this.viewMap = {
+          'main': <Main carData={car}/>,
+          'equipment': <Equipment carData={car}/>,
+          'damage': <Damage carData={car}/>
+        };
+        this.setState({
+          carData:car,
+          tab: this.viewMap['main'],
+        });
+        console.log(JSON.stringify(car,null,'\t'));
       }else
       {
         alert('Неверный адрес страницы.');
@@ -38,13 +44,18 @@ class CarView extends React.Component {
   }
 
   tabClick(event) {
-    var viewName = event.currentTarget.name;
-    console.log(viewName);
-    this.setState({
-      tab: viewMap[viewName],
-      tabName: viewName
-    });
-    
+    if(this.viewMap) {
+      var viewName = event.currentTarget.name;
+      console.log(viewName);
+      this.setState({
+        tab: this.viewMap[viewName],
+        tabName: viewName
+      });
+    }else
+    {
+      //car data not loaded yet
+      return false;
+    }
   }
 
   render() {
@@ -52,8 +63,8 @@ class CarView extends React.Component {
       <div className="limiter wrapper car-view">
         <div className="content-wrapper">
           <div className="car-title">
-            <h1>BMW 1er II (F20-F21) 116i</h1>
-            <p>1,6 AT (136 л.с.) бензин, задний привод</p>
+            <h1>{this.state.carData.carlistTitle}</h1>
+            <p>{this.state.carData.carlistSubtitle}</p>
             <button className="common-button">Сделать ставку</button>
           </div>
           <ul className="tabs-nav">
