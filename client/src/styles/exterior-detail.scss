@@ -1,0 +1,25 @@
+.exterior-detail {
+	display: flex;
+
+	select {
+		width: 250px;
+	}
+	.photo-upload {
+		padding-top: 15px;
+	}
+	&__left, &__right {
+		flex: 1;
+	}
+	&__left {
+		padding-right: 40px;
+
+		label {
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+	&__right {
+
+	}
+
+}

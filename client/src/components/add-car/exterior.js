@@ -7,95 +7,222 @@ import PhotoUpload from '../photo-upload/photo-upload'
 class Exterior extends React.Component {
 	constructor(props) {
 		super(props);
+		//localStorage.clear();
+
+		const elements = [
+			{label: 'переднего бампера', value: 1},
+			{label: 'левой фары', value: 2},
+			{label: 'правой фары', value: 3},
+			{label: 'переднего капота', value: 4},
+			{label: 'лобового стекла', value: 5},
+			{label: 'крыши', value: 6},
+			{label: 'заднего стекла', value: 7},
+			{label: 'заднего номера', value: 8},
+			{label: 'заднего бампера', value: 9},
+			{label: 'левой задней фары', value: 10},
+			{label: 'правой задней фары', value: 11},
+			{label: 'правого переднего крыла', value: 12},
+			{label: 'правого переднего колеса', value: 13},
+			{label: 'правой передней двери', value: 14},
+			{label: 'правой заднй двери', value: 15},
+			{label: 'правого заднего колеса', value: 16},
+			{label: 'правого заднего подкрылка', value: 17},
+			{label: 'левый передний подкрылок', value: 18},
+			{label: 'левое переднее колесо', value: 19},
+			{label: 'левая передная дверь', value: 20},
+			{label: 'левая задняя дверь', value: 21},
+			{label: 'левая заднее колесо', value: 22},
+			{label: 'левый задний подкрылок', value: 23}
+		];
+
+		const damageTypes = [
+			{label: 'Глубокая вмятина', value: 1},
+			{label: 'царапина', value: 2}
+		];
+
+		const typeRepair = [
+			{label: 'Покраска детали', value: 1},
+			{label: 'Замена детали', value: 2}
+		];
 
 		const defaultState = {
 			exteriorElements: {},
-			activeElement: null,
-			element1: [],
-			element2: [],
-			element3: [],
-			element4: [],
-			element5: [],
-			element6: [],
-			element7: [],
-			element8: [],
-			element9: [],
-			element10: [],
-			element11: [],
-			element12: [],
-			element13: [],
-			element14: [],
-			element15: [],
-			element16: [],
-			element17: [],
-			element18: [],
-			element19: [],
-			element20: [],
-			element21: [],
-			element22: [],
-			element23: []
+			activeElement: '',
+			damageType: '',
+			typeRepair: '',
+			elementPhotos: [],
+			damageElements: []
 		};
 
-		this.state = JSON.parse(localStorage.getItem('exteriorState')) || defaultState;
+		this.state = defaultState;//JSON.parse(localStorage.getItem('exteriorState')) || defaultState;
 
-		this.elementLabels = {
-			1: 'переднего бампера',
-			2: 'левой фары',
-			3: 'правой фары',
-			4: 'переднего капота',
-			5: 'лобового стекла',
-			6: 'крыши',
-			7: 'заднего стекла',
-			8: 'заднего номера',
-			9: 'заднего бампера',
-			10: 'левой задней фары',
-			11: 'правой задней фары',
-			12: 'todo',
-			13: 'todo',
-			14: 'todo',
-			15: 'todo',
-			16: 'todo',
-			17: 'todo',
-			18: 'todo',
-			19: 'todo',
-			20: 'todo',
-			21: 'todo',
-			22: 'todo',
-			23: 'todo'
-		};
+		this.elements = elements;
+		this.damageTypes = damageTypes;
+		this.typeRepair = typeRepair;
+
 		this.elementHandler = this.elementHandler.bind(this);
+		this.elementPropHandler = this.elementPropHandler.bind(this);
 		this.getElementLabel = this.getElementLabel.bind(this);
-		this.getActiveElementName = this.getActiveElementName.bind(this);
 		this.addPhoto = this.addPhoto.bind(this);
 		this.updateElementPhoto = this.updateElementPhoto.bind(this);
 		this.deletePhoto = this.deletePhoto.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.getElement = this.getElement.bind(this);
+		this.getDamageType = this.getDamageType.bind(this);
+		this.getTypeRepair = this.getTypeRepair.bind(this);
+		this.getPhotos = this.getPhotos.bind(this);
 	}
 
 	componentWillUpdate(_, nextProps) {
 		localStorage.setItem('exteriorState', JSON.stringify(nextProps));
 	}
 
-	elementHandler(value) {
-		this.setState({activeElement: value});
+	handleChange(event) {
+		if (!event.target.name) {
+			throw new Error('Input name required');
+		}
+		const newState = {[event.target.name]: parseInt(event.target.value, 10)};
+		this.setState(newState);
 	}
 
-	addPhoto(data) {
-		const elementName = this.getActiveElementName();
+	elementHandler(value) {
+		this.setState({
+			activeElement: value,
+			damageType: this.getDamageType(value),
+			typeRepair: this.getTypeRepair(value),
+			elementPhotos: this.getPhotos(value),
+		});
+	}
 
-		this.setState({[elementName]: this.state[elementName].concat({filename: data.filename})})
+	elementPropHandler(event) {
+
+		if (!event.target.name) {
+			throw new Error('Input name required');
+		}
+
+		this.handleChange(event);
+
+		let rowIndex = null;
+		const activeIndex = this.state.activeElement;
+		const value = event.target.value;
+		const name = event.target.name;
+		const hasValue = (value !== '');
+		const elements = JSON.parse(JSON.stringify(this.state.damageElements));
+
+		elements.map((el, i)=> {
+			if (el.index === activeIndex) rowIndex = i;
+		});
+
+		if (!activeIndex) {
+			throw new Error('activeIndex required');
+		}
+
+		if (!hasValue) {
+
+			// удаляем свойство
+			delete elements[rowIndex][name];
+		} else if (rowIndex === null) {
+
+			// добавляем строку со свойством
+			elements.push({index: activeIndex, [name]: value});
+		} else {
+
+			// редактируем или добавляем свойство
+			elements[rowIndex][name] = value;
+		}
+
+		this.setState({damageElements: elements})
+	}
+
+	getElement(index) {
+		let element;
+
+		this.state.damageElements.map((el)=> {
+			if (el.index === index) {
+				element = el;
+			}
+		});
+
+		return element;
+	}
+
+	getDamageType(index) {
+		const el = this.getElement(index);
+		const defaultValue = '';
+
+		if (el && el.damageType !== '') {
+			return el.damageType;
+		}
+
+		return defaultValue;
+	}
+
+	getTypeRepair(index) {
+		const el = this.getElement(index);
+		const defaultValue = '';
+
+		if (el && el.typeRepair !== '') {
+			return el.typeRepair;
+		}
+
+		return defaultValue;
+	}
+
+	getPhotos(index) {
+		const el = this.getElement(index);
+
+		if (el && el.photos) {
+			console.log('getPhotos', el.photos);
+			return el.photos;
+		}
+
+		return [];
+	}
+
+	addPhoto(data, index) {
+
+		const elements = JSON.parse(JSON.stringify(this.state.damageElements));
+		if (!elements.length) {
+			elements.push({index: index});
+		}
+		let rowIndex = null;
+
+		elements.map((el, i) => {
+			if (el.index === index) {
+				rowIndex = i;
+				if (!el.hasOwnProperty('photos') && !el.photos) {
+					el.photos = [];
+				}
+				el.photos.push({filename: data.filename})
+			}
+		});
+
+		if (!rowIndex) {
+			elements.push({index: index});
+			elements.map((el, i) => {
+				if (el.index === index) {
+					rowIndex = i;
+					if (!el.hasOwnProperty('photos') && !el.photos) {
+						el.photos = [];
+					}
+					el.photos.push({filename: data.filename})
+				}
+			});
+		}
+
+		this.setState({
+			damageElements: elements,
+			elementPhotos: elements[rowIndex].photos
+		})
 	}
 
 	getElementLabel(elementId) {
 		return this.elementLabels[elementId];
 	}
 
-	getActiveElementName() {
-		return `element${this.state.activeElement}`;
-	}
-
-	updateElementPhoto(elementName, promise) {
+	updateElementPhoto(promise, index) {
 		promise.done((data)=> {
-			this.addPhoto(data)
+			this.addPhoto(data, index);
 		});
 	}
 
@@ -118,40 +245,40 @@ class Exterior extends React.Component {
 	}
 
 	render() {
-		var buttons = [
-			{value: 1, left: 33, top: 265},
-			{value: 2, left: 85, top: 174},
-			{value: 3, left: 85, top: 357},
-			{value: 4, left: 168, top: 265},
-			{value: 5, left: 302, top: 265},
-			{value: 6, left: 408, top: 265},
-			{value: 7, left: 575, top: 265},
-			{value: 8, left: 779, top: 265},
-			{value: 9, left: 843, top: 265},
-			{value: 10, left: 776, top: 357},
-			{value: 11, left: 776, top: 174},
-			{value: 12, left: 132, top: 519},
-			{value: 13, left: 215, top: 513},
-			{value: 14, left: 376, top: 473},
-			{value: 15, left: 514, top: 473},
-			{value: 16, left: 619, top: 512},
-			{value: 17, left: 715, top: 492},
-			{value: 18, left: 132, top: 17},
-			{value: 19, left: 215, top: 18},
-			{value: 20, left: 377, top: 58},
-			{value: 21, left: 514, top: 59},
-			{value: 22, left: 619, top: 19},
-			{value: 23, left: 715, top: 39}
-		];
+		var position = {
+			1: {left: 33, top: 265},
+			2: {left: 85, top: 174},
+			3: {left: 85, top: 357},
+			4: {left: 168, top: 265},
+			5: {left: 302, top: 265},
+			6: {left: 408, top: 265},
+			7: {left: 575, top: 265},
+			8: {left: 779, top: 265},
+			9: {left: 843, top: 265},
+			10: {left: 776, top: 357},
+			11: {left: 776, top: 174},
+			12: {left: 132, top: 519},
+			13: {left: 215, top: 513},
+			14: {left: 376, top: 473},
+			15: {left: 514, top: 473},
+			16: {left: 619, top: 512},
+			17: {left: 715, top: 492},
+			18: {left: 132, top: 17},
+			19: {left: 215, top: 18},
+			20: {left: 377, top: 58},
+			21: {left: 514, top: 59},
+			22: {left: 619, top: 19},
+			23: {left: 715, top: 39}
+		};
 		return (
 			<div className="exterior">
 				<h1 className="app-title">Ввод данных автомобиля</h1>
 
 				<div className="exterior__damage-visual">
 					<div className="exterior__box">
-						{buttons.map((btn, i)=> {
+						{this.elements.map((btn, i)=> {
 							return <ExteriorElement
-								left={btn.left} top={btn.top}
+								left={position[btn.value].left} top={position[btn.value].top}
 								value={btn.value}
 								handler={this.elementHandler}
 								active={this.state.activeElement} key={i}/>
@@ -159,20 +286,47 @@ class Exterior extends React.Component {
 					</div>
 				</div>
 
-				{(()=> {
-					if (this.state.activeElement !== null) {
-						return <div>
-							<hr/>
-							<h5 className="add-car__sub-title">{this.state.activeElement} - добавить
-								фото {this.getElementLabel(this.state.activeElement)}</h5>
-
-							<PhotoUpload photos={this.state[this.getActiveElementName()]}
+				<div className="exterior-detail">
+					<div className="exterior-detail__left">
+						<label>
+							Поврежденная деталь
+							<select value={this.state.activeElement} name="activeElement" onChange={this.handleChange}>
+								<option value=""> -</option>
+								{this.elements.map((element, i)=> {
+									return (<option value={element.value} key={i}>{element.label}</option>);
+								})}
+							</select>
+						</label>
+						<label>
+							Тип повреждения
+							<select value={this.state.damageType} name="damageType" onChange={this.elementPropHandler}>
+								<option value=""> -</option>
+								{this.damageTypes.map((dt, i)=> {
+									return (<option value={dt.value} key={i}>{dt.label}</option>);
+								})}
+							</select>
+						</label>
+						<label>
+							Тип ремонта
+							<select value={this.state.typeRepair} name="typeRepair" onChange={this.elementPropHandler}>
+								<option value=""> -</option>
+								{this.typeRepair.map((tr, i)=> {
+									return (<option value={tr.value} key={i}>{tr.label}</option>);
+								})}
+							</select>
+						</label>
+					</div>
+					<div className="exterior-detail__right">
+						<label>
+							Основные фотографии
+							<PhotoUpload photos={this.state.elementPhotos}
 										 uploadHandler={this.updateElementPhoto}
 										 removePhoto={this.deletePhoto}
 										 active={this.state.activeElement}/>
-						</div>
-					}
-				})()}
+						</label>
+					</div>
+				</div>
+
 				<nav className="nav-buttons">
 					<Link to="/add-car/car-form" className="custom-btn">Назад</Link>
 					<Link to="/add-car/exterior-functional" className="custom-btn">Далее</Link>

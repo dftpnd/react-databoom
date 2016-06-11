@@ -16,7 +16,6 @@ class PhotoUpload extends React.Component {
 			list: this.preparePhoto(this.props.photos)
 		};
 
-
 		this.fileHandler = this.fileHandler.bind(this);
 		this.createUrl = this.createUrl.bind(this);
 		this.removePhoto = this.removePhoto.bind(this);
@@ -56,6 +55,7 @@ class PhotoUpload extends React.Component {
 	}
 
 	preparePhoto(files) {
+		console.log('preparePhoto', files);
 		var list = [];
 		files.map((file)=> {
 			list.push({src: this.createUrl(file.filename)});
@@ -80,10 +80,14 @@ class PhotoUpload extends React.Component {
 
 	fileHandler(event) {
 		const file = event.target.files[0];
+		if (!file) {
+			return;
+		}
+
 		const promise = db.store.upload(file);
 		this.setState({loading: true});
 		promise.always(()=>this.setState({loading: false}));
-		this.props.uploadHandler(this.props.propName, promise);
+		this.props.uploadHandler(promise, this.props.active, this.props.propName);
 	}
 
 	removePhoto(event) {
