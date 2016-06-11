@@ -133,13 +133,17 @@ class Car {
 			{label: 'полный', type: du.all}
 		];
 
-
 		this.makes = [
 			{
 				name: 'Acura',
 				models: [
 					{
-						name: 'TLX'
+						name: 'TLX',
+						eq: ['Techno', 'Advance'],
+						mod: [
+							{name: '2.4 DCT', du: du.rear, hp: 208, ac: 8.2},
+							{name: '3.5 AT AWD', dU: du.all, hp: 290, ac: 6.9},
+						]
 					}, {
 						name: 'RDX'
 					}, {
