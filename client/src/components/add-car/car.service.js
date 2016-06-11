@@ -1,6 +1,6 @@
 class Car {
 	constructor() {
-		const engins = {
+		const et = {
 			gasoline: 'gasoline',
 			diesel: 'diesel',
 			hybrid: 'hybrid',
@@ -119,12 +119,12 @@ class Car {
 			{value: 'variable', label: 'вариатор'}
 		];
 
-		this.engins = [
-			{label: 'бензиновый', type: engins.gasoline},
-			{label: 'дизельный', type: engins.diesel},
-			{label: 'гибрид', type: engins.hybrid},
-			{label: 'электро', type: engins.electro},
-			{label: 'газ', type: engins.gas}
+		this.et = [
+			{label: 'бензиновый', type: et.gasoline},
+			{label: 'дизельный', type: et.diesel},
+			{label: 'гибрид', type: et.hybrid},
+			{label: 'электро', type: et.electro},
+			{label: 'газ', type: et.gas}
 		];
 
 		this.du = [
@@ -141,8 +141,8 @@ class Car {
 						name: 'TLX',
 						eq: ['Techno', 'Advance'],
 						mod: [
-							{name: '2.4 DCT', du: du.rear, hp: 208, ac: 8.2},
-							{name: '3.5 AT AWD', dU: du.all, hp: 290, ac: 6.9},
+							{name: '2.4 DCT', du: du.rear, hp: 208, ac: 8.2, ec: 2.4, et: et.gasoline},
+							{name: '3.5 AT AWD', dU: du.all, hp: 290, ac: 6.9, ec: 3.5, et: et.gasoline},
 						]
 					}, {
 						name: 'RDX'
