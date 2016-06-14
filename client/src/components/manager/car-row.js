@@ -95,7 +95,7 @@ class CarRow extends React.Component {
             <img src={this.props.carData.carlistImage} width="220" height="160" alt=""/>
           </div>
           <div className="car-row__desc">
-            <a href={"/car-view/" + this.props.carData.id} target="_blank"><h2>{this.props.carData.carlistTitle}</h2></a>
+            <a href={"/car-view/" + this.props.carData.id} ><h2>{this.props.carData.carlistTitle}</h2></a>
             <p>{this.props.carData.carlistSubtitle}</p>
           </div>
           <ul className="car-row__data">
