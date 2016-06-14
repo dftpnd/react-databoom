@@ -1,5 +1,6 @@
 .group-button {
-	width: 180px;
+	display: flex;
+	//width: 180px;
 	&__button {
 		background: #fff;
 		color: #757575;
@@ -26,6 +27,17 @@
 		&.active {
 			background: #ed392c;
 			border-color: #b8291e;
+		}
+	}
+	&__add-comment {
+		background: none;
+		border: none;
+		display: flex;
+		align-items: center;
+		padding-left: 10px;
+
+		img {
+			margin-top: 3px;
 		}
 	}
 }
