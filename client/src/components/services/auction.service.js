@@ -83,6 +83,7 @@ class auction {
     car.endMomentStr = car.endMoment.format('lll');
     car.tradesDurationHours = car.endMoment.diff(moment(car.auction_start), 'hours') + ' часов';
     car.bidsCount = car.bids && car.bids.length ? car.bids.length : 0;
+    
   }
 
   processFinishedCarList(carlist)
@@ -221,6 +222,21 @@ class auction {
     min_bid = Math.max(maxBidValue*1.05, 1000);
     min_bid = min_bid % 1000 == 0 ? min_bid : min_bid + (1000 - min_bid % 1000);
     return min_bid;
+  }
+
+  isCarOnAuction(car)
+  {
+    if(car.auction_step == 1)
+    {
+      if(typeof(car.time_left_sec) == "undefined")
+      {
+        throw "Ошибка. Требуется вызов метода processCar.";
+      }else 
+      {
+        return car.time_left_sec > 0
+      }
+    }
+    return false;
   }
 }
 

@@ -3,11 +3,14 @@ import store from '../services/store.service'
 import Main from './car-view-main';
 import CarViewEquipment from './car-view-equipment';
 import Damage from './car-view-damage';
+import auction from '../services/auction.service'
 
 class CarView extends React.Component {
   constructor(props) {
     super(props);
     this.tabClick = this.tabClick.bind(this);
+    this.makeBidClick = this.makeBidClick.bind(this);
+
     this.state = {
       carData: {
         carlistTitle: '',
@@ -58,14 +61,32 @@ class CarView extends React.Component {
     }
   }
 
+  makeBidClick(event)
+  {
+    var car = this.state.carData;
+    if(auction.isCarOnAuction(car))
+    {
+      localStorage['auction:showBidDialog'] = car.id;
+      window.location = '/auction';
+    }else
+    {
+      alert('Ставка не сделана. Данный автомобиль уже не находится на аукционе.')
+      location.reload();
+      return;
+    }
+  }
+
   render() {
+    var car = this.state.carData;
+    var canMakeBids = auction.isCarOnAuction(car) ? '' : 'disabled';
+
     return (
       <div className="limiter wrapper car-view">
         <div className="content-wrapper">
           <div className="car-title">
             <h1>{this.state.carData.carlistTitle}</h1>
             <p>{this.state.carData.carlistSubtitle}</p>
-            <button className="common-button">Сделать ставку</button>
+            <button className={"common-button " + canMakeBids} disabled={canMakeBids} type="button" onClick={this.makeBidClick}>Сделать ставку</button>
           </div>
           <ul className="tabs-nav">
             <li className={this.state.tabName=='main'?'active':''}><a href="javascript:void(0)" onClick={this.tabClick} name="main">Общая информация</a></li>

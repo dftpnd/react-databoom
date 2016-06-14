@@ -115,6 +115,13 @@ button.common-button {
 	padding: 19px 24px 15px;
 	background: #17314c;
 	border-radius: 4px;
+
+  &.disabled{
+    cursor: not-allowed;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    box-shadow: none;
+  }
 }
 
 .sub-nav {

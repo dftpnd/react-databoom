@@ -11,14 +11,16 @@ class CarList extends React.Component {
     this.state = { carList :[]};
     var buyerId = auth.getUserId();
 
+    var showBidDialog = this.props['showBidDialog'];
 
     store.getAuctionCars(buyerId).done((data) => {
 
-      console.log(JSON.stringify(data, null, '\t'));
+      //console.log(JSON.stringify(data, null, '\t'));//
       var cars = [];
       for(var i=0; i<data.length; i++)
       {
-        cars.push(<CarRow carData={data[i]} key={i} buyerId={buyerId}/>);//
+        var car = data[i];
+        cars.push(<CarRow carData={car} key={i} buyerId={buyerId} showBidDialog={car.id == showBidDialog} />);//
       }
 
       if(cars.length == 0)

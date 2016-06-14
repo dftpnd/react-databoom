@@ -90,6 +90,14 @@ class CarRow extends React.Component {
     this.setState({newBidValue: event.target.value});
   }
 
+  componentDidMount() {
+
+    if(this.props.showBidDialog)
+    {
+      this.setState({modalIsOpen: true});
+    }
+  }
+
   render() {
     this.car = this.props.carData;
     var car = this.car;
