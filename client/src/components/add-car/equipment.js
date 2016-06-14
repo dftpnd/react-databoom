@@ -171,9 +171,12 @@ class Equipment extends React.Component {
 						shouldCloseOnOverlayClick={false}
 						style={customStyles}>
 						<h2 className="modal__title">Выставление автомобиля на аукцион</h2>
-						Длительность аукциона:
-						<input type="number" value={this.state.auction_time_mins}
-							   onChange={this.handleChangeForAuctionMins}/>
+            <div className="">
+              <label>Длительность аукциона:
+                <input type="number" value={this.state.auction_time_mins}
+                       onChange={this.handleChangeForAuctionMins}/>
+              </label>
+            </div>
 						<br/>
 						<button className="common-button put-on" onClick={this.publishCar}>Выставить на аукцион</button>
 						<button className="modal__close" onClick={this.publicateModalClose}></button>
