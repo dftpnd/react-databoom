@@ -90,6 +90,8 @@ class PhotoUpload extends React.Component {
 	}
 
 	removePhoto(event) {
+		event.preventDefault();
+		event.stopPropagation();
 		this.props.removePhoto(event.target.value);
 	}
 

@@ -8,16 +8,6 @@ import ru from 'numeral/languages/ru';
 numeral.language('ru', ru);
 numeral.language('ru');
 
-const customStyles = {
-	content: {
-		top: '50%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)'
-	}
-};
 
 class CarRow extends React.Component {
 
@@ -145,8 +135,7 @@ class CarRow extends React.Component {
 				</button>
 				<Modal
 					isOpen={this.state.modalIsOpen}
-					onRequestClose={this.closeModal}
-					style={customStyles}>
+					onRequestClose={this.closeModal}>
 					<h2>Новая ставка</h2>
 					<p>Текущая ставка: {car.max_bid.value} Р</p>
 					<p>Минимальная ставка: {car.minBidValue} Р</p>

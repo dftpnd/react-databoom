@@ -233,21 +233,17 @@ class Exterior extends React.Component {
 	}
 
 	deletePhoto(filename) {
-		var index = null;
-		const files = this.state[`element${this.state.activeElement}`];
-
-		files.map((file, i)=> {
-			if (file.filename === filename)
-				return index = i;
+		this.state.damageElements.map((element, elementIndex)=> {
+			if (element.index === this.state.activeElement) {
+				element.photos.map((file, fileIndex)=> {
+					if (file.filename === filename) {
+						element.photos.splice(fileIndex, 1);
+						return;
+					}
+				});
+			}
 		});
-
-		if (index === null) {
-			alert('Фотография не найдена!');
-			return;
-		}
-		files.splice(index, 1);
-
-		this.setState({[this.state.activeElement]: files});
+		this.setState({damageElements: this.state.damageElements});
 	}
 
 	hasBroken(index) {
@@ -308,7 +304,8 @@ class Exterior extends React.Component {
 					<div className="exterior-detail__left">
 						<label className="exterior-label">
 							Поврежденная деталь
-							<select className="exterior-field__select" value={this.state.activeElement} name="activeElement" onChange={this.handleChange}>
+							<select className="exterior-field__select" value={this.state.activeElement}
+									name="activeElement" onChange={this.handleChange}>
 								<option value=""> -</option>
 								{this.elements.map((element, i)=> {
 									return (<option value={element.value} key={i}>{element.label}</option>);
@@ -339,13 +336,13 @@ class Exterior extends React.Component {
 						</label>
 					</div>
 					<div className="exterior-detail__right">
-						<label className="exterior-label">
+						<div className="exterior-label">
 							Основные фотографии
 							<PhotoUpload photos={this.state.elementPhotos}
 										 uploadHandler={this.updateElementPhoto}
 										 removePhoto={this.deletePhoto}
 										 active={this.state.activeElement}/>
-						</label>
+						</div>
 					</div>
 				</div>
 

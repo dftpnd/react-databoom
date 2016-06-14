@@ -4,17 +4,6 @@ import Modal from 'react-modal';
 import addCarService from './add-car.service';
 import EquipmentView from './equipment-view';
 
-const customStyles = {
-	content: {
-		top: '50%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)',
-		overflow: 'visible'
-	}
-};
 
 class Equipment extends React.Component {
 	constructor(props) {
@@ -168,8 +157,7 @@ class Equipment extends React.Component {
 					<Modal
 						isOpen={this.state.publicateModalIsOpen}
 						onRequestClose={this.publicateModalClose}
-						shouldCloseOnOverlayClick={false}
-						style={customStyles}>
+						shouldCloseOnOverlayClick={false}>
 						<h2 className="modal__title">Выставление автомобиля на аукцион</h2>
             <div className="">
               <label>Длительность аукциона:
