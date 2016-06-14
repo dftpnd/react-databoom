@@ -152,7 +152,7 @@ class store {
   getCar(carId)
   {
     return db.login.then(() => {
-      return db.store.load('car(' + carId + ')', { expand: "carMainPhoto" })
+      return db.store.load('car(' + carId + ')', { expand: "carMainPhoto,equipment" })
         .then((carlist) => {
           carlist = carlistService.processCarList(carlist);
           carlist.forEach((car) => { auction.processCar(car)});
