@@ -114,7 +114,7 @@ class Damage extends React.Component {
 							<div>
 								<table className="table">
 									<thead>
-									<tr>
+									<tr className="table-th">
 										<th>Поврежденная деталь</th>
 										<th>Тип повреждения</th>
 										<th>Тип ремонта</th>
