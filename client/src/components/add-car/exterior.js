@@ -306,18 +306,18 @@ class Exterior extends React.Component {
 
 				<div className="exterior-detail">
 					<div className="exterior-detail__left">
-						<label>
+						<label className="exterior-label">
 							Поврежденная деталь
-							<select value={this.state.activeElement} name="activeElement" onChange={this.handleChange}>
+							<select className="exterior-field__select" value={this.state.activeElement} name="activeElement" onChange={this.handleChange}>
 								<option value=""> -</option>
 								{this.elements.map((element, i)=> {
 									return (<option value={element.value} key={i}>{element.label}</option>);
 								})}
 							</select>
 						</label>
-						<label>
+						<label className="exterior-label">
 							Тип повреждения
-							<select value={this.state.damageType} name="damageType"
+							<select className="exterior-field__select" value={this.state.damageType} name="damageType"
 									disabled={!this.state.activeElement}
 									onChange={this.damageTypeHandler}>
 								<option value=""> -</option>
@@ -326,9 +326,9 @@ class Exterior extends React.Component {
 								})}
 							</select>
 						</label>
-						<label>
+						<label className="exterior-label">
 							Тип ремонта
-							<select value={this.state.typeRepair} name="typeRepair"
+							<select className="exterior-field__select" value={this.state.typeRepair} name="typeRepair"
 									disabled={!this.state.damageType || !this.state.activeElement}
 									onChange={this.typeRepairHandler}>
 								<option value=""> -</option>
@@ -339,7 +339,7 @@ class Exterior extends React.Component {
 						</label>
 					</div>
 					<div className="exterior-detail__right">
-						<label>
+						<label className="exterior-label">
 							Основные фотографии
 							<PhotoUpload photos={this.state.elementPhotos}
 										 uploadHandler={this.updateElementPhoto}
