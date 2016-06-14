@@ -55,7 +55,6 @@ class PhotoUpload extends React.Component {
 	}
 
 	preparePhoto(files) {
-		console.log('preparePhoto', files);
 		var list = [];
 		files.map((file)=> {
 			list.push({src: this.createUrl(file.filename)});

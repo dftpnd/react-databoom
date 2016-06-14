@@ -8,6 +8,8 @@ class ExteriorElement extends React.Component {
 		this.state = {
 			id: this.props.value,
 			name: this.props.value,
+			broken: this.props.hasBroken(this.props.value),
+			hasBroken: this.props.hasBroken,
 			top: this.props.top + 'px',
 			left: this.props.left + 'px',
 			active: this.props.active
@@ -16,17 +18,21 @@ class ExteriorElement extends React.Component {
 		this.elementHandler = this.elementHandler.bind(this);
 	}
 
+	componentWillReceiveProps(nextProps) {
+		this.setState({broken: this.props.hasBroken(this.props.value)})
+	}
+
 	elementHandler(event) {
 		const newValue = parseInt(event.target.value, 10);
 		this.setState({active: newValue});
 		this.props.handler(newValue);
 	}
 
-
 	render() {
 		const btnClasses = classNames({
 			'exterior__damage-item': true,
-			'active': this.state.id === this.props.active
+			'active': this.state.id === this.props.active,
+			'broken': this.state.broken
 		});
 
 		return (

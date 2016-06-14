@@ -53,14 +53,15 @@ class Exterior extends React.Component {
 			damageElements: []
 		};
 
-		this.state = defaultState;//JSON.parse(localStorage.getItem('exteriorState')) || defaultState;
+		this.state = JSON.parse(localStorage.getItem('exteriorState')) || defaultState;
 
 		this.elements = elements;
 		this.damageTypes = damageTypes;
 		this.typeRepair = typeRepair;
 
 		this.elementHandler = this.elementHandler.bind(this);
-		this.elementPropHandler = this.elementPropHandler.bind(this);
+		this.damageTypeHandler = this.damageTypeHandler.bind(this);
+		this.typeRepairHandler = this.typeRepairHandler.bind(this);
 		this.getElementLabel = this.getElementLabel.bind(this);
 		this.addPhoto = this.addPhoto.bind(this);
 		this.updateElementPhoto = this.updateElementPhoto.bind(this);
@@ -70,6 +71,7 @@ class Exterior extends React.Component {
 		this.getDamageType = this.getDamageType.bind(this);
 		this.getTypeRepair = this.getTypeRepair.bind(this);
 		this.getPhotos = this.getPhotos.bind(this);
+		this.hasBroken = this.hasBroken.bind(this);
 	}
 
 	componentWillUpdate(_, nextProps) {
@@ -89,11 +91,52 @@ class Exterior extends React.Component {
 			activeElement: value,
 			damageType: this.getDamageType(value),
 			typeRepair: this.getTypeRepair(value),
-			elementPhotos: this.getPhotos(value),
+			elementPhotos: this.getPhotos(value)
 		});
 	}
 
-	elementPropHandler(event) {
+	damageTypeHandler(event) {
+
+		if (!event.target.name) {
+			throw new Error('Input name required');
+		}
+
+		this.handleChange(event);
+
+		let rowIndex = null;
+		const activeIndex = this.state.activeElement;
+		const value = event.target.value;
+		const name = event.target.name;
+		const hasValue = (value !== '');
+		const elements = JSON.parse(JSON.stringify(this.state.damageElements));
+
+		elements.map((el, i)=> {
+			if (el.index === activeIndex) rowIndex = i;
+		});
+
+		if (!activeIndex) {
+			throw new Error('activeIndex required');
+		}
+
+		if (!hasValue) {
+
+			// удаляем свойство
+			delete elements[rowIndex][name];
+			this.setState({typeRepair: ''});
+		} else if (rowIndex === null) {
+
+			// добавляем строку со свойством
+			elements.push({index: activeIndex, [name]: value});
+		} else {
+
+			// редактируем или добавляем свойство
+			elements[rowIndex][name] = value;
+		}
+		console.log(elements);
+		this.setState({damageElements: elements})
+	}
+
+	typeRepairHandler(event) {
 
 		if (!event.target.name) {
 			throw new Error('Input name required');
@@ -171,7 +214,6 @@ class Exterior extends React.Component {
 		const el = this.getElement(index);
 
 		if (el && el.photos) {
-			console.log('getPhotos', el.photos);
 			return el.photos;
 		}
 
@@ -243,6 +285,17 @@ class Exterior extends React.Component {
 		this.setState({[this.state.activeElement]: files});
 	}
 
+	hasBroken(index) {
+		let broken = false;
+		this.state.damageElements.map((item)=> {
+			if (item.index === index && item.hasOwnProperty('damageType')) {
+				return broken = true;
+			}
+		});
+
+		return broken;
+	}
+
 	render() {
 		var position = {
 			1: {left: 33, top: 265},
@@ -280,6 +333,7 @@ class Exterior extends React.Component {
 								left={position[btn.value].left} top={position[btn.value].top}
 								value={btn.value}
 								handler={this.elementHandler}
+								hasBroken={this.hasBroken}
 								active={this.state.activeElement} key={i}/>
 						})}
 					</div>
@@ -298,7 +352,9 @@ class Exterior extends React.Component {
 						</label>
 						<label>
 							Тип повреждения
-							<select value={this.state.damageType} name="damageType" onChange={this.elementPropHandler}>
+							<select value={this.state.damageType} name="damageType"
+									disabled={!this.state.activeElement}
+									onChange={this.damageTypeHandler}>
 								<option value=""> -</option>
 								{this.damageTypes.map((dt, i)=> {
 									return (<option value={dt.value} key={i}>{dt.label}</option>);
@@ -307,7 +363,9 @@ class Exterior extends React.Component {
 						</label>
 						<label>
 							Тип ремонта
-							<select value={this.state.typeRepair} name="typeRepair" onChange={this.elementPropHandler}>
+							<select value={this.state.typeRepair} name="typeRepair"
+									disabled={!this.state.damageType || !this.state.activeElement}
+									onChange={this.typeRepairHandler}>
 								<option value=""> -</option>
 								{this.typeRepair.map((tr, i)=> {
 									return (<option value={tr.value} key={i}>{tr.label}</option>);

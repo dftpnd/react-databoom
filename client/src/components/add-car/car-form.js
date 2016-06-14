@@ -60,7 +60,7 @@ class CarForm extends React.Component {
 		this.deletePhoto = this.deletePhoto.bind(this);
 	}
 
-	addPhoto(elementName, promise) {
+	addPhoto(promise) {
 		promise.done((data)=> {
 			this.setState({carMainPhoto: this.state.carMainPhoto.concat({filename: data.filename})});
 		});
