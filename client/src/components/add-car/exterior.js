@@ -46,7 +46,6 @@ class Exterior extends React.Component {
 		];
 
 		const defaultState = {
-			exteriorElements: {},
 			activeElement: '',
 			damageType: '',
 			typeRepair: '',
