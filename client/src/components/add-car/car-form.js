@@ -17,7 +17,6 @@ class CarForm extends React.Component {
 		this.requiredFields = ['carMake', 'carModel'];
 
 		const defaultState = {
-			carModelOptions: [{name: 'corsa', value: 123}, {name: 'astra', value: 777}],
 			disableCarModel: true,
 			carMainPhoto: [],
 			carDescription: '',
