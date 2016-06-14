@@ -10,6 +10,7 @@ class CarView extends React.Component {
 	constructor(props) {
 		super(props);
 		this.makeBidClick = this.makeBidClick.bind(this);
+		this.getDamageLength = this.getDamageLength.bind(this);
 
 		this.state = {
 			damageLength: 0,
@@ -29,12 +30,12 @@ class CarView extends React.Component {
 				this.viewMap = {
 					'info': <Main carData={car}/>,
 					'equipment': <CarViewEquipment carData={car}/>,
-					'damage': <Damage carData={car}/>
+					'damage': <Damage carData={car} damageLength={this.state.damageLength}/>
 				};
 				this.setState({
 					carData: car,
-					damageLength: 2,
-					tab: this.viewMap[this.state.tabName],
+					damageLength: this.getDamageLength(car.damageElements),
+					tab: this.viewMap[this.state.tabName]
 				});
 			} else {
 				alert('Неверный адрес страницы.');
@@ -43,6 +44,19 @@ class CarView extends React.Component {
 		}).fail(function () {
 			alert('Ошибка при загрузке данных автомобиля');
 		})
+	}
+
+	getDamageLength(damageElements) {
+		var damages = 0;
+
+		if (damageElements)
+			damageElements.map((el)=> {
+				if (el.hasOwnProperty('damageType')) {
+					++damages;
+				}
+			});
+
+		return damages;
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -88,7 +102,7 @@ class CarView extends React.Component {
 						<li className={this.state.tabName=='damage'?'active':''}>
 							<Link to={'/car-view/damage/'+this.props.params.carId}>
 								Повреждения
-								<sub>3</sub>
+								<sub>{this.state.damageLength}</sub>
 							</Link>
 						</li>
 					</ul>

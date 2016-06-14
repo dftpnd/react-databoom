@@ -1,13 +1,21 @@
 import React from 'react';
 
 class Damage extends React.Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
+		this.state = {
+			damageLength: this.props.damageLength
+		}
 	}
+
 	render() {
 		return (
 			<div>
-				Damage
+				{(()=>{
+					if(!this.state.damageLength){
+						return 'Нет поврежденых элементов'
+					}
+				})()}
 			</div>
 		);
 	}
