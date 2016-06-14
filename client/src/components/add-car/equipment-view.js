@@ -1,6 +1,4 @@
 import React from 'react';
-import Modal from 'react-modal';
-import addCarService from './add-car.service';
 
 class EquipmentView extends React.Component {
 	constructor(props) {
