@@ -30,7 +30,7 @@ class CarView extends React.Component {
 				this.viewMap = {
 					'info': <Main carData={car}/>,
 					'equipment': <CarViewEquipment carData={car}/>,
-					'damage': <Damage carData={car} damageLength={this.state.damageLength}/>
+					'damage': <Damage carData={car} damageLength={this.getDamageLength(car.damageElements)}/>
 				};
 				this.setState({
 					carData: car,

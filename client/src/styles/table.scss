@@ -1,0 +1,12 @@
+.table {
+	width: 100%;
+
+	tr, .row {
+		display: table-row;
+		padding: 10px;
+	}
+	td, .cell {
+		border: 1px solid black;
+		display: table-cell;
+	}
+}

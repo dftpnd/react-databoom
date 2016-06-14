@@ -1,12 +1,12 @@
 import React from 'react';
 import addCarService from './add-car.service';
 import PhotoUpload from '../photo-upload/photo-upload'
-import Car from './car.service';
+import Car from './../services/car.service.js';
 
 class CarForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.car = new Car();
+		this.car = Car;
 
 		//localStorage.clear();
 		/**

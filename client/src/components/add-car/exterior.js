@@ -4,46 +4,12 @@ import { Link } from 'react-router'
 import ExteriorElement from './exterior-element';
 import PhotoUpload from '../photo-upload/photo-upload'
 
+import Car from './../services/car.service';
+
 class Exterior extends React.Component {
 	constructor(props) {
 		super(props);
 		//localStorage.clear();
-
-		const elements = [
-			{label: 'переднего бампера', value: 1},
-			{label: 'левой фары', value: 2},
-			{label: 'правой фары', value: 3},
-			{label: 'переднего капота', value: 4},
-			{label: 'лобового стекла', value: 5},
-			{label: 'крыши', value: 6},
-			{label: 'заднего стекла', value: 7},
-			{label: 'заднего номера', value: 8},
-			{label: 'заднего бампера', value: 9},
-			{label: 'левой задней фары', value: 10},
-			{label: 'правой задней фары', value: 11},
-			{label: 'правого переднего крыла', value: 12},
-			{label: 'правого переднего колеса', value: 13},
-			{label: 'правой передней двери', value: 14},
-			{label: 'правой заднй двери', value: 15},
-			{label: 'правого заднего колеса', value: 16},
-			{label: 'правого заднего подкрылка', value: 17},
-			{label: 'левый передний подкрылок', value: 18},
-			{label: 'левое переднее колесо', value: 19},
-			{label: 'левая передная дверь', value: 20},
-			{label: 'левая задняя дверь', value: 21},
-			{label: 'левая заднее колесо', value: 22},
-			{label: 'левый задний подкрылок', value: 23}
-		];
-
-		const damageTypes = [
-			{label: 'Глубокая вмятина', value: 1},
-			{label: 'царапина', value: 2}
-		];
-
-		const typeRepair = [
-			{label: 'Покраска детали', value: 1},
-			{label: 'Замена детали', value: 2}
-		];
 
 		const defaultState = {
 			activeElement: '',
@@ -55,9 +21,9 @@ class Exterior extends React.Component {
 
 		this.state = JSON.parse(localStorage.getItem('exteriorState')) || defaultState;
 
-		this.elements = elements;
-		this.damageTypes = damageTypes;
-		this.typeRepair = typeRepair;
+		this.elements = Car.elements;
+		this.damageTypes = Car.damageTypes;
+		this.typeRepair = Car.typeRepair;
 
 		this.elementHandler = this.elementHandler.bind(this);
 		this.damageTypeHandler = this.damageTypeHandler.bind(this);
