@@ -29,15 +29,31 @@
 			border-color: #b8291e;
 		}
 	}
+
+  .add-comment-svg{
+
+  }
+  .add-comment-svg-2{
+    display: none;
+  }
+
 	&__add-comment {
 		background: none;
 		border: none;
 		display: flex;
 		align-items: center;
 		padding-left: 10px;
-
+    &.not-empty{
+      .add-comment-svg{
+        display: none;
+      }
+      .add-comment-svg-2{
+        display: block;
+      }
+    }
 		img {
 			margin-top: 3px;
 		}
 	}
+
 }

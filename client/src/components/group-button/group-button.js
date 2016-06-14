@@ -4,10 +4,13 @@ import PhotoUpload from '../photo-upload/photo-upload'
 
 var classNames = require('classnames');
 const addCommentSvg = require('../../images/add-comment.svg');
+const addCommentSvg2 = require('../../images/add-comment-2.svg');
+
+
 class GroupButton extends React.Component {
 	constructor(props) {
 		super(props);
-
+    //localStorage.clear();
 		const fieldComments = JSON.parse(localStorage.getItem('fieldComments')) || {};
 		const cname = `${this.props.name}Comments`;
 		const cData = fieldComments[cname] || {photos: [], comment: ''};
@@ -18,10 +21,9 @@ class GroupButton extends React.Component {
 			cname: cname,
 			photos: cData.photos,
 			comment: cData.comment,
-			hasComment: true,
+			hasComment: !!cData.photos.length || !!cData.comment,
 			modalIsOpen: false
 		};
-
 		this.clickHandlerOk = this.clickHandlerOk.bind(this);
 		this.clickHandlerNo = this.clickHandlerNo.bind(this);
 		this.openModal = this.openModal.bind(this);
@@ -51,18 +53,18 @@ class GroupButton extends React.Component {
 	}
 
 	closeModal() {
-		if (this.state.hasComment && this.empty()) {
+    if (this.state.hasComment && this.empty()) {
 			if (confirm('Удалить содержимое заметки?')) {
 				this.setState({modalIsOpen: false});
 			}
 		} else {
 			this.setState({modalIsOpen: false});
 		}
-
+    this.setState({hasComment: !this.empty()})
 	}
 
 	deletePhoto(filename) {
-		this.state.photos.map((file, fileIndex)=> {
+    this.state.photos.map((file, fileIndex)=> {
 			if (file.filename === filename) {
 				this.state.photos.splice(fileIndex, 1);
 				return;
@@ -82,11 +84,10 @@ class GroupButton extends React.Component {
 		var fieldComments = JSON.parse(localStorage.getItem('fieldComments')) || {};
 		const data = {
 			comment: nextState.comment,
-			photos: nextState.photo
+			photos: nextState.photos
 		};
 
-		fieldComments[this.cname] = data;
-
+		fieldComments[this.state.cname] = data;
 		localStorage.setItem('fieldComments', JSON.stringify(fieldComments));
 	}
 
@@ -102,18 +103,25 @@ class GroupButton extends React.Component {
 	}
 
 	render() {
-		var successButton = classNames(
+		const successButton = classNames(
 			{
 				'group-button__button': true,
 				'group-button__btn-yes': true,
 				active: this.state.value !== null && this.state.value
 			}
 		);
-		var dangerButton = classNames(
+		const dangerButton = classNames(
 			{
 				'group-button__button': true,
 				'group-button__btn-no': true,
 				active: this.state.value !== null && !this.state.value
+			}
+		);
+
+    const commentButton = classNames(
+			{
+				'group-button__add-comment': true,
+				'not-empty': !this.empty()
 			}
 		);
 
@@ -125,8 +133,9 @@ class GroupButton extends React.Component {
 				<button className={dangerButton} onClick={this.clickHandlerNo} type="button">
 					Нет
 				</button>
-				<button className="group-button__add-comment" onClick={this.openModal} title="Добавить комментарий">
-					<img src={addCommentSvg} alt="add coment" width="24" height="30"/>
+				<button className={commentButton} onClick={this.openModal} title="Добавить комментарий">
+					<img className="add-comment-svg" src={addCommentSvg} alt="add coment" width="24" height="30"/>
+					<img className="add-comment-svg-2" src={addCommentSvg2} alt="add coment" width="24" height="30"/>
 				</button>
 
 				<Modal
@@ -137,7 +146,6 @@ class GroupButton extends React.Component {
 					<h2 className="modal__title">Описание неисправности</h2>
 					<form className="add-comment" action="">
 						<textarea placeholder="Текст описания"
-								  name="asd"
 								  rows={4}
 								  value={this.state.comment}
 								  onChange={this.commentHandler}/>
@@ -152,7 +160,7 @@ class GroupButton extends React.Component {
 						</label>
 
 						{(()=> {
-							if (!this.empty()) {
+							if (false && !this.empty()) {
 								return (<a className="add-comment__remove">Удалить</a>);
 							}
 						})()}
