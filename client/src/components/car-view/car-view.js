@@ -11,7 +11,6 @@ class CarView extends React.Component {
 		super(props);
 		this.makeBidClick = this.makeBidClick.bind(this);
 
-		console.log();
 		this.state = {
 			damageLength: 0,
 			carData: {
