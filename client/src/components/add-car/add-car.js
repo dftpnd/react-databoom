@@ -56,25 +56,25 @@ class AddCar extends React.Component {
 		var view = viewMap[state];
 
 		return (
-      <div className="limiter wrapper">
-        <div className="content-wrapper">
-          <div className="add-car">
-            <nav className="add-car-menu">
-              <AddCarStepLink step="car-form"/>
-              <AddCarStepLink step="exterior"/>
-              <AddCarStepLink step="exterior-functional"/>
-              <AddCarStepLink step="interior"/>
-              <AddCarStepLink step="interior-functional"/>
-              <AddCarStepLink step="tires-and-brakes"/>
-              <AddCarStepLink step="engine"/>
-              <AddCarStepLink step="suspension"/>
-              <AddCarStepLink step="test-drive"/>
-              <AddCarStepLink step="equipment"/>
-            </nav>
-            {view}
-          </div>
-        </div>
-      </div>  
+			<div className="limiter wrapper">
+				<div className="content-wrapper">
+					<div className="add-car">
+						<nav className="add-car-menu">
+							<AddCarStepLink step="car-form"/>
+							<AddCarStepLink step="exterior"/>
+							<AddCarStepLink step="exterior-functional"/>
+							<AddCarStepLink step="interior"/>
+							<AddCarStepLink step="interior-functional"/>
+							<AddCarStepLink step="tires-and-brakes"/>
+							<AddCarStepLink step="engine"/>
+							<AddCarStepLink step="suspension"/>
+							<AddCarStepLink step="test-drive"/>
+							<AddCarStepLink step="equipment"/>
+						</nav>
+						{view}
+					</div>
+				</div>
+			</div>
 		);
 	}
 }

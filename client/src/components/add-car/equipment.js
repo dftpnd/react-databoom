@@ -99,8 +99,7 @@ class Equipment extends React.Component {
 				localStorage.clear();
         localStorage['userinfo']=userinfo_str;
 
-				console.log('Данные автомобиля:');
-				console.log(JSON.stringify(data, null, '\t'));
+				console.log('Данные автомобиля:',JSON.stringify(data, null, '\t'));
 				browserHistory.push('/auction');
 			},
 			() => {

@@ -1,4 +1,3 @@
-import { browserHistory } from 'react-router';
 import React from 'react';
 import Modal from 'react-modal';
 import addCarService from './add-car.service';

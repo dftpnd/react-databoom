@@ -18,7 +18,7 @@ class ExteriorElement extends React.Component {
 		this.elementHandler = this.elementHandler.bind(this);
 	}
 
-	componentWillReceiveProps(nextProps) {
+	componentWillReceiveProps() {
 		this.setState({broken: this.props.hasBroken(this.props.value)})
 	}
 

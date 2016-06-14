@@ -132,7 +132,6 @@ class Exterior extends React.Component {
 			// редактируем или добавляем свойство
 			elements[rowIndex][name] = value;
 		}
-		console.log(elements);
 		this.setState({damageElements: elements})
 	}
 
