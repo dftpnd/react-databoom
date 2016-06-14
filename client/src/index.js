@@ -43,18 +43,19 @@ ReactDOM.render((
 		<Route path="/" component={App}>
 			<IndexRoute component={Auction} onEnter={requireAuth}/>
 			<Route path="auction" component={Auction} onEnter={requireAuth}/>
-      <Route path="manager" component={Manager} onEnter={requireAuth}/>
-      <Route path="manager-sold" component={ManagerSold} onEnter={requireAuth}/>
-      <Route path="personal" component={Personal} onEnter={requireAuth}>
-        <Route path=":stepName" component={Personal} onEnter={requireAuth}/>
-      </Route>
+			<Route path="manager" component={Manager} onEnter={requireAuth}/>
+			<Route path="manager-sold" component={ManagerSold} onEnter={requireAuth}/>
+			<Route path="personal" component={Personal} onEnter={requireAuth}>
+				<Route path=":stepName" component={Personal} onEnter={requireAuth}/>
+			</Route>
 			<Route path="add-car" component={AddCar}>
 				<Route path=":stepName" component={AddCar} onEnter={handlerRouter}/>
 			</Route>
 			<Route path="login" component={Login} onEnter={requireAuth}/>
-      <Route path="car-view" component={CarView} onEnter={requireAuth}>
-        <Route path=":carId" component={CarView} onEnter={requireAuth}/>
-      </Route>
+
+			<Route path="car-view" component={CarView} onEnter={requireAuth}>
+				<Route path=":tabName/:carId" component={CarView} onEnter={requireAuth}/>
+			</Route>
 		</Route>
 	</Router>
 ), document.getElementById('app'));

@@ -1,23 +1,25 @@
 import React from 'react';
-import store from '../services/store.service'
+import store from '../services/store.service';
 import Main from './car-view-main';
 import CarViewEquipment from './car-view-equipment';
 import Damage from './car-view-damage';
-import auction from '../services/auction.service'
+import auction from '../services/auction.service';
+import {Link} from 'react-router';
 
 class CarView extends React.Component {
 	constructor(props) {
 		super(props);
-		this.tabClick = this.tabClick.bind(this);
 		this.makeBidClick = this.makeBidClick.bind(this);
 
+		console.log();
 		this.state = {
+			damageLength: 0,
 			carData: {
 				carlistTitle: '',
 				carlistSubtitle: ''
 			},
 			tab: (<span></span>),
-			tabName: 'main'
+			tabName: this.props.params.tabName
 		};
 
 		this.viewMap = null;
@@ -26,13 +28,14 @@ class CarView extends React.Component {
 			if (data.length) {
 				var car = data[0];
 				this.viewMap = {
-					'main': <Main carData={car}/>,
+					'info': <Main carData={car}/>,
 					'equipment': <CarViewEquipment carData={car}/>,
 					'damage': <Damage carData={car}/>
 				};
 				this.setState({
 					carData: car,
-					tab: this.viewMap['main'],
+					damageLength: 2,
+					tab: this.viewMap[this.state.tabName],
 				});
 			} else {
 				alert('Неверный адрес страницы.');
@@ -43,17 +46,11 @@ class CarView extends React.Component {
 		})
 	}
 
-	tabClick(event) {
-		if (this.viewMap) {
-			var viewName = event.currentTarget.name;
-			this.setState({
-				tab: this.viewMap[viewName],
-				tabName: viewName
-			});
-		} else {
-			//car data not loaded yet
-			return false;
-		}
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			tabName: nextProps.params.tabName,
+			tab: this.viewMap[nextProps.params.tabName]
+		});
 	}
 
 	makeBidClick() {
@@ -83,16 +80,17 @@ class CarView extends React.Component {
 						</button>
 					</div>
 					<ul className="tabs-nav">
-						<li className={this.state.tabName=='main'?'active':''}><a href="javascript:void(0)"
-																				  onClick={this.tabClick} name="main">Общая
-							информация</a></li>
-						<li className={this.state.tabName=='equipment'?'active':''}><a href="javascript:void(0)"
-																					   onClick={this.tabClick}
-																					   name="equipment">Комплектация</a>
+						<li className={this.state.tabName=='info'?'active':''}>
+							<Link to={'/car-view/info/'+this.props.params.carId}>Общая информация</Link>
 						</li>
-						<li className={this.state.tabName=='damage'?'active':''}><a href="javascript:void(0)"
-																					onClick={this.tabClick}
-																					name="damage">Повреждения<sub>3</sub></a>
+						<li className={this.state.tabName=='equipment'?'active':''}>
+							<Link to={'/car-view/equipment/'+this.props.params.carId}>Комплектация</Link>
+						</li>
+						<li className={this.state.tabName=='damage'?'active':''}>
+							<Link to={'/car-view/damage/'+this.props.params.carId}>
+								Повреждения
+								<sub>3</sub>
+							</Link>
 						</li>
 					</ul>
 					{this.state.tab}

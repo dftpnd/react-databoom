@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import numeral from 'numeral'
 import store from '../services/store.service';
+import {Link} from 'react-router';
 
 import ru from 'numeral/languages/ru';
 numeral.language('ru', ru);
@@ -119,8 +120,9 @@ class CarRow extends React.Component {
 					<img src={this.props.carData.carlistImage} width="220" height="160" alt=""/>
 				</div>
 				<div className="car-row__desc">
-					<a href={"/car-view/" + this.props.carData.id} >
-						<h2>{this.props.carData.carlistTitle}</h2></a>
+					<Link to={"/car-view/info/" + this.props.carData.id} >
+						<h2>{this.props.carData.carlistTitle}</h2>
+					</Link>
 					<p>{this.props.carData.carlistSubtitle}</p>
 				</div>
 				<ul className="car-row__data">
