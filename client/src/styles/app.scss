@@ -7,7 +7,9 @@
 body {
 	background: #ebeff4;
 }
-
+[readonly]{
+  pointer-events: none;
+}
 .app {
 	display: flex;
 	min-height: 100vh;

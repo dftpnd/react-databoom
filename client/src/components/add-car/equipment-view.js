@@ -17,13 +17,13 @@ class EquipmentView extends React.Component {
 	}
 
 	checkValue(fieldName) {
-		if (this.state.onlyView) {
-			if (this.state[fieldName]) {
-				return true
-			} else {
-				return false
-			}
-		}
+		// if (this.state.onlyView) {
+		// 	if (this.state[fieldName]) {
+		// 		return true
+		// 	} else {
+		// 		return false
+		// 	}
+		// }
 		return true
 	}
 
@@ -40,7 +40,6 @@ class EquipmentView extends React.Component {
 
 	checkHandler(event) {
 		if (this.state.onlyView) {
-			alert('1');
 			return;
 		}
 
