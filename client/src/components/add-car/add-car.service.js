@@ -138,7 +138,6 @@ class AddCarService {
 		browserHistory.push('/add-car/' + step);
 	}
 
-
 	getAvailableStep() {
 		var availableStep = 'engine';
 		return '/add-car/' + availableStep;
@@ -156,6 +155,7 @@ class AddCarService {
 			JSON.parse(localStorage.getItem('interiorState')),
 			JSON.parse(localStorage.getItem('exteriorFunctionalState')),
 			JSON.parse(localStorage.getItem('exteriorState')),
+			JSON.parse(localStorage.getItem('exteriorState')),
 			JSON.parse(localStorage.getItem('carFormState'))
 		];
 
@@ -167,10 +167,9 @@ class AddCarService {
 			}
 		});
 
-    data['auction_step'] = 1;
-    data['auction_start'] = new Date();
-
-    
+		data['auction_step'] = 1;
+		data['auction_start'] = new Date();
+		data['auction_time_mins'] = localStorage.getItem('auction_time_mins');
 
 		return db.store.save('car', data);
 	}

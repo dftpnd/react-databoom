@@ -91,6 +91,7 @@ class Equipment extends React.Component {
 	}
 
 	publishCar() {
+
 		addCarService.save().then(() => {
 				alert('Автомобиль выставлен на аукцион.');
 				this.setState({publicateModalIsOpen: false});
@@ -147,7 +148,7 @@ class Equipment extends React.Component {
 			alert('Введеное значение "' + value + '" меньше 1. Значение должно быть большим или равным 1.');
 			return;
 		}
-
+		localStorage.setItem('auction_time_mins', value);
 		this.setState({auction_time_mins: value});
 	}
 
