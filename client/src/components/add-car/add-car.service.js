@@ -112,7 +112,6 @@ class AddCarService {
 		data['auction_step'] = 1;
 		data['auction_start'] = new Date();
 		data['auction_time_mins'] = localStorage.getItem('auction_time_mins');
-
 		return db.store.save('car', data);
 	}
 }

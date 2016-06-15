@@ -59,7 +59,6 @@ class Exterior extends React.Component {
 			typeRepair: this.getTypeRepair(value),
 			elementPhotos: this.getPhotos(value)
 		});
-		debugger;
 	}
 
 	damageTypeHandler(event) {
@@ -234,6 +233,7 @@ class Exterior extends React.Component {
 	}
 
 	deletePhoto(filename) {
+
 		this.state.damageElements.map((element)=> {
 			if (element.index === this.state.activeElement) {
 				element.photos.map((file, fileIndex)=> {
@@ -250,7 +250,7 @@ class Exterior extends React.Component {
 	hasBroken(index) {
 		let broken = false;
 		this.state.damageElements.map((item)=> {
-			if (item.index === index && (item.hasOwnProperty('damageType') || item.photos)) {
+			if (item.index === index && (item.hasOwnProperty('damageType') || (item.photos && item.photos.length))) {
 				return broken = true;
 			}
 		});

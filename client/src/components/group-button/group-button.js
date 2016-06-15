@@ -10,9 +10,9 @@ class GroupButton extends React.Component {
 	constructor(props) {
 		super(props);
 		//localStorage.clear();
-		const fieldComments = JSON.parse(localStorage.getItem('fieldComments')) || {};
-		const cname = `${this.props.name}Comments`;
-		const cData = fieldComments[cname] || {photos: [], comment: ''};
+		const fieldComments = JSON.parse(localStorage.getItem('fieldComments')) || [];
+		const cname = this.props.name;
+		const cData = this.getCdata(fieldComments, this.props.name);
 
 		this.state = {
 			value: this.props.value,
@@ -31,6 +31,19 @@ class GroupButton extends React.Component {
 		this.deletePhoto = this.deletePhoto.bind(this);
 		this.commentHandler = this.commentHandler.bind(this);
 		this.empty = this.empty.bind(this);
+		this.getCdata = this.getCdata.bind(this);
+	}
+
+	getCdata(fieldComments, name) {
+		var item = {photos: [], comment: '', name: name};
+
+		fieldComments.map((field)=> {
+			if (field.name === name) {
+				item = field;
+				return;
+			}
+		});
+		return item;
 	}
 
 	commentHandler(event) {
@@ -80,14 +93,14 @@ class GroupButton extends React.Component {
 	}
 
 	componentWillUpdate(nextProps, nextState) {
-		var fieldComments = JSON.parse(localStorage.getItem('fieldComments')) || {};
+		var fieldComments = JSON.parse(localStorage.getItem('fieldComments')) || [];
 		const data = {
 			comment: nextState.comment,
 			photos: nextState.photos,
-			field: this.state.name
+			name: this.state.name
 		};
 
-		fieldComments[this.state.cname] = data;
+		fieldComments.push(data);
 		localStorage.setItem('fieldComments', JSON.stringify(fieldComments));
 	}
 
