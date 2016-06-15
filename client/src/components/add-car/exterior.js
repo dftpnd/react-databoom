@@ -59,6 +59,7 @@ class Exterior extends React.Component {
 			typeRepair: this.getTypeRepair(value),
 			elementPhotos: this.getPhotos(value)
 		});
+		debugger;
 	}
 
 	damageTypeHandler(event) {
@@ -157,7 +158,7 @@ class Exterior extends React.Component {
 		const el = this.getElement(index);
 		const defaultValue = '';
 
-		if (el && el.damageType !== '') {
+		if (el && el.damageType) {
 			return el.damageType;
 		}
 
@@ -168,7 +169,7 @@ class Exterior extends React.Component {
 		const el = this.getElement(index);
 		const defaultValue = '';
 
-		if (el && el.typeRepair !== '') {
+		if (el && el.typeRepair) {
 			return el.typeRepair;
 		}
 
@@ -249,7 +250,7 @@ class Exterior extends React.Component {
 	hasBroken(index) {
 		let broken = false;
 		this.state.damageElements.map((item)=> {
-			if (item.index === index && item.hasOwnProperty('damageType')) {
+			if (item.index === index && (item.hasOwnProperty('damageType') || item.photos)) {
 				return broken = true;
 			}
 		});
