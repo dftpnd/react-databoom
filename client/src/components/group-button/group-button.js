@@ -6,11 +6,10 @@ var classNames = require('classnames');
 const addCommentSvg = require('../../images/add-comment.svg');
 const addCommentSvg2 = require('../../images/add-comment-2.svg');
 
-
 class GroupButton extends React.Component {
 	constructor(props) {
 		super(props);
-    //localStorage.clear();
+		//localStorage.clear();
 		const fieldComments = JSON.parse(localStorage.getItem('fieldComments')) || {};
 		const cname = `${this.props.name}Comments`;
 		const cData = fieldComments[cname] || {photos: [], comment: ''};
@@ -53,18 +52,18 @@ class GroupButton extends React.Component {
 	}
 
 	closeModal() {
-    if (this.state.hasComment && this.empty()) {
+		if (this.state.hasComment && this.empty()) {
 			if (confirm('Удалить содержимое заметки?')) {
 				this.setState({modalIsOpen: false});
 			}
 		} else {
 			this.setState({modalIsOpen: false});
 		}
-    this.setState({hasComment: !this.empty()})
+		this.setState({hasComment: !this.empty()})
 	}
 
 	deletePhoto(filename) {
-    this.state.photos.map((file, fileIndex)=> {
+		this.state.photos.map((file, fileIndex)=> {
 			if (file.filename === filename) {
 				this.state.photos.splice(fileIndex, 1);
 				return;
@@ -84,7 +83,8 @@ class GroupButton extends React.Component {
 		var fieldComments = JSON.parse(localStorage.getItem('fieldComments')) || {};
 		const data = {
 			comment: nextState.comment,
-			photos: nextState.photos
+			photos: nextState.photos,
+			field: this.state.name
 		};
 
 		fieldComments[this.state.cname] = data;
@@ -118,7 +118,7 @@ class GroupButton extends React.Component {
 			}
 		);
 
-    const commentButton = classNames(
+		const commentButton = classNames(
 			{
 				'group-button__add-comment': true,
 				'not-empty': !this.empty()

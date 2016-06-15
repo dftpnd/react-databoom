@@ -5,7 +5,7 @@ import GroupButton from '../group-button/group-button'
 class ExteriorFunctional extends React.Component {
 	constructor(props) {
 		super(props);
-
+		//localStorage.clear();
 		const defaultState = {
 			efMirrorMech: true,
 			efWindscreenWiper: true,

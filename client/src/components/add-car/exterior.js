@@ -233,7 +233,7 @@ class Exterior extends React.Component {
 	}
 
 	deletePhoto(filename) {
-		this.state.damageElements.map((element, elementIndex)=> {
+		this.state.damageElements.map((element)=> {
 			if (element.index === this.state.activeElement) {
 				element.photos.map((file, fileIndex)=> {
 					if (file.filename === filename) {

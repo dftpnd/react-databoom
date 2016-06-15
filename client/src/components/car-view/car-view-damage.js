@@ -12,7 +12,8 @@ class Damage extends React.Component {
 			damageLength: this.props.damageLength,
 			damageElements: this.props.carData.damageElements || []
 		};
-		console.log(this.state.damageElements);
+
+		console.log(this.props.carData.fieldComments)
 		this.elements = Car.elements;
 		this.damageTypes = Car.damageTypes;
 		this.typeRepair = Car.typeRepair;
@@ -23,6 +24,7 @@ class Damage extends React.Component {
 		this.gotoNext = this.gotoNext.bind(this);
 		this.closeLightbox = this.closeLightbox.bind(this);
 		this.openLightbox = this.openLightbox.bind(this);
+		this.getPhotoIndexbyName = this.getPhotoIndexbyName.bind(this);
 		this.createUrl = this.createUrl.bind(this);
 		this.getPhotos = this.getPhotos.bind(this);
 	}
@@ -64,9 +66,25 @@ class Damage extends React.Component {
 		});
 	}
 
-	openLightbox(index, event) {
-		event.preventDefault();
+	getPhotoIndexbyName(filename) {
+		var index = 0;
+		var findIndex = 0;
 
+		this.props.carData.damageElements.map((el)=> {
+			return el.photos && el.photos.map((photo)=> {
+					++index;
+					if (photo.filename === filename) {
+						findIndex = index
+					}
+				})
+		});
+
+		return --findIndex;
+	}
+
+	openLightbox(filename, event) {
+		event.preventDefault();
+		const index = this.getPhotoIndexbyName(filename);
 		this.setState({
 			currentImage: index,
 			lightboxIsOpen: true
@@ -133,14 +151,14 @@ class Damage extends React.Component {
 														return <a href={this.createUrl(photo.filename)}
 																  className="table-photo__link "
 																  key={i}
-																  onClick={(e) => this.openLightbox(i, e)}>
+																  onClick={(e) => this.openLightbox(photo.filename, e)}>
 															<img src={this.createUrl(photo.filename)}
 																 className="table-photo__picture"/>
 														</a>
 													})}
 
 													{(()=> {
-														if (el.photos && el.photos.length) {
+														if (el.photos && el.photos.length > 1) {
 															return <div
 																className="table-photo__length">{el.photos.length}</div>;
 														}

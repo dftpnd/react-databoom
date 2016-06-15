@@ -16,7 +16,7 @@ class EquipmentView extends React.Component {
 		this.handleChangeForAuctionMins = this.handleChangeForAuctionMins.bind(this);
 	}
 
-	checkValue(fieldName) {
+	checkValue() {
 		// if (this.state.onlyView) {
 		// 	if (this.state[fieldName]) {
 		// 		return true

@@ -97,7 +97,6 @@ class AddCarService {
 			JSON.parse(localStorage.getItem('exteriorFunctionalState')),
 			JSON.parse(localStorage.getItem('exteriorState')),
 			JSON.parse(localStorage.getItem('exteriorState')),
-			JSON.parse(localStorage.getItem('fieldComments')),
 			JSON.parse(localStorage.getItem('carFormState'))
 		];
 
@@ -109,6 +108,7 @@ class AddCarService {
 			}
 		});
 
+		data['fieldComments'] = JSON.parse(localStorage.getItem('fieldComments'));
 		data['auction_step'] = 1;
 		data['auction_start'] = new Date();
 		data['auction_time_mins'] = localStorage.getItem('auction_time_mins');
