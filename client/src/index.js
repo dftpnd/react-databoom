@@ -11,6 +11,7 @@ import addCarService from 'components/add-car/add-car.service';
 import Auction from 'components/auction/auction';
 import Manager from 'components/manager/manager';
 import ManagerSold from 'components/manager-sold/manager-sold';
+import ManagerClients from 'components/manager-clients/manager-clients';
 import Personal from 'components/personal/personal';
 import Login from './components/login/login';
 //import Auth from './components/auth/auth';
@@ -36,6 +37,7 @@ function handlerRouter(nextState, replace) {
 			redirected = true;
 		}
 	}
+
 }
 
 ReactDOM.render((
@@ -45,6 +47,7 @@ ReactDOM.render((
 			<Route path="auction" component={Auction} onEnter={requireAuth}/>
 			<Route path="manager" component={Manager} onEnter={requireAuth}/>
 			<Route path="manager-sold" component={ManagerSold} onEnter={requireAuth}/>
+      <Route path="manager-clients" component={ManagerClients} onEnter={requireAuth}/>
 			<Route path="personal" component={Personal} onEnter={requireAuth}>
 				<Route path=":stepName" component={Personal} onEnter={requireAuth}/>
 			</Route>

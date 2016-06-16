@@ -38,6 +38,7 @@ class App extends React.Component {
 							<Link to='/add-car' className="item" activeClassName="active">add-car</Link>
 							<Link to='/manager' className="item" activeClassName="active">manager</Link>
 							<Link to='/manager-sold' className="item" activeClassName="active">manager-sold</Link>
+              <Link to='/manager-clients' className="item" activeClassName="active">manager-clients</Link>
 							<Link to='/personal' className="item" activeClassName="active">personal</Link>
 						</nav>
 

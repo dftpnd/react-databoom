@@ -160,6 +160,51 @@ class store {
         })
     })
   }
+
+  getClientsWithBids()
+  {
+    var cars = [];
+    var buyersDict = {};
+    var buyersList = [];
+    var promises = [
+      this.getAuctionCars().done((data) => {
+        cars = data;
+      }),
+      this.getCarBuyers().done((buyers) => {
+        buyersDict = buyers.dict;
+        buyersList = buyers.data;
+      })
+    ];
+
+    return Promise.all(promises).then(() => {
+
+      for(var a=0; a<buyersList.length; a++)
+      {
+        buyersList[a].games = [];
+      }
+
+      for(var i=0; i<cars.length; i++)
+      {
+        var car = cars[i];
+        if (car.buyers2bids)
+        {
+          for (var buyer_id in car.buyers2bids)
+          {
+            if(!car.buyers2bids.hasOwnProperty(buyer_id)) continue;
+            var buyer = buyersDict[buyer_id];
+            var buyer_bid = car.buyers2bids[buyer_id];
+            buyer.games.push({
+              car: car,
+              bid: buyer_bid,
+              is_max: buyer_bid.id == car.max_bid.id
+            });
+          }
+        }
+      }
+
+      return buyersList;
+    });
+  }
 }
 
 export default new store();

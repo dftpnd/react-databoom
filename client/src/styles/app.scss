@@ -1,3 +1,33 @@
+/* Fonts */
+
+@font-face {
+  font-family:'Proxima Nova';
+  src:url('../fonts/proximanova.eot');
+  src:url('../fonts/proximanova.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/proximanova.woff') format('woff'),
+  url('../fonts/proximanova.ttf') format('truetype');
+  font-weight:normal;
+  font-style:normal;
+}
+@font-face {
+  font-family:'Proxima Nova';
+  src:url('../fonts/proximanoval.eot');
+  src:url('../fonts/proximanoval.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/proximanoval.woff') format('woff'),
+  url('../fonts/proximanoval.ttf') format('truetype');
+  font-weight:300;
+  font-style:normal;
+}
+@font-face {
+  font-family:'Proxima Nova';
+  src:url('../fonts/proximanovab.eot');
+  src:url('../fonts/proximanovab.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/proximanovab.woff') format('woff'),
+  url('../fonts/proximanovab.ttf') format('truetype');
+  font-weight:bold;
+  font-style:normal;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -6,7 +36,9 @@
 
 body {
 	background: #ebeff4;
+  font-family:'Proxima Nova', sans-serif;
 }
+
 [readonly]{
   pointer-events: none;
 }
@@ -14,6 +46,15 @@ body {
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
+}
+
+h1 {
+  font-size:18px;
+  line-height:22px;
+  font-weight:300;
+  padding:0 0 24px;
+  margin:0 0 29px;
+  border-bottom:1px solid #e1e1e1;
 }
 
 .limiter {
