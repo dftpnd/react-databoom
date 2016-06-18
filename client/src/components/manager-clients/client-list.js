@@ -1,7 +1,6 @@
 import React from 'react';
 import ClientRow from './client-row';
 import store from '../services/store.service';
-import ManagerClientsService from '../services/manager-clients.service'
 
 class ClientList extends React.Component {
 
