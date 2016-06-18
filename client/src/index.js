@@ -17,6 +17,7 @@ import Login from './components/login/login';
 //import Auth from './components/auth/auth';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 import CarView from './components/car-view/car-view'
+import ClientView from './components/client-view/client-view'
 
 function requireAuth() {
 	//nextState, replaceState
@@ -59,6 +60,10 @@ ReactDOM.render((
 			<Route path="car-view" component={CarView} onEnter={requireAuth}>
 				<Route path=":tabName/:carId" component={CarView} onEnter={requireAuth}/>
 			</Route>
+
+      <Route path="client-view" component={ClientView} onEnter={requireAuth}>
+        <Route path=":clientId" component={ClientView} onEnter={requireAuth}/>
+      </Route>
 		</Route>
 	</Router>
 ), document.getElementById('app'));

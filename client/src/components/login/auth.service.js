@@ -1,13 +1,21 @@
 let instance = null;
 
 class auth {
-	constructor() {
-		if (!instance) {
-			instance = this;
-		}
+  constructor() {
+    if (!instance) {
+      instance = this;
+    }
 
-		this.getUserId = this.getUserId.bind(this);
-	}
+    this.getUserId = this.getUserId.bind(this);
+  }
+
+  getUser()
+  {
+    if (localStorage['userinfo']) {
+      var userinfo = JSON.parse(localStorage['userinfo']);
+      return userinfo;
+    }
+  }
 
 	getUserId() {
 		if (localStorage['userinfo']) {

@@ -149,6 +149,16 @@ class store {
     })
   }
 
+  getUserById(user_id)
+  {
+    return db.login.then(() => {
+      return db.store.load('user('+user_id+')')
+        .then((users) => {
+          return users;
+        })
+    })
+  }
+
   getCar(carId)
   {
     return db.login.then(() => {

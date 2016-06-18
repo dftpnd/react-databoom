@@ -30,7 +30,11 @@ class Login extends React.Component {
 				var userinfo = {
 					username: username,
 					id: users[0].id,
-					name: users[0].name
+					name: users[0].name,
+          isAdmin: users[0].is_admin,
+          isBuyer: users[0].is_buyer,
+          isManager: users[0].is_manager,
+          isCarAdder: users[0].is_caradder
 				};
 				localStorage['userinfo'] = JSON.stringify(userinfo);
 				location.reload();
