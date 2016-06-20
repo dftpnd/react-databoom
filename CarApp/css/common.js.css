@@ -1,0 +1,61 @@
+﻿/* my-tmp-dialog */
+.my-tmp-dialog
+{
+    width: 100%;
+}
+
+.my-tmp-dialog .modal-dialog{
+    width:95%;
+    max-width:1000px;
+}
+
+/* my-navbar */
+nav.my-navbar{
+    width: 100vw;
+}
+
+nav.my-navbar .navbar-header{
+    vertical-align: middle;
+}
+
+/* my-logout-btn */
+@media (min-width: 1000px) {
+    .my-logout-btn {
+        margin-top: 22px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .my-logout-btn {
+        margin-top: 8px;
+    }
+}
+
+.my-logout-btn #user_header_label
+{
+    margin-right: 20px;
+}
+
+.my-logout-btn .btn
+{
+    margin-right:30px;
+}
+
+/* my-head-username */
+.my-head-username,.my-head-username:hover,.my-head-username:focus
+{
+    color:white;
+}
+
+/* my-login-dialog*/
+.my-login-dialog{
+    max-width: 500px !important;
+}
+
+/* common tabs */
+.js-common-tabs .my-scrollable
+{
+    height:88vh; 
+    overflow-x:scroll;
+    overflow-x:auto
+}

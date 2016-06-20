@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Auto Gross</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=960, user-scalable=yes">
+	<!--<link href="./favicon.ico" rel="shortcut icon">-->
+	<link href="./css/style.css" rel="stylesheet">
+	<link href="./fancybox/style.css" rel="stylesheet">
+	<script src="./js/jquery.js"></script>
+	<!--[if IE 8]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<header>
+		<div>
+			<img src="./img/logo.png" width="71" height="54" class="logo" alt="">
+			<nav>
+				<ul>
+					<li class="active"><a href="#">Экспресс аукционы</a></li>
+					<li><a href="#">Длительные аукционы</a></li>
+					<li><a href="#">Контакты</a></li>
+				</ul>
+			</nav>
+			<p class="user">Иванов Иван Иванович<img src="./img/user.png" width="50" height="50" alt=""></p>
+		</div>
+	</header>
+	<div class="wrapper">
+		<div>
+			<ul class="progress">
+				<li class="active"><span>Автомобиль</span></li>
+				<li><span>Внешний вид</span></li>
+				<li><span>Внешний функционал</span></li>
+				<li><span>Салон</span></li>
+				<li><span>Функционал салона</span></li>
+				<li><span>Шины и тормоза</span></li>
+				<li><span>Двигатель</span></li>
+				<li><span>Подвеска</span></li>
+				<li><span>Тест драйв</span></li>
+				<li><span>Комплектация</span></li>
+			</ul>
+			<div class="data-m">
+				<h1>Ввод данных автомобиля</h1>
+				<div class="item">
+					<p>Описание автомобиля</p>
+					<textarea cols="100" rows="4" placeholder="Текст описания"></textarea>
+				</div>
+				<div class="item">
+					<p>Марка</p>
+					<select>
+						<option value="0" selected="selected">Выберите марку</option>
+						<option>BMW</option>
+						<option>BMW</option>
+					</select>
+					<i class="warning-icon"></i>
+				</div>
+				<div class="item">
+					<p>Модель</p>
+					<select>
+						<option value="0" selected="selected">Выберите модель</option>
+						<option>1er</option>
+						<option>1er</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Модификация</p>
+					<select>
+						<option value="0" selected="selected">Выберите модификацию</option>
+						<option>01</option>
+						<option>02</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Год выпуска</p>
+					<select>
+						<option value="0" selected="selected">Выберите год выпуска</option>
+						<option>2000</option>
+						<option>2001</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Двигатель, объем</p>
+					<select>
+						<option value="0" selected="selected">Выберите двигатель и объем</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Двигатель, л.с.</p>
+					<select>
+						<option value="0" selected="selected">Выберите кол-во л.с.</option>
+						<option>200</option>
+						<option>210</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Двигатель, тип</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Привод</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Коробка передач</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Руль</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+					<i class="warning-icon"></i>
+				</div>
+				<div class="item">
+					<p>Состояние</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Битый</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Цвет</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Пробег</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>ПТС</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Причина выдачи дубликата ПТС</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Свободных мест в ПТС</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Дата выдачи ПТС</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Кол-во хозяев по ПТС</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Сервисная книжка</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+					<i class="warning-icon"></i>
+				</div>
+				<div class="item">
+					<p>Авто на гарантии</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Куплен в России</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Ключ(и) количество</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Шины</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Спидометр</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="item">
+					<p>Размер покрышки</p>
+					<select>
+						<option value="0" selected="selected">-</option>
+						<option>type1</option>
+						<option>type2</option>
+					</select>
+				</div>
+				<div class="photos-e">
+					<h2>Основные фотографии</h2>
+					<ul>
+						<li>
+							<div>
+								<img src="./pic/p-1.png" width="80" height="80" alt="">
+							</div>
+							<i class="remove-icon"></i>
+						</li>
+						<li>
+							<span class="upload"></span>
+							<input type="file">
+						</li>
+					</ul>
+				</div>
+				<div class="controls">
+					<button class="next">Заполнить чеклист</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="./fancybox/script.js"></script>
+	<script src="./js/uniform.js"></script>
+	<script src="./js/dynamic.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+.appearance-form__item {
+	display: flex;
+	margin: 20px 0;
+	align-items: baseline;
+	position: relative;
+
+	.custom-field {
+    border-radius: 5px;
+		border: 1px solid #ccc;
+		color: #757575;
+		background: #fff;
+		font-size: 14px;
+		flex: 1;
+		margin-right: 100px;
+	}
+
+	.custom-field__select {
+		height: 40px;
+	}
+
+	.custom-field__textarea {
+		padding: 5px 0;
+    text-indent: 6px;
+	}
+
+	.custom-field__input {
+    height: 40px;
+    text-indent: 6px;
+	}
+
+	label {
+		font-size: 14px;
+		width: 250px;
+	}
+
+	.field-error{
+		width: 20px;
+		height: 20px;
+		background: url("../images/error.png");
+		position: absolute;
+		right: 0;
+		top: 50%;
+		color: #fff;
+		margin-top: -10px;
+	}
+}
+
+
+
+

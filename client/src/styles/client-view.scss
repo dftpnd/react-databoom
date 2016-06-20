@@ -1,0 +1,54 @@
+.client-view{
+
+
+  .form {
+    margin:0 10px;
+
+
+    .item {
+      position:relative;
+      min-height:40px;
+      padding:0 0 0 250px;
+      margin:0 70px 20px 20px;
+    }
+    .item p {
+      position:absolute;
+      left:0;
+      top:11px;
+      font-size:14px;
+      line-height:18px;
+      max-width:230px;
+      margin:0;
+    }
+
+    .item input,.item textarea,.item select {
+      width:100%;
+      font-size:14px;
+      padding:10px 19px 11px;
+      border:1px solid #cccccc;
+      -webkit-border-radius:5px;
+      border-radius:5px;
+    }
+
+    .item textarea {
+      margin:0 0 -4px;
+      resize:vertical;
+    }
+
+    .item select {
+      height:40px;
+      line-height:34px;
+      padding:9px 15px 10px;
+    }
+
+    .controls {
+      height:50px;
+      padding:0 20px;
+      margin:40px 0 20px;
+    }
+
+  }
+
+
+
+}

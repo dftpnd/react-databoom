@@ -1,0 +1,42 @@
+.table-photo {
+	height: 80px;
+	width: 80px;
+  display: inline-block;
+
+	position: relative;
+	&__link {
+		top: 50%;
+    margin-top: -40px;
+		position: absolute;
+		background: #fff;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 80px;
+		width: 80px;
+    z-index: 0;
+	}
+	&__link:first-child {
+		z-index: 2;
+	}
+	&__length {
+		position: absolute;
+		background: #17314c;
+		color: #fff;
+		top: -10px;
+		right: -10px;
+    border-radius: 16px;
+    width: 32px;
+    height: 32px;
+    z-index: 10;
+    text-align: center;
+    padding-top: 7px;
+    font-size: 16px;
+
+	}
+	&__picture {
+		max-height: 100%;
+		max-width: 100%;
+	}
+
+}

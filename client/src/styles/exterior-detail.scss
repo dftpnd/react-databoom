@@ -1,0 +1,39 @@
+.exterior-detail {
+	display: flex;
+
+  .exterior-field__select {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    color: #757575;
+    background: #fff;
+    font-size: 14px;
+    height: 40px;
+    width: 250px;
+  }
+
+	.photo-upload {
+		padding-top: 38px;
+	}
+	&__left, &__right {
+		flex: 1;
+	}
+	&__left {
+		padding-right: 40px;
+
+    .exterior-label {
+      font-size: 14px;
+			display: flex;
+			justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 20px;
+		}
+	}
+	&__right {
+    margin-top: 10px;
+    .exterior-label {
+      font-size: 14px;
+    }
+
+	}
+
+}

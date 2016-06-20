@@ -1,0 +1,286 @@
+/* body */
+
+body { /* Предотвращение дергания картинки при появлении вертикального скролл-бара */
+    /*width: calc(100vw - 34px);*/
+    color: navy;
+}
+
+body.noscroll{
+    overflow-x: hidden;
+}
+
+@media (min-width: 1300px) {
+  .container {
+    width: 1300px !important;
+  }
+}
+
+#body_content{
+    max-width:1300px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+
+/* stuff */
+div.blockOverlay {
+    background: rgba( 220, 220, 220, 1.0 ) 
+            url('FhHRx.gif') 
+            50% 50% 
+            no-repeat !important;
+    z-index: 1000;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    cursor: wait;
+    position: absolute;
+}
+
+
+
+.navbar-inner {
+    min-height: 0px;
+}
+
+.navbar-brand-a-lg {
+    line-height: 90px;
+    height: 90px;
+    padding-top: 0;
+    font-size: 1.7em
+}
+
+.navbar-brand-a-xs {
+    height: 60px;
+    
+}
+
+
+
+.select2-container .select2-selection--single{
+    height: auto;
+    min-height: 38px;
+}
+.select2-container .select2-selection--single .select2-selection__rendered{
+    white-space:normal;
+}
+
+th
+{
+    text-align: center;
+}
+
+
+#btn_search_by_mkb_code .select2-container--default .select2-selection--single{
+    font-family: 'Courier New', Courier, 'Nimbus Mono L', monospace;
+}
+
+#select2-mkb_name_search-results > .select2-results__option{
+    font-family: 'Courier New', Courier, 'Nimbus Mono L', monospace;
+}
+
+
+.table-bordered-strong {
+  border: 1px solid #2c3e50
+}
+
+.table-bordered-strong > thead > tr > th,
+.table-bordered-strong > tbody > tr > th,
+.table-bordered-strong > tfoot > tr > th,
+.table-bordered-strong > thead > tr > td,
+.table-bordered-strong > tbody > tr > td,
+.table-bordered-strong > tfoot > tr > td {
+   border: 1px solid #2c3e50;
+}
+
+.form-label
+{
+    font-size: 1.15em;
+}
+
+.my-textstar{
+    color: rgba(255, 106, 0, 0.40)
+
+}
+
+.my-textstar:hover{
+    -webkit-filter: brightness(150%);
+}
+
+.my-textstar span{
+    /*background-color: white;*/
+    border-radius: 50%;
+    font-size: .4em;
+    display:block;
+    position:absolute;
+    top: 0.71em;
+    left: 0.54em;
+    text-align: center;
+    width: 1.3em;
+    height: 1.3em;
+    /*border:solid 4px #fff;*/
+    /*box-shadow:0px 0px 1px #000;*/
+    /*color: #fff;*/
+    
+    font-weight: bold;
+    color: navy;
+    font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif
+}
+
+
+
+
+path{
+    pointer-events:all;
+}
+
+path:hover{
+    cursor: pointer;
+    fill: #ed7272;
+}
+
+
+.car_scheme_container{
+    height: 0;
+    padding-top: 48%;
+    position: relative; 
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-height: 600px;
+}
+
+
+/* my-hidden - для замены записи style="display: none;", которая признана некорректной 
+    
+    для элементов, которые скрыты при первоначальной отрисовке (и которые могут быть в дальнейшем показаны)
+    */
+.my-hidden{
+    display: none;
+}
+
+.my-div-10px
+{
+    height:10px;
+}
+
+.my-div-20px{
+    height:20px;
+}
+
+.my-div-30px{
+    height:30px;
+}
+
+.my-div-40px{
+    height:40px;
+}
+
+.my-div-500px{
+    height:500px;
+}
+
+.my-div-300px{
+    height:300px;
+}
+
+.my-div-200px{
+    height:300px;
+}
+
+
+.my-cmd-col{
+    text-align:left;
+    white-space: nowrap;
+}
+
+
+.my-col-lefted{
+    text-align: left;
+}
+
+.my-col-centered{
+    text-align: center;
+}
+
+.my-btn-add-photo
+{
+
+}
+
+
+
+.js-star-button i{
+    font-size:2.9em;
+}
+
+.my-del-schemepart-row
+{
+    font-size: 1.5em;
+}
+
+tr.js-command-add-row .js-btn-add-partrow{
+    font-size:1.3em;
+}
+
+
+
+
+/* schemerow controls */
+
+textarea.js-damage-type,textarea.js-repair-type{
+    width:100%;
+}
+
+tr.js-command-add-row td{
+    text-align:center;
+    white-space: nowrap;
+}
+
+.my-schemerows-bottom .js-btn-save{
+    margin-left: 20px;
+}
+
+/* my-schemerows-table*/
+
+.my-schemerows-table{
+    margin-top: -8px;
+}
+
+.my-schemerows-table thead th:nth-child(4){
+    width:20px
+}
+
+
+.my-schemerows-table tr[data-partrow-id] td{
+    vertical-align:middle;
+}
+
+/* schemepart gallery */
+
+.js-btn-add-photo
+{
+    margin-bottom:6px;
+    margin-left:30px;
+}
+
+.my-schemepart-gallery
+{
+    margin-top: -17px;
+}
+
+.my-schemepart-gallery .js-btn-save
+{
+    margin-left: 20px;
+}
+
+.my-schemepart-gallery .my-image-item
+{
+    width:200px;
+}

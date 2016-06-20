@@ -1,0 +1,66 @@
+﻿.hovered_checklist_item
+{
+    font-size: 1.3em !important;
+}
+
+
+.car-image-thumbnail
+{
+    background-size:contain;
+    background-repeat: no-repeat;
+    height:110px;
+}
+
+
+.image-thumb, .image-thumb img {
+  position:relative;
+  width:200px;
+}
+
+
+.image-fav {
+    display:none;
+    position:absolute;
+    bottom:95%;
+    left:88%;
+    width:25px;
+    height:25px;
+    font-size: 1.4em;
+    opacity: 0.8;
+    color:navy;
+    background-color: white;
+    border-radius: 5px;
+    vertical-align: middle;
+}
+
+
+.image-thumb:hover .image-fav {
+    display:block;
+}
+
+
+.image-car-bg{
+    background-size:contain;
+    background-repeat: no-repeat;
+}
+
+.my-auct_top_str
+{
+    text-align: right;
+}
+
+
+.my-clients-table tbody
+{
+    text-align:center;
+}
+
+.client-games-area .top_label
+{
+    margin-top:20px;
+}
+
+.js-car_data_row1
+{
+    cursor: pointer;
+}

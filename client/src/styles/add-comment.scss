@@ -1,0 +1,23 @@
+.add-comment {
+	width: 600px;
+	position: relative;
+	padding-bottom: 50px;
+	&__remove {
+		position: absolute;
+		color: #cb404d;
+		z-index: 1;
+		cursor: pointer;
+		line-height: 40px;
+		padding: 0 8px;
+		border: 1px solid;
+		right: 0;
+		bottom: 0;
+		border-radius: 5px;
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+	textarea {
+		width: 100%;
+	}
+}

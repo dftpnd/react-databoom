@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -29,8 +28,3 @@ node_modules
 
 # Bower
 bower_components/
-=======
-nbproject
-.idea
-*.DS_Store
->>>>>>> b0039cee9515a549c8eadf9085648dd2a9291665

@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta content='initial-scale=1, user-scalable=0' name='viewport'/>
+<head>
+	<title>CarApp - Аукцион</title>
+
+	<script src="js/jquery-1.11.0.min.js"></script>
+
+	<link href="js/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+	<script src="js/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+
+	<!--<link href="js/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" />-->
+	<link href="css/United/bootstrap.min.css" rel="stylesheet"/>
+
+	<script src="js/select2/select2.full.min.js"></script>
+	<link href="js/select2/select2.min.css" rel="stylesheet"/>
+	<script src="js/select2/i18n/ru.js"></script>
+
+	<script src="js/databoom.js"></script>
+
+	<script src="js/jquery.blockUI.js"></script>
+	<script src="js/bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script>
+	<script src="js/moment-with-locales.min.js"></script>
+	<script src="js/adamwdraper-Numeral-js-7487acb/min/numeral.min.js"></script>
+	<script src="js/adamwdraper-Numeral-js-7487acb/min/languages/ru.min.js"></script>
+
+	<link href="css/common.js.css" rel="stylesheet"/>
+	<script src="js/htmljs/Common.js?v=3"></script>
+
+	<script src="js/htmljs/AuctionLogic.js?v=3"></script>
+	<script src="js/htmljs/CarUICommon.js?v=3"></script>
+	<script src="js/htmljs/Auction.js?v=3"></script>
+	<script src="js/htmljs/CarStruct.js?v=3"></script>
+
+	<link href="css/common.css" rel="stylesheet"/>
+
+	<link href="css/Auction.css" rel="stylesheet"/>
+
+</head>
+<body class="noscroll">
+
+<div id="body_content">
+
+
+	<div class="js-common-tabs my-scrollable col-xs-12">
+		<ul class="nav nav-pills">
+			<li role="presentation" class="active"><a href="javascript:void(0)" data-pills-page="MainInfo"
+													  onclick="Common_OnClickTab(this)">Аукционы</a></li>
+			<li role="presentation"><a href="javascript:void(0)" data-pills-page="SoldAutos"
+									   onclick="Common_OnClickTab(this)">Личный кабинет</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div class="tab-pane fade in active MainInfo col-xs-12">
+				<span class="btn btn-info pull-right js-btn-refresh" id="btn_refresh">Обновить <i
+						class="fa fa-refresh"></i></span>
+				<h3>Аукционы</h3>
+
+				<div id="car_list_area">
+
+				</div>
+			</div>
+			<div class="tab-pane fade SoldAutos">
+				<h4>Личный кабинет</h4>
+
+				<div id="account_tabs">
+					<ul class="nav nav-tabs" role="tablist">
+						<!--                <li role="presentation" ><a href="#account_profile" aria-controls="account_profile" role="tab" data-toggle="tab">Профиль</a></li>-->
+						<li class="active" role="presentation"><a href="#account_bids" aria-controls="account_bids"
+																  role="tab" data-toggle="tab">Мои ставки</a></li>
+						<li role="presentation"><a href="#account_trade_hist" aria-controls="account_trade_hist"
+												   role="tab" data-toggle="tab">История покупок</a></li>
+					</ul>
+
+					<div class="tab-content">
+						<!--                <div role="tabpanel" class="tab-pane" id="account_profile">
+
+										</div>-->
+						<div role="tabpanel" class="tab-pane active col-xs-12" id="account_bids">
+							<span class="btn btn-info pull-right js-btn-refresh" id="Span1" onclick="FillMyBids()">Обновить <i
+									class="fa fa-refresh"></i></span>
+							<h3>Мои ставки</h3>
+							<div id="account_my_bids">
+								<div class="my-div-500px"></div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane col-xs-12" id="account_trade_hist">
+							<span class="btn btn-info pull-right js-btn-refresh" id="account_trade_hist_btn_refresh"
+								  onclick="FillTradeHistory()">Обновить <i class="fa fa-refresh"></i></span>
+							<h3>История покупок</h3>
+							<div id="account_trade_hist_area">
+								<div class="my-div-500px"></div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="my-div-300px">
+
+	</div>
+
+</div>
+
+<div id="car_row_template" style="display: none">
+	<div class="well well-sm col-xs-12">
+		<div class="col-xs-4 col-sm-5">
+			<div class="col-xs-8 col-sm-5 car-image-thumbnail">
+
+			</div>
+			<div class="col-xs-4 col-sm-7">
+				<div class="col-xs-12">
+					<a href="CarDetails.html?carid=1" target="_blank"><span class="js-car_data_row1 lead"></span></a>
+				</div>
+				<div class="col-xs-12">
+					<span class="js-car_data_row2"></span>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-8 col-sm-7">
+			<div class="col-xs-6">
+				<div class="js-max_bid lead"></div>
+				<div class="js-time_left lead"></div>
+
+			</div>
+			<div class="col-xs-6">
+				<span class="btn btn-lg btn-success js-btn-add-bid">Сделать ставку</span>
+				<div class="js-end_time"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="car_row_sold_template" style="display: none">
+	<div class="well well-sm col-xs-12">
+		<div class="col-xs-6">
+
+			<div class="col-xs-5 car-image-thumbnail">
+
+			</div>
+			<div class="col-xs-7">
+				<div class="col-xs-12">
+					<span class="js-car_data_row1 lead"></span>
+				</div>
+				<div class="col-xs-12">
+					<span class="js-car_data_row2"></span>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6 right_area">
+			<div>
+				<div class="js-car_buyer_name col-xs-12"></div>
+				<div class="js-trade_summ col-xs-12 lead"></div>
+			</div>
+
+			<div class="col-xs-12 js-auct_top_str">
+				<span class="js-auct_end_dt"></span>
+				<span class="js-auct_length"></span>
+				<span class="js-auct_total_bids"></span>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div id="car_row_my_bid_template" style="display: none">
+	<div class="well well-sm col-xs-12">
+		<div class="col-xs-6">
+
+			<div class="col-xs-5 car-image-thumbnail">
+
+			</div>
+			<div class="col-xs-7">
+				<div class="col-xs-12">
+					<span class="js-car_data_row1 lead"></span>
+				</div>
+				<div class="col-xs-12">
+					<span class="js-car_data_row2"></span>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6 right_area">
+			<div>
+				<div class="js-car_buyer_name col-xs-12"></div>
+				<div class="js-trade_summ col-xs-12 my-bigger-text"></div>
+				<div class="js-bid_status col-xs-12 my-bigger-text"></div>
+			</div>
+
+			<div class="col-xs-12 js-auct_top_str">
+				<span class="js-auct_end_dt"></span>
+				<span class="js-auct_length"></span>
+				<span class="js-auct_total_bids"></span>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+</body>
+</html>

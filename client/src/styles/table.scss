@@ -1,0 +1,36 @@
+.table {
+	width: 100%;
+  border-collapse: collapse;
+
+  tr {
+
+    &.table-th th {
+      color: #757575;
+      font-size: 14px;
+      font-weight: normal;
+      text-align: left;
+      padding: 20px;
+      border-bottom: 1px solid #e1e1e1;
+      &:last-child{
+        text-align: right;
+      }
+    }
+  }
+
+	tr, .row {
+		display: table-row;
+		padding: 10px;
+	}
+	td, .cell {
+		//border: 1px solid black;
+		display: table-cell;
+    height: 121px;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 20px;
+    border-bottom: 1px solid #e1e1e1;
+    &:last-child{
+      text-align: right;
+    }
+	}
+}
